@@ -12,17 +12,19 @@ function App() {
   return (
     <div>
 
-    <Routes>
+  <Routes>
 
-    <Route path='/' element={<Landing/>}/>
+  <Route path='/' element={<Landing/>}/>
 
-    <Route path='/Home' element={<Home/>}/>
+  <Route path='/Home' element={<Home/>}/>
 
-    <Route path='/Details' element={<Details/>}/>
+  <Route path='/Details' element={<Details/>}/>
 
-    <Route path='/AboutUs' element={<AboutUs/>}/>
+  <Route path='/AboutUs' element={<AboutUs/>}/>
 
-    </Routes>
+  <Route path='/Form' element={<Form/>}/>
+
+  </Routes>
 
     </div>
   )

@@ -5,6 +5,7 @@ const Landingpage = () => {
   return (
     <div>
       <h1>Welcome to ChampionGear</h1>
+      <h2>¡The best deportive Clothes shop in the word!</h2>
       <Link to="/home">
         <button>Go to Home</button>
       </Link>

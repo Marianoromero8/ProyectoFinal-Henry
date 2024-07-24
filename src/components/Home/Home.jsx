@@ -11,6 +11,9 @@ const Home = () => {
       <Link to="/AboutUs">
         <button>Go to AboutUs</button>
       </Link>
+      <Link to="/Form">
+        <button>Go to Form</button>
+      </Link>
     </div>
   );
 }
