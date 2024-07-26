@@ -14,6 +14,9 @@ const Home = () => {
       <Link to="/Form">
         <button>Go to Form</button>
       </Link>
+      <Link to="/Cart">
+      <button>Cart</button>
+      </Link>
     </div>
   );
 }
