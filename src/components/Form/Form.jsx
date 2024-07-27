@@ -18,7 +18,7 @@ const structureData = (formData) => {
     name: formData.name,
     description: formData.description,
     images: [formData.image],
-    stock: Math.floor(Math.random() * 100), // Generar stock entre 0 y 99
+    stock: Math.floor(Math.random() * 100), 
     price: `$${formData.price}`,
     genero: formData.gender,
     category: formData.category
