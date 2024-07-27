@@ -5,11 +5,13 @@ import { registerUser } from "../../store/auth/authThunks";
 
 
 const Register = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('user'); // O 'admin' según el caso
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+    
     const { loading, error, user } = useSelector((state) => state.auth);
   
     const handleSubmit = async (e) => {
@@ -17,7 +19,7 @@ const Register = () => {
       const resultAction = await dispatch(registerUser({ email, password, role }));
   
       if (registerUser.fulfilled.match(resultAction)) {
-        navigate('/login'); // Redirigir a Home
+        navigate('/Login'); // Redirigir a Home
       }
     };
   

@@ -26,7 +26,6 @@ export const registerUser = createAsyncThunk(
       try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        console.log('login succesful', user)
         return { uid: user.uid, email: user.email };
       } catch (error) {
         return rejectWithValue(error.message);
