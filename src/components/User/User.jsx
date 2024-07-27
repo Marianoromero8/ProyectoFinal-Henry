@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import Admin from "../Views/Admin/Admin";
 import RegularUser from "../Views/Admin/RegularUser/RegularUser";
+import Dashboard from "../Dashboard/Dashboard";
 
 
 const User = () => {
@@ -20,7 +20,7 @@ const User = () => {
             {role === 'admin' ? (
                 <div>
                     <h2>Admin View</h2>
-                    <Admin/>
+                    <Dashboard/>
                 </div>
             ) : (
                 <div>
