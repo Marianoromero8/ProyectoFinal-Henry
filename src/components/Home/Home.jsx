@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import styles from "../Home/Home.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../store/auth/authThunks";
+
+//Lo comentado es agregado por marian para la autorizacion de terceros
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
+
+  // const navigate = useNavigate(); //Agregado por marian
+  // const user = useSelector((state) => state.auth.user) //Agregado por marian
+  // const dispatch = useDispatch(); //Agregado por marian
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -77,12 +85,32 @@ const Homepage = () => {
     setFilteredProducts(products);
   };
 
+  // --------------------------------------------
+  // const handleLogout = () => { //Agregado por marian
+  //   dispatch(logoutUser())
+  //   .then(() => navigate('/login'))
+  // }
+
   if (loading) {
     return <Loader />;
   }
 
+ 
+
   return (
     <div className={styles.container}>
+      {/* <div>
+      {user ? (
+        <div>
+        <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <button onClick={() => {navigate('/login')}}>Login</button>
+          <button onClick={() => {navigate('/register')}}>Register</button>
+        </div>
+      )}
+      </div> */}
       <h1 className={styles.title}>ChampionGear</h1>
       <NavBar
         onFilterChange={handleFilterChange}

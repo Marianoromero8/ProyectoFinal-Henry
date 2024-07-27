@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/auth/authThunks";
 import { logout } from "../../store/auth/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,18 +20,22 @@ const Login = () => {
 
   useEffect(() => {
     if(user){
-      navigate('/home')
+      navigate('/ViewRole')
     }
   }, [user, navigate])
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Sign in to ChampionGear</h2>
       <form onSubmit={handleSubmit}>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required />
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required />
         <button type="submit" disabled={loading}>Login</button>
       </form>
+      <div>
+        <p>You don't have an account?</p>
+         <Link to='/register'>Create an account</Link>
+      </div>
       {error && <p>{error}</p>}
     </div>
   );
