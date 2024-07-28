@@ -13,7 +13,7 @@ import Register from "./components/Register/Register";
 function App() {
   console.log();
   return (
-    <div>
+    <div className=".App">
       <Routes>
         <Route path="/" element={<Landing />} />
 

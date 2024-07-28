@@ -1,19 +1,24 @@
-.searchBar {
+.searchBarContainer {
   display: flex;
   align-items: center;
-  gap: 10px;
+  
 }
 
 .searchInput {
   padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding-left: 15px;
+  border: 0;
+  border-radius: 20px;
   width: 200px;
+  background-color: rgba(0, 0, 0, 0.057);
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .searchButton {
-  padding: 8px 16px;
-  background-color: #007bff;
+  background-color: #007bff00;
   color: white;
   border: none;
   border-radius: 4px;
@@ -24,17 +29,19 @@
 .searchButton:hover {
   background-color: #0056b3;
 }
-
-.clearButton {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
 .clearButton:hover {
   background-color: #0056b3;
+}
+
+
+.imgButton{
+  width: 35px;
+}
+
+
+.buttonContainer{
+  display: flex;
+  width: 100px;
+  justify-content: center;
+  margin-left: 10px;
 }
