@@ -11,7 +11,7 @@ import { logoutUser } from "../../store/auth/authThunks";
 
 //Lo comentado es agregado por marian para la autorizacion de terceros
 
-const Homepage = () => {
+const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -150,4 +150,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Home;

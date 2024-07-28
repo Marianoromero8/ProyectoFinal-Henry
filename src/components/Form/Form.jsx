@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from '../Form/Form.module.css'; 
+import styles from '../Form/Form.module.css';
 import {
   validateName,
   validateDescription,
@@ -18,14 +18,14 @@ const structureData = (formData) => {
     name: formData.name,
     description: formData.description,
     images: [formData.image],
-    stock: Math.floor(Math.random() * 100), 
+    stock: Math.floor(Math.random() * 100),
     price: `$${formData.price}`,
     genero: formData.gender,
     category: formData.category
   };
 };
 
-const Formpage = () => {
+const Form = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -87,7 +87,7 @@ const Formpage = () => {
 
     const structuredData = structureData(formData);
     try {
-      const response = await fetch('http://localhost:5000/products', { 
+      const response = await fetch('http://localhost:5000/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -114,54 +114,54 @@ const Formpage = () => {
       <form onSubmit={handleSubmit}>
         <div className={styles['form-group']}>
           <label htmlFor="name">Name:</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            value={formData.name} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
           />
         </div>
         <div className={styles['form-group']}>
           <label htmlFor="description">Description:</label>
-          <textarea 
-            id="description" 
-            name="description" 
-            value={formData.description} 
-            onChange={handleChange} 
-            required 
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
           />
         </div>
         <div className={styles['form-group']}>
           <label htmlFor="image">Image URL:</label>
-          <input 
-            type="url" 
-            id="image" 
-            name="image" 
-            value={formData.image} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="url"
+            id="image"
+            name="image"
+            value={formData.image}
+            onChange={handleChange}
+            required
           />
         </div>
         <div className={styles['form-group']}>
           <label htmlFor="price">Price:</label>
-          <input 
-            type="number" 
-            id="price" 
-            name="price" 
-            value={formData.price} 
-            onChange={handleChange} 
-            required 
+          <input
+            type="number"
+            id="price"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            required
           />
         </div>
         <div className={styles['form-group']}>
           <label htmlFor="gender">Gender:</label>
-          <select 
-            id="gender" 
-            name="gender" 
-            value={formData.gender} 
-            onChange={handleChange} 
+          <select
+            id="gender"
+            name="gender"
+            value={formData.gender}
+            onChange={handleChange}
             required
           >
             <option value="">Select Gender</option>
@@ -171,11 +171,11 @@ const Formpage = () => {
         </div>
         <div className={styles['form-group']}>
           <label htmlFor="category">Category:</label>
-          <select 
-            id="category" 
-            name="category" 
-            value={formData.category} 
-            onChange={handleChange} 
+          <select
+            id="category"
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
             required
           >
             <option value="">Select Category</option>
@@ -195,4 +195,4 @@ const Formpage = () => {
   );
 }
 
-export default Formpage;
+export default Form;
