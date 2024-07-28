@@ -17,7 +17,7 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard"
 function App() {
   console.log();
   return (
-    <div>
+    <div className=".App">
       <Routes>
         <Route path="/" element={<Landing />} />
 

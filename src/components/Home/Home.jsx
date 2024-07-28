@@ -4,6 +4,8 @@ import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import styles from "../Home/Home.module.css";
+
+import logo from '../../assets/Untitled-1-10.png'
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/auth/authThunks";
 
@@ -95,7 +97,7 @@ const Homepage = () => {
     return <Loader />;
   }
 
- 
+
 
   return (
     <div className={styles.container}>
@@ -111,20 +113,27 @@ const Homepage = () => {
         </div>
       )}
       </div> */}
-      <h1 className={styles.title}>ChampionGear</h1>
+      <img src={logo} className={styles.logo} />
+      <div className={styles.menuContainer}>
+        <div className={styles.menuContainerIzq}>
+
+          <Link to="/form">
+            <button className={styles.menuButton}>CREATE</button>
+          </Link>
+          <Link to="/aboutus">
+            <button className={styles.menuButton}>ABOUT US</button>
+          </Link>
+
+        </div>
+        <Link to="/">
+          <button className={styles.menuButton}>EXIT</button>
+        </Link>
+      </div>
       <NavBar
         onFilterChange={handleFilterChange}
         onSearch={handleSearch}
         onClear={handleClear}
       />
-      <div className={styles.menu}>
-        <Link to="/form">
-          <button className={styles.menuButton}>Create</button>
-        </Link>
-        <Link to="/aboutus">
-          <button className={styles.menuButton}>About Us</button>
-        </Link>
-      </div>
       <div className={styles.productList}>
         {filteredProducts.map((product) => (
           <Card
