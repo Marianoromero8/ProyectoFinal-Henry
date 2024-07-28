@@ -24,7 +24,7 @@ const Landing = () => {
           <h1 className={Style.light}>Welcome to </h1>
           <h1 className={Style.bold}>ChampionGear</h1>
           <hr className={Style.line} />
-          <h2 className={Style.text}>!The best deportive Clothes shop in the word!</h2>
+          <h2 className={Style.text}>¡The best deportive Clothes shop in the world!</h2>
 
         </div>
 
