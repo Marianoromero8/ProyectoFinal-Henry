@@ -1,29 +1,27 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/auth/authThunks";
 import { useNavigate } from "react-router-dom";
 
-const User = () => {
+
+const Admin = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const {loading} = useSelector((state) => state.auth)
 
     const handleLogout = () => {
         dispatch(logoutUser())
         .then(() => navigate('/login'))
     }
+
     return(
-        <div>
         <div>
             <button onClick={handleLogout} disabled={loading}>
                 {loading ? 'logging out ...' : 'Logout'}
             </button>
-            <button onClick={() => {navigate('/home')}}>Home</button>
-        </div>
-        <div>
-            <h1>HOLA, ERES UN USUARIO COMUN</h1>
-        </div>
+            <button onClick={() => {navigate('/Dashboard')}}>Dashboard</button>
         </div>
     )
 }
 
-export default User;
+export default Admin;

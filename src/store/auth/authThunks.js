@@ -1,22 +1,26 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { auth } from "../../firebaseConfig";
+import { auth, db } from "../../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
-  getAuth,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async ({ email, password, role }, { rejectWithValue }) => {
     try {
-      const auth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
       const user = userCredential.user;
+
+      //Guardo el rol en firestore
+      await setDoc(doc(db, "user", user.uid), { email, role });
+
       return {
         uid: user.uid,
         email: user.email,
@@ -38,7 +42,28 @@ export const loginUser = createAsyncThunk(
         password
       );
       const user = userCredential.user;
-      return { uid: user.uid, email: user.email };
+
+      //Obtener el rol del usuario desde firestore
+      const userDoc = await getDoc(doc(db, "user", user.uid));
+      const userData = userDoc.data();
+
+      return {
+        uid: user.uid,
+        email: user.email,
+        role: userData?.role,
+      };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const logoutUser = createAsyncThunk(
+  "auth/logoutUser",
+  async (_, { rejectWithValue }) => {
+    try {
+      await signOut(auth);
+      return;
     } catch (error) {
       return rejectWithValue(error.message);
     }

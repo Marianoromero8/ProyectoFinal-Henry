@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import styles from "../Home/Home.module.css";
 
+import logo from '../../assets/Untitled-1-10.png'
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../store/auth/authThunks";
+
+//Lo comentado es agregado por marian para la autorizacion de terceros
+
 const Homepage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filteredProducts, setFilteredProducts] = useState([]);
+
+  // const navigate = useNavigate(); //Agregado por marian
+  // const user = useSelector((state) => state.auth.user) //Agregado por marian
+  // const dispatch = useDispatch(); //Agregado por marian
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -77,26 +87,53 @@ const Homepage = () => {
     setFilteredProducts(products);
   };
 
+  // --------------------------------------------
+  // const handleLogout = () => { //Agregado por marian
+  //   dispatch(logoutUser())
+  //   .then(() => navigate('/login'))
+  // }
+
   if (loading) {
     return <Loader />;
   }
 
+
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>ChampionGear</h1>
+      {/* <div>
+      {user ? (
+        <div>
+        <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <button onClick={() => {navigate('/login')}}>Login</button>
+          <button onClick={() => {navigate('/register')}}>Register</button>
+        </div>
+      )}
+      </div> */}
+      <img src={logo} className={styles.logo} />
+      <div className={styles.menuContainer}>
+        <div className={styles.menuContainerIzq}>
+
+          <Link to="/form">
+            <button className={styles.menuButton}>CREATE</button>
+          </Link>
+          <Link to="/aboutus">
+            <button className={styles.menuButton}>ABOUT US</button>
+          </Link>
+
+        </div>
+        <Link to="/">
+          <button className={styles.menuButton}>EXIT</button>
+        </Link>
+      </div>
       <NavBar
         onFilterChange={handleFilterChange}
         onSearch={handleSearch}
         onClear={handleClear}
       />
-      <div className={styles.menu}>
-        <Link to="/form">
-          <button className={styles.menuButton}>Create</button>
-        </Link>
-        <Link to="/aboutus">
-          <button className={styles.menuButton}>About Us</button>
-        </Link>
-      </div>
       <div className={styles.productList}>
         {filteredProducts.map((product) => (
           <Card

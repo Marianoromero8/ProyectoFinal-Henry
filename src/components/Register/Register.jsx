@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../store/auth/authThunks";
 
 
@@ -24,6 +24,8 @@ const Register = () => {
     };
   
     return (
+      <div>
+        <h2>Sign up</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -44,8 +46,13 @@ const Register = () => {
         <button type="submit">Register</button>
         {loading && <p>Loading...</p>}
         {error && <p>{error}</p>}
+        <div>
+          <p>Do you have an account?</p>
+          <Link to='/login'>Sign In</Link>
+        </div>
       </form>
-    );
+      </div>
+    )
 }
 
 export default Register;
