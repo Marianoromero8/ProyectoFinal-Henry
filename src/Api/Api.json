@@ -267,7 +267,23 @@
       "gender": "Male",
       "category": "Jackets",
       "brand": "Adidas",
-      "color": "Black"
+      "color": "Black",
+      "size": "M"
+    },
+    {
+      "id": "2631",
+      "name": "PAPAL Jacket Whithe",
+      "description": "Its a magnific Papal jacket",
+      "images": [
+        "https://media.cnnchile.com/sites/4/2023/03/papa-640x400.jpg"
+      ],
+      "stock": 36,
+      "price": "$60",
+      "gender": "Male",
+      "category": "Jackets",
+      "brand": "PAPAL",
+      "color": "White",
+      "size": "XL"
     }
   ]
 }

@@ -6,8 +6,8 @@ import {
   validateDescription,
   validateImage,
   validatePrice,
-  validateBrand,
   validateColor,
+  validateBrand,
 } from "./Validations";
 
 const generateRandomId = () => {
@@ -26,6 +26,7 @@ const structureData = (formData) => {
     category: formData.category,
     brand: formData.brand,
     color: formData.color,
+    size: formData.size,
   };
 };
 
@@ -38,8 +39,9 @@ const Formpage = () => {
     price: "",
     gender: "",
     category: "",
-    brand: "",
+    size: "",
     color: "",
+    brand: "",
   });
 
   const [isValid, setIsValid] = useState(false);
@@ -58,15 +60,8 @@ const Formpage = () => {
   };
 
   const validateFormPresence = () => {
-    const { name, description, image, price, brand, color } = formData;
-    if (
-      name.trim() &&
-      description.trim() &&
-      image.trim() &&
-      price.trim() &&
-      brand.trim() &&
-      color.trim()
-    ) {
+    const { name, description, image, price } = formData;
+    if (name.trim() && description.trim() && image.trim() && price.trim()) {
       setIsValid(true);
     } else {
       setIsValid(false);
@@ -74,7 +69,7 @@ const Formpage = () => {
   };
 
   const validateFullForm = () => {
-    const { name, description, image, price, brand, color } = formData;
+    const { name, description, image, price, color, brand } = formData;
     if (!validateName(name)) {
       return "Name must be between 5 and 40 characters.";
     }
@@ -87,11 +82,11 @@ const Formpage = () => {
     if (!validatePrice(price)) {
       return "Price must be between 1 and 1,000,000.";
     }
-    if (!validateBrand(brand)) {
-      return "Brand must be between 2 and 20 characters.";
-    }
     if (!validateColor(color)) {
-      return "Color must be between 2 and 20 characters.";
+      return "Color must be between 1 and 20 characters.";
+    }
+    if (!validateBrand(brand)) {
+      return "Brand must be between 1 and 20 characters.";
     }
     return "";
   };
@@ -206,15 +201,21 @@ const Formpage = () => {
           </select>
         </div>
         <div className={styles["form-group"]}>
-          <label htmlFor="brand">Brand:</label>
-          <input
-            type="text"
-            id="brand"
-            name="brand"
-            value={formData.brand}
+          <label htmlFor="size">Size:</label>
+          <select
+            id="size"
+            name="size"
+            value={formData.size}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Select Size</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+          </select>
         </div>
         <div className={styles["form-group"]}>
           <label htmlFor="color">Color:</label>
@@ -223,6 +224,17 @@ const Formpage = () => {
             id="color"
             name="color"
             value={formData.color}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className={styles["form-group"]}>
+          <label htmlFor="brand">Brand:</label>
+          <input
+            type="text"
+            id="brand"
+            name="brand"
+            value={formData.brand}
             onChange={handleChange}
             required
           />

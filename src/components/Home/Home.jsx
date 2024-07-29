@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
@@ -54,11 +54,9 @@ const Homepage = () => {
         );
         break;
       case "size":
-        const sizeOrder = ["s", "m", "l", "xl", "xxl"];
+        const sizeOrder = ["S", "M", "L", "XL", "XXL"];
         sortedProducts.sort(
-          (a, b) =>
-            sizeOrder.indexOf(a.size.toLowerCase()) -
-            sizeOrder.indexOf(b.size.toLowerCase())
+          (a, b) => sizeOrder.indexOf(a.size) - sizeOrder.indexOf(b.size)
         );
         break;
       case "color":
