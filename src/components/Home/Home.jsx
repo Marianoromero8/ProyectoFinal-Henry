@@ -5,7 +5,12 @@ import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import styles from "../Home/Home.module.css";
 
-import logo from '../../assets/Untitled-1-10.png'
+import Aboutus from "../../assets/abouUs-18.png";
+
+import arrow from "../../assets/flecha-16.png";
+import arrowExit from "../../assets/flecha-17.png";
+
+import logo from "../../assets/Untitled-1-10.png";
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
@@ -85,22 +90,29 @@ const Homepage = () => {
 
   return (
     <div className={styles.container}>
-      <img src={logo} className={styles.logo}/>
+      <img src={logo} className={styles.logo} />
       <div className={styles.menuContainer}>
         <div className={styles.menuContainerIzq}>
-
-          <Link to="/form">
-            <button className={styles.menuButton}>CREATE</button>
+          <Link to="/form" className={styles.links}>
+            <button className={styles.menuButton}>
+              CREATE <img src={arrow} alt="" className={styles.arrow} />
+            </button>
           </Link>
-          <Link to="/aboutus">
-            <button className={styles.menuButton}>ABOUT US</button>
+          <Link to="/aboutus" className={styles.links}>
+            <button className={styles.menuButton}>
+              {" "}
+              ABOUT US <img src={Aboutus} alt="" className={styles.arrow} />
+            </button>
           </Link>
-
         </div>
-        <Link to="/">
-          <button className={styles.menuButton}>EXIT</button>
+
+        <Link to="/" className={styles.links}>
+          <button className={styles.menuButton}>
+            EXIT <img src={arrowExit} alt="" className={styles.arrow} />
+          </button>
         </Link>
       </div>
+
       <NavBar
         onFilterChange={handleFilterChange}
         onSearch={handleSearch}
