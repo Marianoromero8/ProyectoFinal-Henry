@@ -4,205 +4,256 @@
       "id": "1",
       "name": "Jeans Tokio",
       "description": "Jeans Skini Premium Skyblue,",
+      "color": "Skyblue",
+      "brand": "Tokio",
       "images": [
         "https://revston.b-cdn.net/Content/UploadDirectory/Products/216/image_760da7d9-fe62-48dd-a3f7-f171db073157.jpg?width=800"
       ],
       "stock": 15,
       "price": "$14000",
       "gender": "Male",
-      "category": "Pants"
+      "category": "Pants",
+      "size": "L"
     },
     {
       "id": "2",
       "name": "Jeans Palermo",
       "description": "Jeans Skini Premium Grey",
+      "color": "Grey",
+      "brand": "Palermo",
       "images": [
         "https://revston.b-cdn.net/Content/UploadDirectory/Products/48/image_1c9e5217-5c01-4ac1-ab53-d1b129ae0feb.jpg?width=800"
       ],
       "stock": 15,
       "price": "$15000",
       "gender": "Male",
-      "category": "Pants"
+      "category": "Pants",
+      "size": "L"
     },
     {
       "id": "3",
       "name": "Jeans Mexico",
       "description": "Jeans Skini Premium White",
+      "color": "White",
+      "brand": "Gucci",
       "images": [
         "https://revston.b-cdn.net/Content/UploadDirectory/Products/163/image_83c62b7f-18ed-4a9d-a775-8f564e4a0af9.jpg?width=800"
       ],
       "stock": 4,
       "price": "$16000",
       "gender": "Male",
-      "category": "Pants"
+      "category": "Pants",
+      "size": "L"
     },
     {
       "id": "4",
       "name": "Pant Saturno",
       "description": "Pants color Pink",
+      "color": "Pink",
+      "brand": "Tokio",
       "images": [
         "https://acdn.mitiendanube.com/stores/704/419/products/img_8825-73eab5f2123338f9db17099219845796-1024-1024.webp"
       ],
       "stock": 4,
       "price": "$13800",
       "gender": "Female",
-      "category": "Pants"
+      "category": "Pants",
+      "size": "M"
     },
     {
       "id": "5",
       "name": "Pant Tirol ",
       "description": "Pant color ocean green",
+      "color": "Green",
+      "brand": "Tirol",
       "images": [
         "https://acdn.mitiendanube.com/stores/704/419/products/img_8804-d7c4b1553e0b55b8af17102526646878-1024-1024.webp"
       ],
       "stock": 12,
       "price": "$13500",
       "gender": "Female",
-      "category": "Pants"
+      "category": "Pants",
+      "size": "M"
     },
     {
       "id": "6",
       "name": "Pant CARHUE",
       "description": "Pant color green",
+      "color": "Green",
+      "brand": "Carhue",
       "images": [
         "https://acdn.mitiendanube.com/stores/704/419/products/img_5267-f47236aae26c6b66df17017902926321-1024-1024.webp"
       ],
       "stock": 4,
       "price": "$13000",
       "gender": "Female",
-      "category": "Pants"
+      "category": "Pants",
+      "size": "M"
     },
     {
       "id": "7",
       "name": "T-shirt CREW RAGLAN WHITE",
       "description": "24/1 combed 100% cotton jersey. Printed on front. Branded woven tap on sleeve, front and interior",
+      "color": "White",
+      "brand": "Tokio",
       "images": [
         "https://acdn.mitiendanube.com/stores/989/662/products/crew-ranglan-blanco1-d50c27b4d742f1338116765491288303-1024-1024.webp"
       ],
       "stock": 4,
       "price": "$9500",
       "genero": "Male",
-      "category": "T-shirt"
+      "category": "T-shirt",
+      "size": "S"
     },
     {
       "id": "8",
       "name": "T-shirt TRADI MOSTAZA",
       "description": "24/1 combed 100% cotton jersey. Printed on front. Branded woven tap on sleeve. ",
+      "color": "Mostaza",
+      "brand": "Tradi",
       "images": [
         "https://acdn.mitiendanube.com/stores/989/662/products/tradi-mostaza-e1-96b3fa33ed5ee8669c16630882594004-1024-1024.webp"
       ],
       "stock": 7,
       "price": "$9000",
       "genero": "Male",
-      "category": "T-shirt"
+      "category": "T-shirt",
+      "size": "S"
     },
     {
       "id": "9",
       "name": "T-shirt KABAL TEE BORDO",
       "description": "24/1 combed 100% cotton jersey. Printed on front. Branded woven tap on sleeve.",
+      "color": "Bordo",
+      "brand": "Tradi",
       "images": [
         "https://acdn.mitiendanube.com/stores/989/662/products/kabal-bordo-a262e537c25f200d0917107901343174-1024-1024.webp"
       ],
       "stock": 4,
       "price": "$9000",
       "genero": "Male",
-      "category": "T-shirt"
+      "category": "T-shirt",
+      "size": "XXL"
     },
     {
       "id": "10",
       "name": "T-shirt BUTTERFLY TEE LILA",
       "description": "Remera de fit relajado, mangas caidas con roll up. Full Print batik y estampa central delantera a 1 color. ",
+      "color": "Lila",
+      "brand": "Tradi",
       "images": [
         "https://acdn.mitiendanube.com/stores/001/180/816/products/mujer-baja-_-4511-47ac093f9a8706fa0816469262434997-640-0.jpg"
       ],
       "stock": 6,
       "price": "$7000",
       "genero": "Female",
-      "category": "T-shirt"
+      "category": "T-shirt",
+      "size": "XXL"
     },
     {
       "id": "11",
       "name": "T-shirt Lovers",
       "description": "Relaxed fit t-shirt, dropped sleeves with roll up. Full Print batik and central front print in 1 color.",
+      "color": "Red",
+      "brand": "Adidas",
       "images": [
         "https://acdn.mitiendanube.com/stores/697/557/products/remera-lovers-jean-quinn-48bd251911b310221c17103501357647-640-0.webp"
       ],
       "stock": 6,
       "price": "$6300",
       "genero": "Female",
-      "category": "T-shirt"
+      "category": "T-shirt",
+      "size": "XXL"
     },
     {
       "id": "12",
       "name": "T-shirt CHACHACHA",
       "description": "SHORT SLEEVE T-SHIRT WITH ROUND NECKLINE IN MODAL WITH LYCRA STRIPED MOTIF. STRAIGHT WHEEL",
+      "color": "White",
+      "brand": "Adidas",
       "images": [
         "https://acdn.mitiendanube.com/stores/697/557/products/remera-chachacha-detalle-pantalon-marine-da1ed94f92bbb2f82517103386248296-640-0.webp"
       ],
       "stock": 6,
       "price": "$6000",
       "genero": "Female",
-      "category": "T-shirt"
+      "category": "T-shirt",
+      "size": "XL"
     },
     {
       "id": "13",
       "name": "Jacket LIBRAS ESTERLINAS",
       "description": "Italian bomber jacket in recycled polyamide with all-over Lands Between Map print. Double vertical front pockets and side pockets.",
+      "color": "Black",
+      "brand": "Adidas",
       "images": [
         "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1200x1681%2F4ad8e7555a%2Fbj040er_1684.png&w=640&q=90"
       ],
       "stock": 9,
       "price": "$21000",
       "genero": "Male",
-      "category": "Jackets"
+      "category": "Jackets",
+      "size": "S"
     },
     {
       "id": "14",
       "name": "Jacket UNIVERSITARIA VCLA",
       "description": "Heavyweight woven varsity jacket in black with soft yellow sleeves and details. Featuring the VCLA BOBCATS logo and an embroidered mascot patch.",
+      "color": "Black",
+      "brand": "Tradi",
       "images": [
         "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1428x2000%2F40d4bcb62c%2Fvj010di_0022.png&w=640&q=90"
       ],
       "stock": 3,
       "price": "$22000",
       "genero": "Male",
-      "category": "Jackets"
+      "category": "Jackets",
+      "size": "XL"
     },
     {
       "id": "15",
       "name": "Jacket D.VA TOKKI",
       "description": "Relaxed fit sports jacket. With TOKKI details of the special D.Va skin from Overwatch 2. Embroidered logos on sleeves and chest.",
+      "color": "Pink",
+      "brand": "Adidas",
       "images": [
         "https://ark8.net/_next/image?url=https%3A%2F%2Fa.storyblok.com%2Ff%2F161230%2F1600x2240%2Fcdf4c70f36%2Ftjr001ow2_01383.png&w=640&q=90"
       ],
       "stock": 31,
       "price": "$23000",
       "genero": "Male",
-      "category": "Jackets"
+      "category": "Jackets",
+      "size": "L"
     },
     {
       "id": "7292",
       "name": "Pants color purple",
       "description": "A great pants in the world ",
+      "color": "Purple",
+      "brand": "Nike",
       "images": [
         "https://album.mediaset.es/eimg/10000/2021/05/02/clipping_VxbI8v_4934.jpg?w=640"
       ],
       "stock": 75,
       "price": "$100",
       "genero": "Female",
-      "category": "Pants"
+      "category": "Pants",
+      "size": "M"
     },
     {
       "id": "4775",
       "name": "Football T-shirt ",
       "description": "A Great Tshirt in the world",
+      "color": "White",
+      "brand": "Nike",
       "images": [
         "https://album.mediaset.es/eimg/10000/2021/05/02/clipping_VxbI8v_4934.jpg?w=640"
       ],
       "stock": 80,
       "price": "$30",
       "genero": "Male",
-      "category": "T-shirt"
+      "category": "T-shirt",
+      "size": "S"
     }
   ]
 }
