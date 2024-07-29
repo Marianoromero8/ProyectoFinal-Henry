@@ -5,7 +5,7 @@ import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import styles from "../Home/Home.module.css";
 
-import logo from '../../assets/Untitled-1-10.png'
+import logo from "../../assets/Untitled-1-10.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/auth/authThunks";
 
@@ -41,18 +41,6 @@ const Homepage = () => {
   const handleFilterChange = (filter) => {
     let sortedProducts = [...products];
     switch (filter) {
-      case "name-asc":
-        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "name-desc":
-        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "stock-asc":
-        sortedProducts.sort((a, b) => a.stock - b.stock);
-        break;
-      case "stock-desc":
-        sortedProducts.sort((a, b) => b.stock - a.stock);
-        break;
       case "price-asc":
         sortedProducts.sort(
           (a, b) =>
@@ -63,6 +51,46 @@ const Homepage = () => {
         sortedProducts.sort(
           (a, b) =>
             parseFloat(b.price.substring(1)) - parseFloat(a.price.substring(1))
+        );
+        break;
+      case "size":
+        const sizeOrder = ["s", "m", "l", "xl", "xxl"];
+        sortedProducts.sort(
+          (a, b) =>
+            sizeOrder.indexOf(a.size.toLowerCase()) -
+            sizeOrder.indexOf(b.size.toLowerCase())
+        );
+        break;
+      case "color":
+        const colorOrder = [
+          "white",
+          "grey",
+          "blue",
+          "green",
+          "red",
+          "pink",
+          "black",
+        ];
+        sortedProducts.sort(
+          (a, b) =>
+            colorOrder.indexOf(a.color.toLowerCase()) -
+            colorOrder.indexOf(b.color.toLowerCase())
+        );
+        break;
+      case "gender":
+        const genderOrder = ["female", "male"];
+        sortedProducts.sort((a, b) => {
+          const genderA = a.gender ? a.gender.toLowerCase() : "";
+          const genderB = b.gender ? b.gender.toLowerCase() : "";
+          return genderOrder.indexOf(genderA) - genderOrder.indexOf(genderB);
+        });
+        break;
+      case "category":
+        const categoryOrder = ["t-shirt", "pants", "jackets"];
+        sortedProducts.sort(
+          (a, b) =>
+            categoryOrder.indexOf(a.category.toLowerCase()) -
+            categoryOrder.indexOf(b.category.toLowerCase())
         );
         break;
       default:
@@ -97,8 +125,6 @@ const Homepage = () => {
     return <Loader />;
   }
 
-
-
   return (
     <div className={styles.container}>
       {/* <div>
@@ -116,14 +142,12 @@ const Homepage = () => {
       <img src={logo} className={styles.logo} />
       <div className={styles.menuContainer}>
         <div className={styles.menuContainerIzq}>
-
           <Link to="/form">
             <button className={styles.menuButton}>CREATE</button>
           </Link>
           <Link to="/aboutus">
             <button className={styles.menuButton}>ABOUT US</button>
           </Link>
-
         </div>
         <Link to="/">
           <button className={styles.menuButton}>EXIT</button>
