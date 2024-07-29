@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import styles from '../NavBar/SearchBar.module.css';
-import search from '../../assets/icnos-14.png'
-import clear from '../../assets/icnos-15.png'
+import React, { useState } from "react";
+import styles from "../NavBar/SearchBar.module.css";
+import search from "../../assets/icnos-14.png";
+import clear from "../../assets/icnos-15.png";
 
 const SearchBar = ({ onSearch, onClear }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
@@ -15,7 +15,7 @@ const SearchBar = ({ onSearch, onClear }) => {
   };
 
   const handleClear = () => {
-    setSearchTerm('');
+    setSearchTerm("");
     onClear();
   };
 
@@ -29,18 +29,16 @@ const SearchBar = ({ onSearch, onClear }) => {
         onChange={handleChange}
       />
       <div className={styles.buttonContainer}>
-
         <button className={styles.searchButton} onClick={handleSearch}>
-          <img src={search} alt=""  className={styles.imgButton}/>
+          <img src={search} alt="" className={styles.imgButton} />
         </button>
 
         <button className={styles.searchButton} onClick={handleClear}>
-          <img src={clear} alt=""   className={styles.imgButton} />
-         </button>
-
+          <img src={clear} alt="" className={styles.imgButton} />
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default SearchBar;
