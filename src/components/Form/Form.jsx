@@ -33,6 +33,7 @@ const structureData = (formData) => {
 };
 
 const Form = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -56,8 +57,8 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(validateForm());
-    const state = useSelector((state) => state.productForm);
-    if (state.errorMessage) {
+
+    if (errorMessage) {
       return;
     }
 
