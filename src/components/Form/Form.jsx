@@ -162,6 +162,7 @@ const Form = () => {
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
+            <option value="Unisex">Unisex</option>
           </select>
         </div>
         <div className={styles["form-group"]}>

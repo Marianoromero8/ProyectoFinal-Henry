@@ -35,9 +35,20 @@ const Filters = ({ onFilterChange }) => {
     }));
   };
 
+  // const handleApplyFilters = () => {
+  //   console.log(selectedFilters)
+  //   onFilterChange(selectedFilters);
+  // };
+
   const handleApplyFilters = () => {
-    onFilterChange(selectedFilters);
+    const filters = {
+      ...selectedFilters,
+      size: selectedFilters.size.join(','), // Convierte el array de size en una cadena si es necesario
+    };
+    console.log(filters);
+    onFilterChange(filters);
   };
+
 
   const toggleVisibility = () => {
     setIsVisible(prevState => !prevState);
@@ -87,7 +98,7 @@ const Filters = ({ onFilterChange }) => {
 
           <div className={styles.filterSection}>
             <h4>Gender</h4>
-            {['Male', 'Female'].map(gender => (
+            {['Male', 'Female', 'Unisex'].map(gender => (
               <div key={gender}>
                 <input
                   type="checkbox"
