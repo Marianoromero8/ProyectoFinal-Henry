@@ -3,14 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 
 const Details = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/products/${id}`);
+        const response = await fetch(`https://pf-henry-backend-ts0n.onrender.com/product/${id}`);
         if (!response.ok) {
           throw new Error('Failed to fetch product details');
         }
