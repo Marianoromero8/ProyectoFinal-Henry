@@ -1,22 +1,21 @@
-// src/features/productForm/productFormSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  name: '',
-  description: '',
-  image: '',
-  price: 0,
-  gender: '',
-  category: '',
-  size: [],
-  color: '',
-  brand: '',
+  name: "",
+  description: "",
+  image: "",
+  price: "",
+  gender: "",
+  category: "",
+  size: "",
+  color: "",
+  brand: "",
   isValid: false,
-  errorMessage: '',
+  errorMessage: "",
 };
 
 const productFormSlice = createSlice({
-  name: 'productForm',
+  name: "productForm",
   initialState,
   reducers: {
     setFormData(state, action) {
@@ -24,12 +23,19 @@ const productFormSlice = createSlice({
     },
     validateForm(state) {
       const { name, description, image, price, color, brand } = state;
-      if (!name.trim() || !description.trim() || !image.trim() || !price.trim() || !color.trim() || !brand.trim()) {
+      if (
+        !name.trim() ||
+        !description.trim() ||
+        !image.trim() ||
+        !price.toString().trim() ||
+        !color.trim() ||
+        !brand.trim()
+      ) {
         state.isValid = false;
-        state.errorMessage = 'All fields are required.';
+        state.errorMessage = "All fields are required.";
       } else {
         state.isValid = true;
-        state.errorMessage = '';
+        state.errorMessage = "";
       }
     },
     setError(state, action) {
@@ -37,9 +43,10 @@ const productFormSlice = createSlice({
     },
     clearForm(state) {
       return initialState;
-    }
-  }
+    },
+  },
 });
 
-export const { setFormData, validateForm, setError, clearForm } = productFormSlice.actions;
+export const { setFormData, validateForm, setError, clearForm } =
+  productFormSlice.actions;
 export default productFormSlice.reducer;
