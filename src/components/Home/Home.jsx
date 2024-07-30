@@ -5,100 +5,107 @@ import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import styles from "../Home/Home.module.css";
 
-const Homepage = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+import Aboutus from "../../assets/abouUs-18.png";
+
+import arrow from "../../assets/flecha-16.png";
+import arrowExit from "../../assets/flecha-17.png";
+
+import logo from "../../assets/Untitled-1-10.png";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../store/slice/authThunks";
+import {
+  callProductsFilters,
+  setFilters,
+} from "../../store/slice/productSlice";
+
+//Lo comentado es agregado por marian para la autorizacion de terceros
+
+const Home = () => {
+  const dispatch = useDispatch();
+  const {
+    products,
+    status = "loading",
+    filters,
+  } = useSelector((state) => state.products);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/products");
-        const data = await response.json();
-        const lastSixProducts = data.slice(-6);
-        setProducts(lastSixProducts);
-        setFilteredProducts(lastSixProducts);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-        setLoading(false);
-      }
-    };
+    dispatch(callProductsFilters(filters));
+  }, [dispatch, filters]);
 
-    fetchProducts();
-  }, []);
-
-  const handleFilterChange = (filter) => {
-    let sortedProducts = [...products];
-    switch (filter) {
-      case "name-asc":
-        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "name-desc":
-        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-        break;
-      case "stock-asc":
-        sortedProducts.sort((a, b) => a.stock - b.stock);
-        break;
-      case "stock-desc":
-        sortedProducts.sort((a, b) => b.stock - a.stock);
-        break;
-      case "price-asc":
-        sortedProducts.sort(
-          (a, b) =>
-            parseFloat(a.price.substring(1)) - parseFloat(b.price.substring(1))
-        );
-        break;
-      case "price-desc":
-        sortedProducts.sort(
-          (a, b) =>
-            parseFloat(b.price.substring(1)) - parseFloat(a.price.substring(1))
-        );
-        break;
-      default:
-        break;
-    }
-    setFilteredProducts(sortedProducts);
+  const handleFilterChange = (filt) => {
+    dispatch(setFilters(filt));
   };
 
-  const handleSearch = (searchTerm) => {
-    if (!searchTerm) {
-      setFilteredProducts(products);
-      return;
+  const handleSearch = (search) => {
+    if (!search) {
+      dispatch(setFilters({ ...filters, name: "" }));
+    } else {
+      dispatch(setFilters({ ...filters, name: search }));
     }
-
-    const searchResults = products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredProducts(searchResults);
   };
 
   const handleClear = () => {
-    setFilteredProducts(products);
+    dispatch(
+      setFilters({
+        size: "",
+        color: "",
+        gender: "",
+        category: "",
+        brand: "",
+        minPrice: "",
+        maxPrice: "",
+      })
+    );
   };
 
-  if (loading) {
+  if (status === "loading") {
     return <Loader />;
   }
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>ChampionGear</h1>
+      {/* <div>
+      {user ? (
+        <div>
+        <button onClick={handleLogout}>Logout</button>
+        </div>
+      ) : (
+        <div>
+          <button onClick={() => {navigate('/login')}}>Login</button>
+          <button onClick={() => {navigate('/register')}}>Register</button>
+        </div>
+      )}
+      </div> */}
+      <img src={logo} className={styles.logo} />
+      <div className={styles.menuContainer}>
+        <div className={styles.menuContainerIzq}>
+          <Link to="/form" className={styles.links}>
+            <button className={styles.menuButton}>
+              CREATE <img src={arrow} alt="" className={styles.arrow} />
+            </button>
+          </Link>
+          <Link to="/aboutus" className={styles.links}>
+            <button className={styles.menuButton}>
+              {" "}
+              ABOUT US <img src={Aboutus} alt="" className={styles.arrow} />
+            </button>
+          </Link>
+        </div>
+
+        <Link to="/" className={styles.links}>
+          <button className={styles.menuButton}>
+            EXIT <img src={arrowExit} alt="" className={styles.arrow} />
+          </button>
+        </Link>
+      </div>
+
       <NavBar
         onFilterChange={handleFilterChange}
         onSearch={handleSearch}
         onClear={handleClear}
       />
-      <div className={styles.menu}>
-        <Link to="/form">
-          <button className={styles.menuButton}>Create</button>
-        </Link>
-        <Link to="/aboutus">
-          <button className={styles.menuButton}>About Us</button>
-        </Link>
-      </div>
       <div className={styles.productList}>
-        {filteredProducts.map((product) => (
+        {products.map((product) => (
           <Card
             key={product.id}
             id={product.id}
@@ -106,6 +113,10 @@ const Homepage = () => {
             images={product.images}
             price={product.price}
             stock={product.stock}
+            brand={product.brand}
+            category={product.category}
+            size={product.size}
+            color={product.color}
           />
         ))}
       </div>
@@ -113,4 +124,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default Home;

@@ -1,41 +1,106 @@
-.form-page {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #000000;
-  }
+.container1 {
+  margin-bottom: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
   
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .form-group input,
-  .form-group textarea,
-  .form-group select {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-  }
-  
-  .form-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .form-buttons button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .form-buttons button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+
+}
+
+.h1Titile {
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 20px;
+
+}
+
+.container1 label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+
+.container1 input,
+.container1 textarea,
+.container1 select {
+
+
+  background-color: rgba(134, 138, 141, 0.095);
+  border: 0;
+  width: 300px;
+  padding: 8px;
+
+}
+
+
+
+
+.formbuttons {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 40px;
+}
+
+.formbuttons button {
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 20px;
+  background-color: #134eff;
+  border: 0;
+  color: aliceblue;
+}
+
+.formbuttons button:disabled {
+  background-color: #cccccc90;
+  cursor: not-allowed;
+}
+
+
+
+
+
+
+.containerGeneral {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 50px;
+margin-bottom: 50px;
+
+
+}
+
+.img {
+  width: 530px;
+}
+
+.cntainerRight {
+  padding: 50px;
+  background-color: #dadee094;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.containerRightSublevel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  justify-content: center;
+}

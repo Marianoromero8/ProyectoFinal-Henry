@@ -1,33 +1,27 @@
-import { useSelector } from "react-redux";
-import RegularUser from "../Views/Admin/RegularUser/RegularUser";
-import Dashboard from "../Dashboard/Dashboard";
-
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "../../store/slice/authThunks";
+import { useNavigate } from "react-router-dom";
 
 const User = () => {
-    const user = useSelector(state => state.auth.user)
-    console.log(user)
-    if(!user){
-        return "No user data available"
+    const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const { loading } = useSelector((state) => state.auth)
+
+    const handleLogout = () => {
+        dispatch(logoutUser())
+            .then(() => navigate('/login'))
     }
-
-    const {email, uid, role = 'user' } = user;
-
-    return(
+    return (
         <div>
-            <h1>User Profile</h1>
-            <p>Email: {email}</p>
-            <p>UID: {uid}</p>
-            {role === 'admin' ? (
-                <div>
-                    <h2>Admin View</h2>
-                    <Dashboard/>
-                </div>
-            ) : (
-                <div>
-                    <h2>Regular User</h2>
-                    <RegularUser/>
-                </div>
-            )}
+            <div>
+                <button onClick={handleLogout} disabled={loading}>
+                    {loading ? 'logging out ...' : 'Logout'}
+                </button>
+                <button onClick={() => { navigate('/home') }}>Home</button>
+            </div>
+            <div>
+                <h1>HOLA, ERES UN USUARIO COMUN</h1>
+            </div>
         </div>
     )
 }

@@ -1,53 +1,57 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from 'react-router-dom';
-import Loader from '../Loader/Loader';
+import { Link, useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { productsDetails } from "../../store/slice/productSlice";
+import style from "./Details.module.css";
 
 const Details = () => {
-  const { id } = useParams(); 
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.products.productsDetails);
+  const productStatus = useSelector((state) => state.products.productsStatus);
+  const productError = useSelector((state) => state.products.productsError);
 
   useEffect(() => {
-    const fetchProductDetails = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/products/${id}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch product details');
-        }
-        const data = await response.json();
-        setProduct(data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error:', error);
-        setLoading(false);
-      }
-    };
+    dispatch(productsDetails(id));
+  }, [id, dispatch]);
 
-    fetchProductDetails();
-  }, [id]);
-
-  if (loading) {
-    return <Loader />;
+  if (productStatus === "loading") {
+    return <p>Loading...</p>;
   }
 
-  if (!product) {
-    return <div>Product not found</div>;
+  if (productStatus === "failed") {
+    return <p>Error: {productError}</p>;
   }
 
   return (
     <div>
-      <h1>{product.name}</h1>
-      <img src={product.images[0]} alt={product.name} />
-      <p>{product.description}</p>
-      <p>Stock: {product.stock}</p>
-      <p>Price: {product.price}</p>
-      <p>Gender: {product.genero}</p>
-      <p>Category: {product.category}</p>
-      <Link to="/Home">
-        <button>Go to Home</button>
-      </Link>
+      {product && (
+        <div className={style.container}>
+          <div>
+            <img
+              src={product?.images?.[0]}
+              alt={product?.name}
+              className={style.imgDetail}
+            />
+          </div>
+          <div>
+            <h1 className={style.h1Detail}>{product.name}</h1>
+            <p className={style.pDetail}>{product.description}</p>
+            <p>
+              <strong> Price: </strong> {product.price}
+            </p>
+            <p>
+              <strong> Gender:</strong> {product.gender}
+            </p>
+            <Link to="/Home">
+              <button className={style.buttonDetail}>Go to Home</button>
+            </Link>
+          </div>
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default Details;
