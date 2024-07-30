@@ -89,7 +89,6 @@
 .filterSection {
   margin-bottom: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.159);
-  padding-bottom: 15px;
   width: 200px;
 
 }
@@ -122,15 +121,14 @@
   transition: all 0.5s;
 }
 
-.buttonAplly:hover{
-  background-color:  #134eff;
+.buttonAplly:hover {
+  background-color: #134eff;
   transition: 0.3s linear;
 }
 
 .toggleButton {
-  margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  background-color:  #134eff;
+  background-color: #134eff;
   font-family: "Montserrat", sans-serif;
   font-size: 13px;
   font-weight: 500;
@@ -141,7 +139,7 @@
   transition: all 0.5s;
 }
 
-.toggleButton:hover{
+.toggleButton:hover {
   background-color: #ff6e1f;
   transition: 0.3s linear;
 
