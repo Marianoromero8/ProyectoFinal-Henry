@@ -8,8 +8,8 @@ const Filters = ({ onFilterChange }) => {
     gender: [],
     category: [],
     brand: [],
-    minPrice: '',
-    maxPrice: ''
+    minPrice: "",
+    maxPrice: "",
   });
 
   const [isVisible, setIsVisible] = useState(true);
@@ -21,7 +21,9 @@ const Filters = ({ onFilterChange }) => {
       if (checked) {
         updatedFilters[name] = [...prevFilters[name], value];
       } else {
-        updatedFilters[name] = prevFilters[name].filter(item => item !== value);
+        updatedFilters[name] = prevFilters[name].filter(
+          (item) => item !== value
+        );
       }
       return updatedFilters;
     });
@@ -39,37 +41,40 @@ const Filters = ({ onFilterChange }) => {
 
     setSelectedFilters((prevFilters) => ({
       ...prevFilters,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleApplyFilters = () => {
     const filters = {
       ...selectedFilters,
-      size: selectedFilters.size.join(','), // Convierte el array de size en una cadena si es necesario
+      size: selectedFilters.size.join(","), // Convierte el array de size en una cadena si es necesario
     };
     console.log(filters);
     onFilterChange(filters);
   };
 
-
   const toggleVisibility = () => {
-    setIsVisible(prevState => !prevState);
+    setIsVisible((prevState) => !prevState);
   };
 
   return (
     <div>
       <button onClick={toggleVisibility} className={styles.toggleButton}>
-        {isVisible ? 'Hide Filters' : 'Show Filters'}
+        {isVisible ? "Hide Filters" : "Show Filters"}
       </button>
 
-      <div className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden}`}>
+      <div
+        className={`${styles.filtersContainer} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
+      >
         <div className={styles.filters}>
           <h3>Filters</h3>
 
           <div className={styles.filterSection}>
             <h4>Size</h4>
-            {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
+            {["S", "M", "L", "XL", "XXL"].map((size) => (
               <div key={size}>
                 <input
                   type="checkbox"
@@ -85,23 +90,25 @@ const Filters = ({ onFilterChange }) => {
 
           <div className={styles.filterSection}>
             <h4>Color</h4>
-            {['Red', 'Blue', 'Green', 'Yellow', 'Pink', 'Black', 'White'].map(color => (
-              <div key={color}>
-                <input
-                  type="checkbox"
-                  name="color"
-                  value={color}
-                  onChange={handleCheckboxChange}
-                  checked={selectedFilters.color.includes(color)}
-                />
-                <label>{color}</label>
-              </div>
-            ))}
+            {["Red", "Blue", "Green", "Yellow", "Pink", "Black", "White"].map(
+              (color) => (
+                <div key={color}>
+                  <input
+                    type="checkbox"
+                    name="color"
+                    value={color}
+                    onChange={handleCheckboxChange}
+                    checked={selectedFilters.color.includes(color)}
+                  />
+                  <label>{color}</label>
+                </div>
+              )
+            )}
           </div>
 
           <div className={styles.filterSection}>
             <h4>Gender</h4>
-            {['Male', 'Female', 'Unisex'].map(gender => (
+            {["Male", "Female", "Unisex"].map((gender) => (
               <div key={gender}>
                 <input
                   type="checkbox"
@@ -117,7 +124,7 @@ const Filters = ({ onFilterChange }) => {
 
           <div className={styles.filterSection}>
             <h4>Category</h4>
-            {['T-shirt', 'Pants', 'Jackets', 'Shoes'].map(category => (
+            {["T-shirt", "Pants", "Jackets", "Shoes"].map((category) => (
               <div key={category}>
                 <input
                   type="checkbox"
@@ -133,7 +140,7 @@ const Filters = ({ onFilterChange }) => {
 
           <div className={styles.filterSection}>
             <h4>Brand</h4>
-            {['Adidas', 'Nike', 'Puma', 'Reebok'].map(brand => (
+            {["Adidas", "Nike", "Puma", "Reebok"].map((brand) => (
               <div key={brand}>
                 <input
                   type="checkbox"
@@ -172,6 +179,3 @@ const Filters = ({ onFilterChange }) => {
 };
 
 export default Filters;
-
-
-

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../Form/Form.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -45,13 +45,8 @@ const Form = () => {
     size,
     color,
     brand,
-    isValid,
     errorMessage,
   } = useSelector((state) => state.productForm);
-
-  useEffect(() => {
-    dispatch(validateForm());
-  }, [name, description, image, price, color, brand, dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -61,7 +56,8 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(validateForm());
-    if (!isValid) {
+    const state = useSelector((state) => state.productForm);
+    if (state.errorMessage) {
       return;
     }
 
@@ -200,7 +196,14 @@ const Form = () => {
         </div>
         <div className={styles["form-group"]}>
           <label htmlFor="color">Color:</label>
-          <select name="color" id="color" value={color} onChange={handleChange} required>
+          <select
+            name="color"
+            id="color"
+            value={color}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Color</option>
             <option value="Yellow">Yellow</option>
             <option value="Pink">Pink</option>
             <option value="Blue">Blue</option>
@@ -211,10 +214,15 @@ const Form = () => {
           </select>
         </div>
         <div className={styles["form-group"]}>
-
           <label htmlFor="brand">Brand:</label>
-          <select name="brand" id="brand" value={brand} onChange={handleChange} required>
-            <option value="">Brand</option>
+          <select
+            name="brand"
+            id="brand"
+            value={brand}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select Brand</option>
             <option value="Adidas">Adidas</option>
             <option value="Nike">Nike</option>
             <option value="Puma">Puma</option>
@@ -225,9 +233,7 @@ const Form = () => {
           <Link to="/home">
             <button type="button">Back</button>
           </Link>
-          <button type="submit" disabled={!isValid}>
-            Create
-          </button>
+          <button type="submit">Create</button>
         </div>
       </form>
     </div>
