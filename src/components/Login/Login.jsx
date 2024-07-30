@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../store/auth/authThunks";
-import { logout } from "../../store/auth/authSlice";
+import { loginUser } from "../../store/slice/authThunks";
+import { logout } from "../../store/slice/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if(user){
+    if (user) {
       navigate('/ViewRole')
     }
   }, [user, navigate])
@@ -34,7 +34,7 @@ const Login = () => {
       </form>
       <div>
         <p>You don't have an account?</p>
-         <Link to='/register'>Create an account</Link>
+        <Link to='/register'>Create an account</Link>
       </div>
       {error && <p>{error}</p>}
     </div>

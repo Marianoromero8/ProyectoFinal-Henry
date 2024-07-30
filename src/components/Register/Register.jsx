@@ -1,31 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { registerUser } from "../../store/auth/authThunks";
+import { registerUser } from "../../store/slice/authThunks";
 
 
 const Register = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [role, setRole] = useState('user'); // O 'admin' según el caso
-    
-    const { loading, error, user } = useSelector((state) => state.auth);
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      const resultAction = await dispatch(registerUser({ email, password, role }));
-  
-      if (registerUser.fulfilled.match(resultAction)) {
-        navigate('/Login'); // Redirigir a Home
-      }
-    };
-  
-    return (
-      <div>
-        <h2>Sign up</h2>
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('user'); // O 'admin' según el caso
+
+  const { loading, error, user } = useSelector((state) => state.auth);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const resultAction = await dispatch(registerUser({ email, password, role }));
+
+    if (registerUser.fulfilled.match(resultAction)) {
+      navigate('/Login'); // Redirigir a Home
+    }
+  };
+
+  return (
+    <div>
+      <h2>Sign up</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -51,8 +51,8 @@ const Register = () => {
           <Link to='/login'>Sign In</Link>
         </div>
       </form>
-      </div>
-    )
+    </div>
+  )
 }
 
 export default Register;
