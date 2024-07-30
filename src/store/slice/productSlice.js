@@ -1,13 +1,23 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = 'https://pf-henry-backend-ts0n.onrender.com/product'
+
 //Accion para obtener productos con filtros
 export const callProductsFilters = createAsyncThunk(
     'products/callProductsFilters',
     async(filters) => {
-        const response = await axios.get("https://pf-henry-backend-ts0n.onrender.com/product", {params: filters});
+        const response = await axios.get(API_URL, {params: filters});
         return response.data;
     }
+)
+
+export const productsDetails = createAsyncThunk(
+  'products/productosDetails',
+  async(id) => {
+    const response = await axios.get(`${API_URL}/${id}`);
+    return response.data
+  }
 )
 
 const initialState = {
@@ -22,7 +32,10 @@ const initialState = {
         brand: '',
         minPrice: '',
         maxPrice: '',
-    }
+    },
+    productsDetails: null,
+    productsStatus: 'idle',
+    productsError: null,
 }
 
 const productSlice = createSlice({
@@ -45,6 +58,17 @@ const productSlice = createSlice({
           .addCase(callProductsFilters.rejected, (state, action) => {
             state.status = 'failed';
             state.error = action.error.message;
+          })
+          .addCase(productsDetails.pending, (state) => {
+            state.productsStatus = 'loading';
+          })
+          .addCase(productsDetails.fulfilled, (state, action) => {
+            state.productsStatus = 'succeeded';
+            state.productsDetails = action.payload;
+          })
+          .addCase(productsDetails.rejected, (state, action) => {
+            state.productsStatus = 'failed';
+            state.productsError = action.error.message;
           });
       },
 })
