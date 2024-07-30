@@ -31,14 +31,6 @@ const Filters = ({ onFilterChange }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
-    const numValid = Number(value);
-
-    if (numValid < 0 || numValid > 200) {
-      alert('The price must be between 0 and 200')
-      return
-    }
-
     setSelectedFilters((prevFilters) => ({
       ...prevFilters,
       [name]: value,
@@ -65,9 +57,8 @@ const Filters = ({ onFilterChange }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${
-          isVisible ? styles.visible : styles.hidden
-        }`}
+        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
+          }`}
       >
         <div className={styles.filters}>
           <h3>Filters</h3>
