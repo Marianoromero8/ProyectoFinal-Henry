@@ -29,16 +29,19 @@ const Filters = ({ onFilterChange }) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    const numValid = Number(value);
+
+    if (numValid < 0 || numValid > 200) {
+      alert('The price must be between 0 and 200')
+      return
+    }
+
     setSelectedFilters((prevFilters) => ({
       ...prevFilters,
       [name]: value
     }));
   };
-
-  // const handleApplyFilters = () => {
-  //   console.log(selectedFilters)
-  //   onFilterChange(selectedFilters);
-  // };
 
   const handleApplyFilters = () => {
     const filters = {
