@@ -71,7 +71,7 @@ const Filters = ({ onFilterChange }) => {
 
           <div className={styles.filterSection}>
             <h4>Color</h4>
-            {['Red', 'Blue', 'Green', 'Yellow', 'Pink'].map(color => (
+            {['Red', 'Blue', 'Green', 'Yellow', 'Pink', 'Black', 'White'].map(color => (
               <div key={color}>
                 <input
                   type="checkbox"
@@ -119,7 +119,7 @@ const Filters = ({ onFilterChange }) => {
 
           <div className={styles.filterSection}>
             <h4>Brand</h4>
-            {['Adidas', 'Nike', 'Puma'].map(brand => (
+            {['Adidas', 'Nike', 'Puma', 'Reebok'].map(brand => (
               <div key={brand}>
                 <input
                   type="checkbox"

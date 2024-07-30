@@ -205,6 +205,8 @@ const Form = () => {
             <option value="Blue">Blue</option>
             <option value="Red">Red</option>
             <option value="Green">Green</option>
+            <option value="Black">Black</option>
+            <option value="White">White</option>
           </select>
         </div>
         <div className={styles["form-group"]}>

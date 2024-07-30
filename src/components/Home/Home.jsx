@@ -18,93 +18,6 @@ import { callProductsFilters, setFilters } from "../../store/slice/productSlice"
 //Lo comentado es agregado por marian para la autorizacion de terceros
 
 const Home = () => {
-  // const [products, setProducts] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [filteredProducts, setFilteredProducts] = useState([]);
-
-  // // const navigate = useNavigate(); //Agregado por marian
-  // // const user = useSelector((state) => state.auth.user) //Agregado por marian
-  // // const dispatch = useDispatch(); //Agregado por marian
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await fetch("https://pf-henry-backend-ts0n.onrender.com/product");
-  //       const data = await response.json();
-  //       console.log(data)
-  //       const lastSixProducts = data.slice(-6);
-  //       setProducts(lastSixProducts);
-  //       setFilteredProducts(lastSixProducts);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.error("Error fetching products:", error);
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
-
-  // const handleFilterChange = (filter) => {
-  //   let sortedProducts = [...products];
-  //   switch (filter) {
-  //     case "name-asc":
-  //       sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
-  //       break;
-  //     case "name-desc":
-  //       sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
-  //       break;
-  //     case "stock-asc":
-  //       sortedProducts.sort((a, b) => a.stock - b.stock);
-  //       break;
-  //     case "stock-desc":
-  //       sortedProducts.sort((a, b) => b.stock - a.stock);
-  //       break;
-  //     case "price-asc":
-  //       sortedProducts.sort(
-  //         (a, b) =>
-  //           parseFloat(a.price.substring(1)) - parseFloat(b.price.substring(1))
-  //       );
-  //       break;
-  //     case "price-desc":
-  //       sortedProducts.sort(
-  //         (a, b) =>
-  //           parseFloat(b.price.substring(1)) - parseFloat(a.price.substring(1))
-  //       );
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //   setFilteredProducts(sortedProducts);
-  // };
-
-  // const handleSearch = (searchTerm) => {
-  //   if (!searchTerm) {
-  //     setFilteredProducts(products);
-  //     return;
-  //   }
-
-  //   const searchResults = products.filter((product) =>
-  //     product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  //   );
-  //   setFilteredProducts(searchResults);
-  // };
-
-  // const handleClear = () => {
-  //   setFilteredProducts(products);
-  // };
-
-  // // --------------------------------------------
-  // // const handleLogout = () => { //Agregado por marian
-  // //   dispatch(logoutUser())
-  // //   .then(() => navigate('/login'))
-  // // }
-
-  // if (loading) {
-  //   return <Loader />;
-  // }
-
-  //!PASAJE A REDUX TOOLKOT
 
   const dispatch = useDispatch();
   const { products, status = 'loading', filters } = useSelector((state) => state.products)
@@ -192,6 +105,10 @@ const Home = () => {
             images={product.images}
             price={product.price}
             stock={product.stock}
+            brand={product.brand}
+            category={product.category}
+            size={product.size}
+            color={product.color}
           />
         ))}
       </div>

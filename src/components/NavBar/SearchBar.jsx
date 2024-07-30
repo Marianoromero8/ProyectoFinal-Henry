@@ -17,6 +17,7 @@ const SearchBar = ({ onSearch, onClear }) => {
   const handleClear = () => {
     setSearchTerm("");
     onClear();
+    window.location.reload()
   };
 
   return (
