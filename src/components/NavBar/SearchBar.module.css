@@ -1,7 +1,7 @@
 .searchBarContainer {
   display: flex;
   align-items: center;
-  
+
 }
 
 .searchInput {
@@ -16,7 +16,7 @@
   font-weight: 400;
   font-style: normal;
   margin-left: 20px;
-  
+
 }
 
 
@@ -35,15 +35,14 @@
 }
 
 
-.imgButton{
+.imgButton {
   width: 35px;
 }
 
 
-.buttonContainer{
+.buttonContainer {
   display: flex;
   width: 100px;
   justify-content: center;
   margin-left: 10px;
-  padding-bottom: 15px;
 }
