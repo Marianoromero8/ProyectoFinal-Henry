@@ -6,6 +6,7 @@
   font-style: normal;
   display: flex;
   flex-direction: column;
+  
 
 }
 
@@ -20,7 +21,7 @@
 .container1 label {
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
   margin-bottom: 10px;
   width: 200px;
@@ -32,7 +33,7 @@
 .container1 select {
 
 
-  background-color: rgba(240, 248, 255, 0.456);
+  background-color: rgba(134, 138, 141, 0.095);
   border: 0;
   width: 300px;
   padding: 8px;
@@ -42,7 +43,7 @@
 
 
 
-.form-buttons {
+.formbuttons {
   display: flex;
   justify-content: space-between;
   width: 300px;
@@ -52,18 +53,20 @@
   margin-top: 40px;
 }
 
-.form-buttons button {
+.formbuttons button {
   padding: 15px 25px;
   font-size: 16px;
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500;
   border-radius: 20px;
-  background-color: #edf2f400;
+  background-color: #134eff;
+  border: 0;
+  color: aliceblue;
 }
 
-.form-buttons button:disabled {
+.formbuttons button:disabled {
   background-color: #cccccc90;
   cursor: not-allowed;
 }
@@ -74,15 +77,12 @@
 
 
 .containerGeneral {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: #edf2f4;
-  width: 100vw;
-  height: 100vh;
-  margin: -8px;
-  color: black;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-top: 50px;
+margin-bottom: 50px;
+
 
 }
 

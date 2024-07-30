@@ -57,8 +57,9 @@ const Filters = ({ onFilterChange }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
-          }`}
+        className={`${styles.filtersContainer} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
       >
         <div className={styles.filters}>
           <h3>Filters</h3>
@@ -162,7 +163,9 @@ const Filters = ({ onFilterChange }) => {
             />
           </div>
 
-          <button onClick={handleApplyFilters}>Apply Filters</button>
+          <button className={styles.buttonAplly} onClick={handleApplyFilters}>
+            Apply Filters
+          </button>
         </div>
       </div>
     </div>

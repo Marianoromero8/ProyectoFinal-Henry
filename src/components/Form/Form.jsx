@@ -97,13 +97,13 @@ const Form = () => {
   };
 
   return (
-    <div className={styles["form-page"]}>
-      <h1>Create a New Clothing Item</h1>
+    <div className={styles.containerGeneral}>
+      <h1 className={styles.h1Titile}>Create a New Clothing Item</h1>
       {errorMessage && (
         <div className={styles["error-message"]}>{errorMessage}</div>
       )}
       <form onSubmit={handleSubmit}>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -114,7 +114,7 @@ const Form = () => {
             required
           />
         </div>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="description">Description:</label>
           <textarea
             id="description"
@@ -124,7 +124,7 @@ const Form = () => {
             required
           />
         </div>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="image">Image URL:</label>
           <input
             type="url"
@@ -135,7 +135,7 @@ const Form = () => {
             required
           />
         </div>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="price">Price:</label>
           <input
             type="number"
@@ -146,7 +146,7 @@ const Form = () => {
             required
           />
         </div>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="gender">Gender:</label>
           <select
             id="gender"
@@ -161,7 +161,7 @@ const Form = () => {
             <option value="Unisex">Unisex</option>
           </select>
         </div>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="category">Category:</label>
           <select
             id="category"
@@ -177,7 +177,7 @@ const Form = () => {
             <option value="Shoes">Shoes</option>
           </select>
         </div>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="size">Size:</label>
           <select
             id="size"
@@ -194,7 +194,7 @@ const Form = () => {
             <option value="XXL">XXL</option>
           </select>
         </div>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="color">Color:</label>
           <select
             name="color"
@@ -213,7 +213,7 @@ const Form = () => {
             <option value="White">White</option>
           </select>
         </div>
-        <div className={styles["form-group"]}>
+        <div className={styles.container1}>
           <label htmlFor="brand">Brand:</label>
           <select
             name="brand"
@@ -229,7 +229,7 @@ const Form = () => {
             <option value="Reebok">Reebok</option>
           </select>
         </div>
-        <div className={styles["form-buttons"]}>
+        <div className={styles.formbuttons}>
           <Link to="/home">
             <button type="button">Back</button>
           </Link>
