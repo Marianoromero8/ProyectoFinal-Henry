@@ -107,7 +107,7 @@ const Home = () => {
   //!PASAJE A REDUX TOOLKOT
 
   const dispatch = useDispatch();
-  const { products, status, filters } = useSelector((state) => state.products)
+  const { products, status = 'loading', filters } = useSelector((state) => state.products)
 
   useEffect(() => {
     dispatch(callProductsFilters(filters))

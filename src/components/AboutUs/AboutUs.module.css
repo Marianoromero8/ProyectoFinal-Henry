@@ -1,81 +1,82 @@
-.containerGeneral{
+.containerGeneral {
     margin: -10px;
     display: flex;
     width: 100vw;
     height: 100vh;
-    
+
 
 
 }
- 
-.aboutChaContainer{
+
+.aboutChaContainer {
     background-color: #dadee0;
     color: black;
     width: 1100px;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-   
+
 }
 
-.aboutChaContainerText{
+.aboutChaContainerText {
     display: flex;
     flex-direction: column;
     padding-left: 70px;
     padding-right: 70px;
 }
 
-.containerWhy{
+.containerWhy {
     display: flex;
     flex-direction: column;
     margin-top: 10px;
     margin-bottom: 20px;
 }
 
-.containerWhyIcons{
+.containerWhyIcons {
     display: flex;
     flex-direction: row;
     display: flex;
-    
+
     height: 40px;
 }
 
-.logoContainer{
- width: 150px;
- margin-bottom: 40px;
+.logoContainer {
+    width: 150px;
+    margin-bottom: 40px;
 }
 
-.iconoContainer{
+.iconoContainer {
     width: 80px;
     margin-top: 30px;
     transition: all 0.5s;
-   
+
 }
 
 .iconoContainer:hover {
     transition: 1s linear;
     transform: scale(1.3);
 }
-.icons{
+
+.icons {
     width: 30px;
     height: 30px;
     padding-left: 50px;
     padding-right: 10px;
 }
 
-.h1We{
+.h1We {
     font-family: "Montserrat", sans-serif;
     font-size: 20px;
     font-weight: 300;
     font-style: normal;
     margin: 0;
     margin-bottom: 10px;
-    
+
 }
 
-.parrafo{
+.parrafo {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -85,7 +86,7 @@
     margin-bottom: 20px;
 }
 
-.containerAbouTeam{
+.containerAbouTeam {
     background-color: #edf2f4;
     color: black;
     display: flex;
@@ -95,32 +96,33 @@
 
 }
 
-.perfilesImg{
+.perfilesImg {
     width: 100px;
     border-radius: 50px;
     margin-left: 10px;
 
 }
-.perfilesImg2{
+
+.perfilesImg2 {
     width: 100px;
     border-radius: 50px;
     margin-right: 10px;
 }
 
-.parrafoTeam{
+.parrafoTeam {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 400;
     font-style: normal;
     line-height: 1.8;
     margin: 0;
-   padding-left: 110px;
-   padding-right: 110px;
-   padding-top: 10px;
-   padding-bottom: 20px;
+    padding-left: 110px;
+    padding-right: 110px;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 
-.perfilesBack{
+.perfilesBack {
     background-color: #ff6e1f;
     display: flex;
     align-items: center;
@@ -136,7 +138,8 @@
     font-weight: 600;
     font-style: normal;
 }
-.perfilesFront{
+
+.perfilesFront {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -154,7 +157,8 @@
     background-color: #dadee0;
 
 }
-.containerPerfiles{
+
+.containerPerfiles {
     display: flex;
     background-color: aqua;
 }
