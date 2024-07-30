@@ -50,6 +50,7 @@ const Form = () => {
     setFormData({
       ...formData,
       [name]: value,
+      [name]: value,
     });
   };
 
@@ -63,7 +64,7 @@ const Form = () => {
   };
 
   const validateFullForm = () => {
-    const { name, description, image, price } = formData;
+    const { name, description, image, price, color, brand } = formData;
     if (!validateName(name)) {
       return "Name must be between 5 and 40 characters.";
     }
@@ -100,6 +101,7 @@ const Form = () => {
       if (!response.ok) {
         throw new Error("Error in the petition");
       }
+
 
       console.log("Form submitted:", structuredData);
       alert("Product Created Successfully");

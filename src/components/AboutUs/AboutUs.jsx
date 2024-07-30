@@ -10,6 +10,7 @@ import icon2 from "../../assets/icoosAbout-07.png";
 import icon3 from "../../assets/icoosAbout-08.png";
 import icon4 from "../../assets/icoosAbout-09.png";
 
+
 const AboutUs = () => {
   return (
     <div className={style.containerGeneral}>
@@ -23,6 +24,9 @@ const AboutUs = () => {
             Welcome to <strong>ChampionGear!</strong>{" "}
           </h1>
           <p className={style.parrafo}>
+            At championGear, we are passionate about sports and fashion,
+            offering the best of both worlds. Our online store brings you
+            quality, style, and performance in every garment.
             At championGear, we are passionate about sports and fashion,
             offering the best of both worlds. Our online store brings you
             quality, style, and performance in every garment.
@@ -62,14 +66,22 @@ const AboutUs = () => {
 
       <div className={style.containerAbouTeam}>
         <h1 className={style.h1We}>
+
           <strong> ABOUT THE TEAM</strong>
+
         </h1>
         <p className={style.parrafoTeam}>
+
           We are a full stack development team committed to creating
+
           comprehensive solutions that span from user interface design to server
+
           and database development. Our holistic approach ensures that each
+
           project is executed smoothly and efficiently, meeting the highest
+
           standards
+
         </p>
 
         <div className={style.containerPerfilesGeneral}>
@@ -80,44 +92,49 @@ const AboutUs = () => {
                 src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
                 className={style.perfilesImg}
               />
+              <div>
+                <img
+                  src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
+                  className={style.perfilesImg}
+                />
 
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg}
-              />
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg}
-              />
+                <img
+                  src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
+                  className={style.perfilesImg}
+                />
+              </div>
             </div>
-          </div>
-          <div className={style.perfilesFront}>
-            <div>
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg2}
-              />
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg2}
-              />
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg2}
-              />
+            <div className={style.perfilesFront}>
+              <div>
+                <img
+                  src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
+                  className={style.perfilesImg2}
+                />
+                <img
+                  src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
+                  className={style.perfilesImg2}
+                />
+                <img
+                  src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
+                  className={style.perfilesImg2}
+                />
+                <div>
+                </div>
+                <p>FrontEnd</p>
+              </div>
             </div>
-            <p>FrontEnd</p>
+            <p className={style.parrafo}>
+              <strong>
+                Thank you for choosing ChampionGear. Let’s move towards a more
+
+                active and healthier life together!
+              </strong>
+            </p>
+            <Link to="/Home">
+              <img src={Icono} className={style.iconoContainer} />
+            </Link>
           </div>
         </div>
-        <p className={style.parrafo}>
-          <strong>
-            Thank you for choosing ChampionGear. Let’s move towards a more
-            active and healthier life together!
-          </strong>
-        </p>
-        <Link to="/Home">
-          <img src={Icono} className={style.iconoContainer} />
-        </Link>
       </div>
     </div>
   );

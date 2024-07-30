@@ -101,7 +101,7 @@
       ],
       "stock": 4,
       "price": "$9500",
-      "genero": "Male",
+      "gender": "Male",
       "category": "T-shirt",
       "size": "S"
     },
@@ -116,7 +116,7 @@
       ],
       "stock": 7,
       "price": "$9000",
-      "genero": "Male",
+      "gender": "Male",
       "category": "T-shirt",
       "size": "S"
     },
@@ -131,7 +131,7 @@
       ],
       "stock": 4,
       "price": "$9000",
-      "genero": "Male",
+      "gender": "Male",
       "category": "T-shirt",
       "size": "XXL"
     },
@@ -146,7 +146,7 @@
       ],
       "stock": 6,
       "price": "$7000",
-      "genero": "Female",
+      "gender": "Female",
       "category": "T-shirt",
       "size": "XXL"
     },
@@ -161,7 +161,7 @@
       ],
       "stock": 6,
       "price": "$6300",
-      "genero": "Female",
+      "gender": "Female",
       "category": "T-shirt",
       "size": "XXL"
     },
@@ -176,7 +176,7 @@
       ],
       "stock": 6,
       "price": "$6000",
-      "genero": "Female",
+      "gender": "Female",
       "category": "T-shirt",
       "size": "XL"
     },
@@ -191,7 +191,7 @@
       ],
       "stock": 9,
       "price": "$21000",
-      "genero": "Male",
+      "gender": "Male",
       "category": "Jackets",
       "size": "S"
     },
@@ -206,7 +206,7 @@
       ],
       "stock": 3,
       "price": "$22000",
-      "genero": "Male",
+      "gender": "Male",
       "category": "Jackets",
       "size": "XL"
     },
@@ -221,7 +221,7 @@
       ],
       "stock": 31,
       "price": "$23000",
-      "genero": "Male",
+      "gender": "Male",
       "category": "Jackets",
       "size": "L"
     },
@@ -236,7 +236,7 @@
       ],
       "stock": 75,
       "price": "$100",
-      "genero": "Female",
+      "gender": "Female",
       "category": "Pants",
       "size": "M"
     },
@@ -251,9 +251,39 @@
       ],
       "stock": 80,
       "price": "$30",
-      "genero": "Male",
+      "gender": "Male",
       "category": "T-shirt",
       "size": "S"
+    },
+    {
+      "id": "476",
+      "name": "Jacket Mega Black",
+      "description": "Is a simple Jacket Black",
+      "images": [
+        "https://andezoficial.com.ar/wp-content/uploads/2024/05/CHAQUETA-SMITH-NEGRA.jpg"
+      ],
+      "stock": 25,
+      "price": "$80",
+      "gender": "Male",
+      "category": "Jackets",
+      "brand": "Adidas",
+      "color": "Black",
+      "size": "M"
+    },
+    {
+      "id": "2631",
+      "name": "PAPAL Jacket Whithe",
+      "description": "Its a magnific Papal jacket",
+      "images": [
+        "https://media.cnnchile.com/sites/4/2023/03/papa-640x400.jpg"
+      ],
+      "stock": 36,
+      "price": "$60",
+      "gender": "Male",
+      "category": "Jackets",
+      "brand": "PAPAL",
+      "color": "White",
+      "size": "XL"
     }
   ]
 }

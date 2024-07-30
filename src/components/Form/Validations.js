@@ -14,3 +14,11 @@ export const validateImage = (url) => {
 export const validatePrice = (price) => {
   return price > 1 && price < 1000000;
 };
+
+export const validateBrand = (brand) => {
+  return brand.length > 1 && brand.length < 20;
+};
+
+export const validateColor = (color) => {
+  return color.length > 1 && color.length < 20;
+};

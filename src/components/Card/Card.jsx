@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from '../Card/Card.module.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import styles from "../Card/Card.module.css";
 
 const Card = ({ id, name, images, price, stock }) => {
   return (
@@ -16,6 +16,6 @@ const Card = ({ id, name, images, price, stock }) => {
       </div>
     </div>
   );
-}
+};
 
 export default Card;
