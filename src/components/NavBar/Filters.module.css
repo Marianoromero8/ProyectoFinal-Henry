@@ -66,6 +66,11 @@
   border-right: 1px solid #ddd;
   overflow-y: auto;
   transition: transform 0.3s ease-in-out;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  padding: 20px;
 }
 
 .filtersContainer.hidden {
@@ -83,6 +88,10 @@
 
 .filterSection {
   margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.159);
+  padding-bottom: 15px;
+  width: 200px;
+
 }
 
 .filterSection h4 {
@@ -95,25 +104,45 @@
 }
 
 .priceFilter input {
-  width: 45%;
+  width: 38%;
+  background-color: rgba(0, 0, 0, 0.081);
+  border: 0;
+  padding: 10px;
+  border-radius: 10px;
 }
 
-button {
+.buttonAplly {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  background-color: #ff6e1f;
   color: #fff;
-  border: none;
+  border: 0;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+.buttonAplly:hover{
+  background-color:  #134eff;
+  transition: 0.3s linear;
 }
 
 .toggleButton {
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  background-color:  #134eff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
   color: #fff;
-  border: none;
+  border: 0;
   border-radius: 4px;
   cursor: pointer;
+  transition: all 0.5s;
+}
+
+.toggleButton:hover{
+  background-color: #ff6e1f;
+  transition: 0.3s linear;
+
 }

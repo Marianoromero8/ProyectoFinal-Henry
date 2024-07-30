@@ -15,6 +15,7 @@
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
+  margin-left: 20px;
   
 }
 
@@ -44,4 +45,5 @@
   width: 100px;
   justify-content: center;
   margin-left: 10px;
+  padding-bottom: 15px;
 }
