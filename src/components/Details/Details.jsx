@@ -1,49 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { productsDetails } from "../../store/slice/productSlice";
 
 const Details = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.products.productsDetails);
+  const productStatus = useSelector((state) => state.products.productsStatus)
+  const productError = useSelector((state) => state.products.productsError)
 
   useEffect(() => {
-    const fetchProductDetails = async () => {
-      try {
-        const response = await fetch(`https://pf-henry-backend-ts0n.onrender.com/product/${id}`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch product details");
-        }
-        const data = await response.json();
-        setProduct(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error:", error);
-        setLoading(false);
-      }
-    };
+    dispatch(productsDetails(id))
+  }, [id, dispatch])
 
-    fetchProductDetails();
-  }, [id]);
-
-  if (loading) {
-    return <Loader />;
+  if (productStatus === 'loading') {
+    return <p>Loading...</p>;
   }
 
-  if (!product) {
-    return <div>Product not found</div>;
+  if (productStatus === 'failed') {
+    return <p>Error: {productError}</p>;
   }
 
   return (
     <div>
-      <h1>{product.name}</h1>
-      <img src={product.images[0]} alt={product.name} />
-      <p>{product.description}</p>
-      <p>Price: {product.price}</p>
-      <p>Gender: {product.genero}</p>
-      <Link to="/Home">
-        <button>Go to Home</button>
-      </Link>
+      {product && (
+        <div>
+          <h1>{product.name}</h1>
+          <img src={product?.images?.[0]} alt={product?.name} />
+          <p>{product.description}</p>
+          <p>Price: {product.price}</p>
+          <p>Gender: {product.gender}</p>
+          <Link to="/Home">
+            <button>Go to Home</button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
