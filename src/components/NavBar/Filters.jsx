@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../NavBar/Filters.module.css";
+import { useSelector } from "react-redux";
 
 const Filters = ({ onFilterChange }) => {
   const [selectedFilters, setSelectedFilters] = useState({
@@ -12,19 +13,38 @@ const Filters = ({ onFilterChange }) => {
     maxPrice: "",
   });
 
+  const globalFilters = useSelector((state) => state.products.filters);
+
+  useEffect(() => {
+    setSelectedFilters((prevFilters) => ({
+      size: Array.isArray(globalFilters.size) ? globalFilters.size : [],
+      color: Array.isArray(globalFilters.color) ? globalFilters.color : [],
+      gender: Array.isArray(globalFilters.gender) ? globalFilters.gender : [],
+      category: Array.isArray(globalFilters.category) ? globalFilters.category : [],
+      brand: Array.isArray(globalFilters.brand) ? globalFilters.brand : [],
+      minPrice: globalFilters.minPrice || "",
+      maxPrice: globalFilters.maxPrice || "",
+    }));
+  }, [globalFilters]);
+
   const [isVisible, setIsVisible] = useState(true);
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
     setSelectedFilters((prevFilters) => {
       const updatedFilters = { ...prevFilters };
-      if (checked) {
-        updatedFilters[name] = [...prevFilters[name], value];
-      } else {
-        updatedFilters[name] = prevFilters[name].filter(
-          (item) => item !== value
-        );
+      if (Array.isArray(updatedFilters[name])) {
+        if (checked) {
+          // Añadir al array
+          updatedFilters[name] = [...updatedFilters[name], value];
+        } else {
+          // Eliminar del array
+          updatedFilters[name] = updatedFilters[name].filter(
+            (item) => item !== value
+          );
+        }
       }
+      console.log("Updated Filters:", updatedFilters); // Verifica el estado actualizado
       return updatedFilters;
     });
   };
@@ -57,8 +77,7 @@ const Filters = ({ onFilterChange }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
-          }`}
+        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden}`}
       >
         <div className={styles.filters}>
           <h3>Filters</h3>
