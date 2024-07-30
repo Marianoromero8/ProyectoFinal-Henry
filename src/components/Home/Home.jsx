@@ -13,44 +13,52 @@ import arrowExit from "../../assets/flecha-17.png";
 import logo from "../../assets/Untitled-1-10.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/slice/authThunks";
-import { callProductsFilters, setFilters } from "../../store/slice/productSlice";
+import {
+  callProductsFilters,
+  setFilters,
+} from "../../store/slice/productSlice";
 
 //Lo comentado es agregado por marian para la autorizacion de terceros
 
 const Home = () => {
-
   const dispatch = useDispatch();
-  const { products, status = 'loading', filters } = useSelector((state) => state.products)
+  const {
+    products,
+    status = "loading",
+    filters,
+  } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(callProductsFilters(filters))
-  }, [dispatch, filters])
+    dispatch(callProductsFilters(filters));
+  }, [dispatch, filters]);
 
   const handleFilterChange = (filt) => {
-    dispatch(setFilters(filt))
-  }
+    dispatch(setFilters(filt));
+  };
 
   const handleSearch = (search) => {
     if (!search) {
-      dispatch(setFilters({ ...filters, name: '' }));
+      dispatch(setFilters({ ...filters, name: "" }));
     } else {
-      dispatch(setFilters({ ...filters, name: search }))
+      dispatch(setFilters({ ...filters, name: search }));
     }
-  }
-
-  const handleClear = () => {
-    dispatch(setFilters({
-      size: '',
-      color: '',
-      gender: '',
-      category: '',
-      brand: '',
-      minPrice: '',
-      maxPrice: '',
-    }));
   };
 
-  if (status === 'loading') {
+  const handleClear = () => {
+    dispatch(
+      setFilters({
+        size: "",
+        color: "",
+        gender: "",
+        category: "",
+        brand: "",
+        minPrice: "",
+        maxPrice: "",
+      })
+    );
+  };
+
+  if (status === "loading") {
     return <Loader />;
   }
 
