@@ -6,8 +6,6 @@
   font-style: normal;
   display: flex;
   flex-direction: column;
-  
-
 }
 
 .h1Titile {
@@ -15,7 +13,6 @@
   font-size: 30px;
   font-weight: 800;
   margin-bottom: 20px;
-
 }
 
 .container1 label {
@@ -27,21 +24,14 @@
   width: 200px;
 }
 
-
 .container1 input,
 .container1 textarea,
 .container1 select {
-
-
   background-color: rgba(134, 138, 141, 0.095);
   border: 0;
   width: 300px;
   padding: 8px;
-
 }
-
-
-
 
 .formbuttons {
   display: flex;
@@ -71,19 +61,12 @@
   cursor: not-allowed;
 }
 
-
-
-
-
-
 .containerGeneral {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin-top: 50px;
-margin-bottom: 50px;
-
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .img {
