@@ -21,9 +21,9 @@ const Card = ({
       <div className={styles.details}>
         <div className={styles.containerTop}>
           <div>
-            <h2>{name}</h2>
+            <h2>{brand}</h2>
             <p>
-              Stock: <strong>{stock} </strong>
+              Color:<strong> {color}</strong>
             </p>
           </div>
           <div className={styles.containerPriceSize}>
@@ -31,28 +31,15 @@ const Card = ({
               $ <strong> {price}</strong>
             </p>
             <p className={styles.detailPriceSize}>
-              Size: <strong>{size} </strong>
+              {" "}
+              Size: <strong> {size} </strong>
             </p>
           </div>
         </div>
-        <div className={styles.containerdown}>
-          <div className={styles.detaip}>
-            <p>
-              Brand:<strong>{brand} </strong>
-            </p>{" "}
-            <p>
-              Category:<strong>{category}</strong>
-            </p>
-            <p>
-              Color:<strong> {color}</strong>
-            </p>
-          </div>
-          <div>
-            <Link to={`/details/${id}`}>
-              <button className={styles.detailButton}>Detail</button>
-            </Link>
-          </div>
-        </div>
+        <div></div>
+        <Link to={`/details/${id}`}>
+          <button className={styles.detailButton}>Detail</button>
+        </Link>
       </div>
     </div>
   );

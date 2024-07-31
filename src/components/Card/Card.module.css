@@ -68,13 +68,14 @@
   color: black;
   padding: 8px 15px;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.159);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.096);
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 700;
   transform: 1s;
   background-color: rgba(240, 248, 255, 0);
   transition: all 0.2s;
+  width: 150px;
 }
 
 .detailButton:hover {
@@ -90,9 +91,9 @@
   text-align: center;
 
   background-color: #1b191814;
-  padding: 5px;
   width: 80px;
   border-radius: 20px;
+  height: 24px;
 }
 
 .containerPriceSize {
