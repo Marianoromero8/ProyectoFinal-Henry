@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
@@ -21,12 +21,14 @@ import {
 //Lo comentado es agregado por marian para la autorizacion de terceros
 
 const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const {
     products,
     status = "loading",
     filters,
   } = useSelector((state) => state.products);
+  const { user } = useSelector((state) => state.auth)
 
   useEffect(() => {
     dispatch(callProductsFilters(filters));
@@ -58,24 +60,34 @@ const Home = () => {
     );
   };
 
+  const handleLogout = async () => {
+    try {
+      logoutUser();
+      dispatch(logoutUser());
+      navigate('/login');
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+    }
+  };
+
   if (status === "loading") {
     return <Loader />;
   }
 
   return (
     <div className={styles.container}>
-      {/* <div>
-      {user ? (
-        <div>
-        <button onClick={handleLogout}>Logout</button>
-        </div>
-      ) : (
-        <div>
-          <button onClick={() => {navigate('/login')}}>Login</button>
-          <button onClick={() => {navigate('/register')}}>Register</button>
-        </div>
-      )}
-      </div> */}
+      <div>
+        {user ? (
+          <div>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        ) : (
+          <div>
+            <button onClick={() => { navigate('/login') }}>Login</button>
+            <button onClick={() => { navigate('/register') }}>Register</button>
+          </div>
+        )}
+      </div>
       <img src={logo} className={styles.logo} />
       <div className={styles.menuContainer}>
         <div className={styles.menuContainerIzq}>

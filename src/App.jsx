@@ -29,23 +29,23 @@ function App() {
 
         <Route path="/Form" element={<Form />} />
 
-        <Route path="/Login" element={<Login/>}/>
+        <Route path="/Login" element={<Login />} />
 
-        <Route path="/Register" element={<Register/>}/> 
+        <Route path="/Register" element={<Register />} />
 
-        {/* <Route path="/Cart" element={<Cart/>}/>
+        <Route path="/Cart" element={<Cart />} />
 
         <Route path="/ViewRole" element={
-            <RoutProtect>
-              <ViewRole/>
-        </RoutProtect>
-        }/>
+          <RoutProtect>
+            <ViewRole />
+          </RoutProtect>
+        } />
 
         <Route path="/Dashboard" element={
           <RoutProtect>
-            <Dashboard/>
+            <Dashboard />
           </RoutProtect>
-        }/> */}
+        } />
       </Routes>
     </div>
   );

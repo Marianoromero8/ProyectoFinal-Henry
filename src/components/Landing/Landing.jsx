@@ -11,12 +11,12 @@ import Icono from '../../assets/Untitled-1-05.png'
 const Landing = () => {
   return (
     <div>
-      {/* <Link to="/Login">
-      <button>Sign in</button>
+      <Link to="/Login">
+        <button>Sign in</button>
       </Link>
       <Link to="/register">
-      <button>Sign up</button>
-      </Link>  */}
+        <button>Sign up</button>
+      </Link>
       <div className={Style.generalContainer} >
         <img src={Logo} className={Style.logoContainer} />
         <div className={Style.textContainer}>
