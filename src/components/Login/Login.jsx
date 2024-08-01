@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/slice/authThunks";
-import { logout } from "../../store/slice/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
+
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Login = () => {
   return (
     <div className={styles.containerGeneral}>
       <h2 className={styles.h1Titile}>Sign in to ChampionGear</h2>
-      <div lassName={styles.container1}>
+      <div className={styles.container1}>
         <form onSubmit={handleSubmit} className={styles.container1}>
           <input
             type="email"
@@ -43,11 +43,15 @@ const Login = () => {
             placeholder="Password"
             required
           />
+
+          <div className={styles.formbuttons}>
+            <button type="submit" disabled={loading}>
+              Login
+            </button>
+          </div>
+
         </form>
         <div className={styles.formbuttons}>
-          <button type="submit" disabled={loading}>
-            Login
-          </button>
         </div>
       </div>
       <div>
