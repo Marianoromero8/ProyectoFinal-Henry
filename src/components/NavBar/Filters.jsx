@@ -90,9 +90,8 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${
-          isVisible ? styles.visible : styles.hidden
-        }`}
+        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
+          }`}
       >
         <div className={styles.filters}>
           <h3>Filters</h3>
