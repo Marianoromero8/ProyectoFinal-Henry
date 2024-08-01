@@ -6,26 +6,26 @@ import Admin from "../Admin/Admin";
 const ViewRole = () => {
     const user = useSelector(state => state.auth.user)
     console.log(user)
-    if(!user){
+    if (!user) {
         return "No user data available"
     }
 
-    const {email, uid, role = 'user' } = user;
+    const { email, role = 'user' } = user;
 
-    return(
+    return (
         <div>
             <h1>User Profile</h1>
             <p>Email: {email}</p>
-            <p>UID: {uid}</p>
+            <p>Role: {role}</p>
             {role === 'admin' ? (
                 <div>
                     <h2>Admin View</h2>
-                    <Admin/>
+                    <Admin />
                 </div>
             ) : (
                 <div>
                     <h2>Regular User</h2>
-                    <User/>
+                    <User />
                 </div>
             )}
         </div>

@@ -6,6 +6,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
+import axios from "axios";
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
@@ -20,6 +21,8 @@ export const registerUser = createAsyncThunk(
 
       //Guardo el rol en firestore
       await setDoc(doc(db, "user", user.uid), { email, role });
+
+      // await axios.post('https://pf-henry-backend-ts0n.onrender.com/user/create', {id: user.uid, email, role})
 
       return {
         uid: user.uid,
@@ -43,14 +46,17 @@ export const loginUser = createAsyncThunk(
       );
       const user = userCredential.user;
 
-      //Obtener el rol del usuario desde firestore
+      //?Obtener el rol del usuario desde firestore
       const userDoc = await getDoc(doc(db, "user", user.uid));
       const userData = userDoc.data();
+
+      // const response = await axios.get(` https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`);
+      // const userData = response.data
 
       return {
         uid: user.uid,
         email: user.email,
-        role: userData?.role,
+        role: userData.role,
       };
     } catch (error) {
       return rejectWithValue(error.message);
