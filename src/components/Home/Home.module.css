@@ -6,31 +6,24 @@
   width: 100vw;
   margin: -8px;
   margin-left: 5%;
- 
 }
-
-
 
 .menuContainer {
   display: flex;
   width: 60%;
   justify-content: space-between;
   margin-bottom: 40px;
-
- 
 }
-.menuContainerIzq{
+.menuContainerIzq {
   display: flex;
   justify-content: space-between;
 }
 
-.links{
+.links {
   text-decoration: none;
 }
 
-
 .menuButton {
-  
   position: relative;
   display: block;
   width: 100px;
@@ -45,23 +38,20 @@
   border: 0;
   color: black;
   align-items: center;
-  background-color:#dadee000;
-
+  background-color: #dadee000;
 }
 
 .menuButton:hover {
   padding-right: 5px;
   color: black;
-  background-color:#dadee0d5;
+  background-color: #dadee0d5;
   border-radius: 25px;
   width: 150px;
   align-items: center;
   justify-content: center;
-
 }
 
-
-.arrow{
+.arrow {
   visibility: hidden;
   position: absolute;
   transition: all 0.5s;
@@ -71,17 +61,13 @@
   margin-right: 15px;
   margin-top: 1px;
   background-color: #edf2f400;
-
-
 }
 
 .menuButton:hover .arrow {
   visibility: visible;
   position: absolute;
   opacity: 1;
-
 }
-
 
 .productList {
   display: grid;
@@ -91,12 +77,25 @@
   margin-top: 30px;
   margin-bottom: 30px;
 }
-.logo{
+.logo {
   width: 150px;
   padding: 50px;
 }
 
+.LoginRegister {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
 
-
-
-
+.LoginRegister button {
+  padding: 10px 15px;
+  margin: 20px;
+  border: 0;
+  border-radius: 10px;
+  background-color: rgba(207, 207, 211, 0.337);
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
+}

@@ -1,0 +1,86 @@
+.container1 {
+  margin-bottom: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+}
+
+.h1Titile {
+  font-family: "Montserrat", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.container1 label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+.container1 input,
+.container1 textarea,
+.container1 select {
+  background-color: rgba(134, 138, 141, 0.095);
+  border: 0;
+  width: 300px;
+  padding: 8px;
+  margin-top: 20px;
+}
+
+.formbuttons {
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.formbuttons button {
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 20px;
+  background-color: #134eff;
+  border: 0;
+  color: aliceblue;
+  margin-top: 40px;
+}
+
+.formbuttons button:disabled {
+  background-color: #cccccc90;
+  cursor: not-allowed;
+}
+
+.containerGeneral {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.img {
+  width: 530px;
+}
+
+.cntainerRight {
+  padding: 50px;
+  background-color: #dadee094;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.containerRightSublevel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

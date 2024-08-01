@@ -90,7 +90,6 @@
   margin-bottom: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.159);
   width: 200px;
-
 }
 
 .filterSection h4 {
@@ -142,5 +141,4 @@
 .toggleButton:hover {
   background-color: #ff6e1f;
   transition: 0.3s linear;
-
 }
