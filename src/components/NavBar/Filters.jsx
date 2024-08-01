@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -31,7 +31,13 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
     });
   }, [globalFilters]);
 
-  const [isVisible, setIsVisible] = useState(true);
+  const handleFilterChange = useCallback(
+    (updatedFilters) => {
+      setSelectedFilters(updatedFilters);
+      onFilterChange(updatedFilters);
+    },
+    [onFilterChange]
+  );
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
@@ -44,24 +50,24 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
           (item) => item !== value
         );
       }
-
-      setTimeout(() => onFilterChange(updatedFilters), 0);
-
+      handleFilterChange(updatedFilters);
       return updatedFilters;
     });
   };
 
   const handlePriceChange = (values) => {
-    setSelectedFilters((prevFilters) => {
-      const updatedFilters = {
-        ...prevFilters,
-        minPrice: values[0],
-        maxPrice: values[1],
-      };
+    setSelectedFilters((prevFilters) => ({
+      ...prevFilters,
+      minPrice: values[0],
+      maxPrice: values[1],
+    }));
+  };
 
-      setTimeout(() => onFilterChange(updatedFilters), 0);
-
-      return updatedFilters;
+  const handlePriceChangeComplete = (values) => {
+    handleFilterChange({
+      ...selectedFilters,
+      minPrice: values[0],
+      maxPrice: values[1],
     });
   };
 
@@ -76,12 +82,14 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
       maxPrice: 200,
     };
     setSelectedFilters(initialFilters);
-    setTimeout(() => onClearFilters(initialFilters), 0);
+    onClearFilters(initialFilters);
   };
 
   const toggleVisibility = () => {
     setIsVisible((prevState) => !prevState);
   };
+
+  const [isVisible, setIsVisible] = useState(true);
 
   return (
     <div>
@@ -90,8 +98,9 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
-          }`}
+        className={`${styles.filtersContainer} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
       >
         <div className={styles.filters}>
           <h3>Filters</h3>
@@ -194,6 +203,7 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
                 selectedFilters.maxPrice,
               ]}
               onChange={handlePriceChange}
+              onChangeComplete={handlePriceChangeComplete}
               value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
             />
             <div className={styles.priceValues}>
