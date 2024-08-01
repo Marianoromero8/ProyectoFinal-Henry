@@ -1,52 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import styles from "../Home/Home.module.css";
 
 import Aboutus from "../../assets/abouUs-18.png";
-
 import arrow from "../../assets/flecha-16.png";
 import arrowExit from "../../assets/flecha-17.png";
-
 import logo from "../../assets/Untitled-1-10.png";
-import { useDispatch, useSelector } from "react-redux";
+
 import { logoutUser } from "../../store/slice/authThunks";
 import {
   callProductsFilters,
   setFilters,
 } from "../../store/slice/productSlice";
 
-//Lo comentado es agregado por marian para la autorizacion de terceros
-
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {
-    products,
-    status = "loading",
-    filters,
-  } = useSelector((state) => state.products);
-  const { user } = useSelector((state) => state.auth)
+  const { products, status, filters } = useSelector((state) => state.products);
+  const { user } = useSelector((state) => state.auth);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     dispatch(callProductsFilters(filters));
   }, [dispatch, filters]);
 
   const handleFilterChange = (filt) => {
-    dispatch(setFilters(filt));
+    dispatch(
+      setFilters({
+        ...filt,
+        size: filt.size.join(","), // Asegurarse de que el filtro de tamaño sea una cadena separada por comas
+      })
+    );
   };
 
   const handleSearch = (search) => {
-    if (!search) {
-      dispatch(setFilters({ ...filters, name: "" }));
-    } else {
-      dispatch(setFilters({ ...filters, name: search }));
-    }
+    setSearchTerm(search);
+    dispatch(setFilters({ ...filters, name: search }));
   };
 
   const handleClear = () => {
+    setSearchTerm("");
     dispatch(
       setFilters({
         size: "",
@@ -54,17 +51,17 @@ const Home = () => {
         gender: "",
         category: "",
         brand: "",
-        minPrice: "",
-        maxPrice: "",
+        minPrice: 10,
+        maxPrice: 200,
+        name: "",
       })
     );
   };
 
   const handleLogout = async () => {
     try {
-      logoutUser();
-      dispatch(logoutUser());
-      navigate('/login');
+      await dispatch(logoutUser());
+      navigate("/login");
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }
@@ -83,8 +80,8 @@ const Home = () => {
           </div>
         ) : (
           <div>
-            <button onClick={() => { navigate('/login') }}>Login</button>
-            <button onClick={() => { navigate('/register') }}>Register</button>
+            <button onClick={() => navigate("/login")}>Login</button>
+            <button onClick={() => navigate("/register")}>Register</button>
           </div>
         )}
       </div>
@@ -98,23 +95,21 @@ const Home = () => {
           </Link>
           <Link to="/aboutus" className={styles.links}>
             <button className={styles.menuButton}>
-              {" "}
               ABOUT US <img src={Aboutus} alt="" className={styles.arrow} />
             </button>
           </Link>
         </div>
-
         <Link to="/" className={styles.links}>
           <button className={styles.menuButton}>
             EXIT <img src={arrowExit} alt="" className={styles.arrow} />
           </button>
         </Link>
       </div>
-
       <NavBar
         onFilterChange={handleFilterChange}
         onSearch={handleSearch}
         onClear={handleClear}
+        searchTerm={searchTerm}
       />
       <div className={styles.productList}>
         {products.map((product) => (
