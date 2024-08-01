@@ -36,6 +36,9 @@ const Login = () => {
         <p>You don't have an account?</p>
         <Link to='/register'>Create an account</Link>
       </div>
+      <div>
+        <Link to='/home'>Go home</Link>
+      </div>
       {error && <p>{error}</p>}
     </div>
   );

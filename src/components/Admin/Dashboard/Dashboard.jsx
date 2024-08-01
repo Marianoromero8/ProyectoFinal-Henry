@@ -2,8 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, logoutUser } from "../../../store/slice/authThunks";
-import { useNavigate } from "react-router-dom";
-
+import { Form, Link, useNavigate } from "react-router-dom";
+import styles from '../Dashboard/Dashboard.module.css'
+import arrow from '../../../assets/flecha-17.png'
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -35,6 +36,11 @@ const Dashboard = () => {
         </div>
       )}
       {error && <p>Error: {error}</p>}
+      <Link to="/form" className={styles.links}>
+        <button className={styles.menuButton}>
+          Add new product <img src={arrow} alt="" className={styles.arrow} />
+        </button>
+      </Link>
     </div>
   );
 }

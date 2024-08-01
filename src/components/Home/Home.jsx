@@ -88,11 +88,6 @@ const Home = () => {
       <img src={logo} className={styles.logo} />
       <div className={styles.menuContainer}>
         <div className={styles.menuContainerIzq}>
-          <Link to="/form" className={styles.links}>
-            <button className={styles.menuButton}>
-              CREATE <img src={arrow} alt="" className={styles.arrow} />
-            </button>
-          </Link>
           <Link to="/aboutus" className={styles.links}>
             <button className={styles.menuButton}>
               ABOUT US <img src={Aboutus} alt="" className={styles.arrow} />
