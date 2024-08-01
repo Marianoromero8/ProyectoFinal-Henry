@@ -81,3 +81,21 @@
   width: 150px;
   padding: 50px;
 }
+
+.LoginRegister {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.LoginRegister button {
+  padding: 10px 15px;
+  margin: 20px;
+  border: 0;
+  border-radius: 10px;
+  background-color: rgba(207, 207, 211, 0.337);
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  font-style: normal;
+}

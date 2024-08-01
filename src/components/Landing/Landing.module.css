@@ -20,7 +20,6 @@
 
 .iconoContainer {
   width: 80px;
-  margin-bottom: 35px;
 }
 .iconoContainer:hover {
   transition: 1s linear;
@@ -63,4 +62,78 @@
   color: aliceblue;
   width: 455px;
   margin-top: -30px;
+}
+
+.containerButtons {
+  display: flex;
+  height: 200px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttonsSign {
+  background-color: rgba(255, 0, 0, 0);
+  padding: 10px 15px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 00;
+  font-style: normal;
+  color: rgb(240, 248, 255);
+  margin: 25px;
+  color: aliceblue;
+
+  border-radius: 15px;
+  border: 0;
+}
+
+.menuButton {
+  position: relative;
+  display: block;
+  transition: all 0.5s;
+
+  width: 100px;
+  padding: 10px 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
+
+  border: 0;
+  color: aliceblue;
+  align-items: center;
+  background-color: #e0ddda00;
+}
+
+.menuButton:hover {
+  padding-right: 5px;
+  color: black;
+  background-color: #dadee0d5;
+  border-radius: 25px;
+  width: 150px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.arrow {
+  visibility: hidden;
+  position: absolute;
+  transition: all 0.5s;
+  opacity: 0;
+  height: 20px;
+  margin-left: 5px;
+  margin-right: 15px;
+  background-color: #edf2f400;
+}
+
+.menuButton:hover .arrow {
+  visibility: visible;
+  position: absolute;
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
 }

@@ -73,7 +73,7 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.LoginRegister}>
         {user ? (
           <div>
             <button onClick={handleLogout}>Logout</button>
