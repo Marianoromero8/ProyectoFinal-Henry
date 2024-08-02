@@ -8,7 +8,7 @@ import Form from "./components/Form/Form";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Cart from "./components/Cart/Cart";
-import RoutProtect from "./components/RoutePotect/RoutProtect";
+import RouteProtect from "./components/RoutePotect/RouteProtect";
 import ViewRole from "./components/ViewRole/ViewRole";
 import Dashboard from "./components/Admin/Dashboard/Dashboard"
 
@@ -26,7 +26,6 @@ function App() {
         <Route path="/Details/:id" element={<Details />} />
 
         <Route path="/AboutUs" element={<AboutUs />} />
-       
 
         <Route path="/Login" element={<Login />} />
 
@@ -35,21 +34,21 @@ function App() {
         <Route path="/Cart" element={<Cart />} />
 
         <Route path="/form" element={
-          <RoutProtect>
+          <RouteProtect>
             <Form />
-          </RoutProtect>
+          </RouteProtect>
         } />
-        
+
         <Route path="/ViewRole" element={
-          <RoutProtect>
+          <RouteProtect>
             <ViewRole />
-          </RoutProtect>
+          </RouteProtect>
         } />
 
         <Route path="/Dashboard" element={
-          <RoutProtect>
+          <RouteProtect>
             <Dashboard />
-          </RoutProtect>
+          </RouteProtect>
         } />
       </Routes>
     </div>
