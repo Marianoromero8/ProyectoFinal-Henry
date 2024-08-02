@@ -1,7 +1,7 @@
 .containerCard {
   border-bottom: 1px solid #cccccc9e;
   /* border-radius: 2px; */
-  /* width: 30vw; */
+  width: 30vw;
   max-width: 290px;
   /* margin: 16px; */
   transition: transform 0.2s;
