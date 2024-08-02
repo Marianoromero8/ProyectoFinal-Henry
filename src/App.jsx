@@ -26,8 +26,7 @@ function App() {
         <Route path="/Details/:id" element={<Details />} />
 
         <Route path="/AboutUs" element={<AboutUs />} />
-
-        <Route path="/Form" element={<Form />} />
+       
 
         <Route path="/Login" element={<Login />} />
 
@@ -35,6 +34,12 @@ function App() {
 
         <Route path="/Cart" element={<Cart />} />
 
+        <Route path="/form" element={
+          <RoutProtect>
+            <Form />
+          </RoutProtect>
+        } />
+        
         <Route path="/ViewRole" element={
           <RoutProtect>
             <ViewRole />

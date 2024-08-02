@@ -14,6 +14,7 @@ const Card = ({
   size,
 }) => {
   return (
+    <Link  to={`/details/${id}`} >
     <div className={styles.containerCard}>
       <div>
         <img src={images[0]} alt={name} className={styles.image} />
@@ -36,12 +37,9 @@ const Card = ({
             </p>
           </div>
         </div>
-        <div></div>
-        <Link to={`/details/${id}`}>
-          <button className={styles.detailButton}>Detail</button>
-        </Link>
       </div>
     </div>
+    </Link>
   );
 };
 
