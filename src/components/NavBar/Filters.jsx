@@ -1,67 +1,48 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setFilters, callProductsFilters } from "./../../store/slice/productSlice"; // Asegúrate de importar correctamente
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styles from "../NavBar/Filters.module.css";
 
 const Filters = ({ onFilterChange, onClearFilters }) => {
-  const [selectedFilters, setSelectedFilters] = useState({
-    size: [],
-    color: [],
-    gender: [],
-    category: [],
-    brand: [],
-    minPrice: 10,
-    maxPrice: 200,
-  });
-
+  const dispatch = useDispatch();
   const globalFilters = useSelector((state) => state.products.filters);
 
-  useEffect(() => {
-    setSelectedFilters({
-      size: Array.isArray(globalFilters.size) ? globalFilters.size : [],
-      color: Array.isArray(globalFilters.color) ? globalFilters.color : [],
-      gender: Array.isArray(globalFilters.gender) ? globalFilters.gender : [],
-      category: Array.isArray(globalFilters.category)
-        ? globalFilters.category
-        : [],
-      brand: Array.isArray(globalFilters.brand) ? globalFilters.brand : [],
-      minPrice: globalFilters.minPrice || 10,
-      maxPrice: globalFilters.maxPrice || 200,
-    });
-  }, [globalFilters]);
-
   const [isVisible, setIsVisible] = useState(true);
+  const [selectedFilters, setSelectedFilters] = useState(globalFilters);
+
+  const handleFilterChange = useCallback(
+    (updatedFilters) => {
+      setSelectedFilters(updatedFilters);
+      dispatch(setFilters(updatedFilters));
+      dispatch(callProductsFilters(updatedFilters));
+    },
+    [dispatch]
+  );
+//sabes donde es la ruta?
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
-    setSelectedFilters((prevFilters) => {
-      let updatedFilters = { ...prevFilters };
-      if (checked) {
-        updatedFilters[name] = [...updatedFilters[name], value];
-      } else {
-        updatedFilters[name] = updatedFilters[name].filter(
-          (item) => item !== value
-        );
-      }
-
-      setTimeout(() => onFilterChange(updatedFilters), 0);
-
-      return updatedFilters;
-    });
+    const newValues = checked
+      ? [...selectedFilters[name], value]
+      : selectedFilters[name].filter((v) => v !== value);
+    handleFilterChange({ ...selectedFilters, [name]: newValues });
   };
 
   const handlePriceChange = (values) => {
-    setSelectedFilters((prevFilters) => {
-      const updatedFilters = {
-        ...prevFilters,
-        minPrice: values[0],
-        maxPrice: values[1],
-      };
+    setSelectedFilters({
+      ...selectedFilters,
+      minPrice: values[0],
+      maxPrice: values[1],
+    });
+  };
 
-      setTimeout(() => onFilterChange(updatedFilters), 0);
-
-      return updatedFilters;
+  const handlePriceChangeComplete = (values) => {
+    handleFilterChange({
+      ...selectedFilters,
+      minPrice: values[0],
+      maxPrice: values[1],
     });
   };
 
@@ -75,8 +56,7 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
       minPrice: 10,
       maxPrice: 200,
     };
-    setSelectedFilters(initialFilters);
-    setTimeout(() => onClearFilters(initialFilters), 0);
+    handleFilterChange(initialFilters);
   };
 
   const toggleVisibility = () => {
@@ -90,8 +70,9 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
-          }`}
+        className={`${styles.filtersContainer} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
       >
         <div className={styles.filters}>
           <h3>Filters</h3>
@@ -190,10 +171,11 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
               min={10}
               max={200}
               defaultValue={[
-                selectedFilters.minPrice,
-                selectedFilters.maxPrice,
+                globalFilters.minPrice,
+                globalFilters.maxPrice,
               ]}
               onChange={handlePriceChange}
+              onAfterChange={handlePriceChangeComplete}
               value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
             />
             <div className={styles.priceValues}>

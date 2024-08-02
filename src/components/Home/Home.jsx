@@ -32,7 +32,7 @@ const Home = () => {
     dispatch(
       setFilters({
         ...filt,
-        size: filt.size.join(","), // Asegurarse de que el filtro de tamaño sea una cadena separada por comas
+        size: filt.size.join(","), // Convertir el array de size en una cadena separada por comas
       })
     );
   };

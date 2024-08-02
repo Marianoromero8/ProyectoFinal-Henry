@@ -1,21 +1,24 @@
 .containerCard {
   border-bottom: 1px solid #cccccc9e;
-  border-radius: 8px;
-  width: 290px;
-  margin: 16px;
+  /* border-radius: 2px; */
+  width: 30vw;
+  max-width: 290px;
+  /* margin: 16px; */
   transition: transform 0.2s;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  /* border: 1px solid red;s */
 }
 
 .containerCard:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
 }
 
 .image {
   width: 100%;
   height: 260px;
   object-fit: cover;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px 10px 0px 0px;
 }
 
 .details {
@@ -30,6 +33,8 @@
   margin-top: 10px;
   margin-bottom: 10px;
   padding-bottom: 20px;
+  background-color: #f1f1f1;
+
   /* Cambia el color del texto a negro */
 }
 
@@ -41,6 +46,7 @@
   margin-bottom: 10px;
   margin-top: 10px;
   height: max-content;
+
 }
 
 .details h2 {
@@ -51,6 +57,7 @@
   font-weight: 700;
   margin: 0;
   margin-bottom: 3px;
+
   /* Asegura que el color del título también sea negro */
 }
 
@@ -66,16 +73,18 @@
 .detailButton {
   border: 0;
   color: black;
-  padding: 8px 15px;
-  border-radius: 15px;
+  padding: 8px 45px;
+  border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.096);
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   font-weight: 700;
   transform: 1s;
-  background-color: rgba(240, 248, 255, 0);
+  /* background-color: rgba(240, 248, 255, 0); */
   transition: all 0.2s;
-  width: 150px;
+  /* width: 150px; */
+  /* width: 1; */
+  /* padding: 10px; */
 }
 
 .detailButton:hover {
@@ -90,9 +99,9 @@
   align-items: center;
   text-align: center;
 
-  background-color: #1b191814;
+  /* background-color: #1b191814; */
   width: 80px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   height: 24px;
 }
 

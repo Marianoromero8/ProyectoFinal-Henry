@@ -8,7 +8,7 @@ import Form from "./components/Form/Form";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Cart from "./components/Cart/Cart";
-import RoutProtect from "./components/RoutePotect/RoutProtect";
+import RouteProtect from "./components/RoutePotect/RouteProtect";
 import ViewRole from "./components/ViewRole/ViewRole";
 import Dashboard from "./components/Admin/Dashboard/Dashboard"
 
@@ -27,24 +27,28 @@ function App() {
 
         <Route path="/AboutUs" element={<AboutUs />} />
 
-        <Route path="/Form" element={<Form />} />
-
         <Route path="/Login" element={<Login />} />
 
         <Route path="/Register" element={<Register />} />
 
         <Route path="/Cart" element={<Cart />} />
 
+        <Route path="/form" element={
+          <RouteProtect>
+            <Form />
+          </RouteProtect>
+        } />
+
         <Route path="/ViewRole" element={
-          <RoutProtect>
+          <RouteProtect>
             <ViewRole />
-          </RoutProtect>
+          </RouteProtect>
         } />
 
         <Route path="/Dashboard" element={
-          <RoutProtect>
+          <RouteProtect>
             <Dashboard />
-          </RoutProtect>
+          </RouteProtect>
         } />
       </Routes>
     </div>
