@@ -16,6 +16,7 @@ import {
   callProductsFilters,
   setFilters,
 } from "../../store/slice/productSlice";
+import { useCart } from "../../hooks/useCart";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const Home = () => {
   const { products, status, filters } = useSelector((state) => state.products);
   const { user } = useSelector((state) => state.auth);
   const [searchTerm, setSearchTerm] = useState("");
+  const { addToCart } = useCart();
 
   useEffect(() => {
     dispatch(callProductsFilters(filters));
@@ -99,6 +101,7 @@ const Home = () => {
             EXIT <img src={arrowExit} alt="" className={styles.arrow} />
           </button>
         </Link>
+        <button className={styles.cartButton} onClick={() => navigate('/cart')}>Cart</button>
       </div>
       <NavBar
         onFilterChange={handleFilterChange}
@@ -119,6 +122,7 @@ const Home = () => {
             category={product.category}
             size={product.size}
             color={product.color}
+            onAddToCart={addToCart}
           />
         ))}
       </div>
