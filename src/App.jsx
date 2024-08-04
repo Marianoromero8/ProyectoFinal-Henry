@@ -11,11 +11,23 @@ import Cart from "./components/Cart/Cart";
 import RouteProtect from "./components/RoutePotect/RouteProtect";
 import ViewRole from "./components/ViewRole/ViewRole";
 import Dashboard from "./components/Admin/Dashboard/Dashboard"
+import { useDispatch } from "react-redux";
+import { setUser } from "./store/slice/authSlice";
+import { useEffect } from "react";
 
 // npm run dev ==> en la terminal dentro de la carpeta 'vite-project' para correr el front
 // Lo comentado es para el login y register para autorizacion de terceros
 function App() {
-  console.log();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    if (user) {
+      dispatch(setUser(user));
+    }
+  }, [dispatch]);
+
   return (
     <div className=".App">
       <Routes>
