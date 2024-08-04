@@ -11,13 +11,8 @@ import {
 
 const API_URL = "https://pf-henry-backend-ts0n.onrender.com/product/create";
 
-const generateRandomId = () => {
-  return Math.floor(Math.random() * (9999 - 15 + 1)) + 15;
-};
-
 const structureData = (formData) => {
   return {
-    id: generateRandomId().toString(),
     name: formData.name,
     description: formData.description,
     images: [formData.image],
@@ -33,7 +28,6 @@ const structureData = (formData) => {
 };
 
 const Form = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
