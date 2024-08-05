@@ -14,12 +14,12 @@
 }
 
 .logoContainer {
-  width: 170px;
+  width: 150px;
   margin-top: 45px;
 }
 
 .iconoContainer {
-  width: 80px;
+  width: 70px;
 }
 .iconoContainer:hover {
   transition: 1s linear;
@@ -30,7 +30,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 60px;
+  padding-top: 90px;
 }
 .light {
   font-family: "Montserrat", sans-serif;
@@ -66,24 +66,16 @@
 
 .containerButtons {
   display: flex;
-  height: 200px;
+  height: 130px;
   justify-content: space-around;
+  flex-direction: column;
   align-items: center;
+  margin-bottom: 10px;
 }
-
-.buttonsSign {
-  background-color: rgba(255, 0, 0, 0);
-  padding: 10px 15px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  font-weight: 00;
-  font-style: normal;
-  color: rgb(240, 248, 255);
-  margin: 25px;
-  color: aliceblue;
-
-  border-radius: 15px;
-  border: 0;
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
 }
 
 .menuButton {
@@ -96,7 +88,7 @@
 
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   font-style: normal;
 
   border: 0;
@@ -136,4 +128,8 @@
 
 a {
   text-decoration: none;
+}
+
+.containerIcono {
+  display: flex;
 }

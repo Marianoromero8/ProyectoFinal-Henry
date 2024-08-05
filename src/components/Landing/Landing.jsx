@@ -41,33 +41,36 @@ const Landing = () => {
             </h2>
           </div>
           <div className={Style.containerButtons}>
-            {user ? (
-              <div>
-                <Link>
-                  <button onClick={handleLogout} className={Style.menuButton}>
-                    Logout
-                  </button>
-                </Link>
-              </div>
-            ) : (
-              <div>
-                <Link to="/Login">
-                  <button className={Style.menuButton}>
-                    Sign in
-                    <img src={singIN} alt="" className={Style.arrow} />
-                  </button>
-                </Link>
-                <Link to="/home">
-                  <img src={Icono} className={Style.iconoContainer} />
-                </Link>
-                <Link to="/register">
-                  <button className={Style.menuButton}>
-                    Sign up
-                    <img src={singup} alt="" className={Style.arrow} />
-                  </button>
-                </Link>
-              </div>
-            )}
+            <Link to="/home">
+              <img src={Icono} className={Style.iconoContainer} />
+            </Link>
+            <div>
+              {user ? (
+                <div>
+                  <Link>
+                    <button onClick={handleLogout} className={Style.menuButton}>
+                      Logout
+                    </button>
+                  </Link>
+                </div>
+              ) : (
+                <div className={Style.buttons}>
+                  <Link to="/Login">
+                    <button className={Style.menuButton}>
+                      Sign in
+                      <img src={singIN} alt="" className={Style.arrow} />
+                    </button>
+                  </Link>
+
+                  <Link to="/register">
+                    <button className={Style.menuButton}>
+                      Sign up
+                      <img src={singup} alt="" className={Style.arrow} />
+                    </button>
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

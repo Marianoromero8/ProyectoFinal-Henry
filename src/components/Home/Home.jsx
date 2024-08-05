@@ -75,33 +75,45 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.LoginRegister}>
+      <img src={logo} className={styles.logo} />
+
+      <div className={styles.menuContainer}>
         {user ? (
-          <div>
-            <button onClick={handleLogout}>Logout</button>
+          <div className={styles.menuContainerR}>
+            <button onClick={handleLogout} className={styles.menuButton}>
+              LOGOUT{" "}
+            </button>
           </div>
         ) : (
-          <div>
-            <button onClick={() => navigate("/login")}>Login</button>
-            <button onClick={() => navigate("/register")}>Register</button>
+          <div className={styles.menuContainerR}>
+            <button
+              onClick={() => navigate("/login")}
+              className={styles.menuButton}
+            >
+              LOGIN
+            </button>
+            <button
+              onClick={() => navigate("/register")}
+              className={styles.menuButton}
+            >
+              REGISTER
+            </button>
           </div>
         )}
-      </div>
-      <img src={logo} className={styles.logo} />
-      <div className={styles.menuContainer}>
         <div className={styles.menuContainerIzq}>
           <Link to="/aboutus" className={styles.links}>
-            <button className={styles.menuButton}>
-              ABOUT US <img src={Aboutus} alt="" className={styles.arrow} />
-            </button>
+            <button className={styles.menuButton}>ABOUT US</button>
+          </Link>
+          <button
+            className={styles.menuButton}
+            onClick={() => navigate("/cart")}
+          >
+            CART
+          </button>
+          <Link to="/" className={styles.links}>
+            <button className={styles.menuButton}>EXIT</button>
           </Link>
         </div>
-        <Link to="/" className={styles.links}>
-          <button className={styles.menuButton}>
-            EXIT <img src={arrowExit} alt="" className={styles.arrow} />
-          </button>
-        </Link>
-        <button className={styles.cartButton} onClick={() => navigate('/cart')}>Cart</button>
       </div>
       <NavBar
         onFilterChange={handleFilterChange}

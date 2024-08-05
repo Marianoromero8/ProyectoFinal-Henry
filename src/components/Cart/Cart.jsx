@@ -1,55 +1,53 @@
-import React, { useId } from 'react'
-import { useCart } from '../../hooks/useCart';
-import { Link } from 'react-router-dom';
-
+import React, { useId } from "react";
+import { useCart } from "../../hooks/useCart";
+import { Link } from "react-router-dom";
+import style from "./Cart.module.css";
+import LogoCart from "../../assets/CART-32.png";
 const Cart = () => {
   const cartCheckboxId = useId();
-  const { cart, addToCart, clearCart } = useCart()
+  const { cart, addToCart, clearCart } = useCart();
 
   const CartItem = ({ images, price, name, quantity, addToCart }) => {
     return (
-      <li>
-        <img src={images} alt={name} />
-        <div>
-          <strong>{name}</strong> - ${price}
+      <div className={style.containerCart}>
+        <img src={images} alt={name} className={style.cartImg} />
+        <div className={style.detailCart}>
+          <strong>{name}</strong> ${price}
+          <footer>
+            <small>Quantity: {quantity}</small>
+          </footer>
         </div>
-
-        <footer>
-          <small>
-            quantity: {quantity}
-          </small>
-        </footer>
-      </li>
-    )
-  }
+      </div>
+    );
+  };
 
   return (
-    <>
-      <div>
-        <Link to='/home'>
-          <button>HOME</button>
+    <div className={style.containerGeneralCart}>
+      <div className={style.ContainerButtonCart}>
+        <img src={LogoCart} className={style.LogoCart} />
+        <Link to="/home">
+          <button className={style.buttonCart}>HOME</button>
         </Link>
+        <button onClick={clearCart} className={style.buttonCart}>
+          CLEAR
+        </button>
       </div>
-      <label htmlFor={cartCheckboxId}>
-        Poner cart icon
-      </label>
-      <input id={cartCheckboxId} type='checkbox' hidden />
-
-      <aside className='cart'>
-        <ul>
-          {Array.isArray(cart) ? cart.map(product => (
-            <CartItem
-              key={product.id}
-              addToCart={() => addToCart(product)}
-              {...product}
-            />
-          )) : null}
+      <input id={cartCheckboxId} type="checkbox" hidden />
+      <aside>
+        <ul className={style.conteienrCards}>
+          {Array.isArray(cart)
+            ? cart.map((product) => (
+                <CartItem
+                  key={product.id}
+                  addToCart={() => addToCart(product)}
+                  {...product}
+                />
+              ))
+            : null}
         </ul>
-
-        <button onClick={clearCart}>clear</button>
       </aside>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export default Cart;
