@@ -6,26 +6,6 @@ const initialState = {
     cart: JSON.parse(localStorage.getItem("cart") || "[]"),
 };
 
-// const getCartFromLocalStorage = () => {
-//     const cart = localStorage.getItem("cart");
-//     console.log("Cart from localStorage:", cart); // Agregar log para verificar el valor recuperado
-//     if (cart) {
-//         try {
-//             const parsedCart = JSON.parse(cart);
-//             console.log("Parsed cart:", parsedCart); // Agregar log para verificar el valor analizado
-//             return parsedCart;
-//         } catch (e) {
-//             console.error("Invalid JSON in localStorage for 'cart'", e);
-//             return [];
-//         }
-//     }
-//     return [];
-// };
-
-// const initialState = {
-//     cart: getCartFromLocalStorage(),
-// };
-
 const reducer = (state, action) => {
     console.log("Current cart:", state.cart);
     const { type, payload } = action
