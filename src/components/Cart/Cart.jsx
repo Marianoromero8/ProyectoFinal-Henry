@@ -37,12 +37,12 @@ const Cart = () => {
         <ul className={style.conteienrCards}>
           {Array.isArray(cart)
             ? cart.map((product) => (
-                <CartItem
-                  key={product.id}
-                  addToCart={() => addToCart(product)}
-                  {...product}
-                />
-              ))
+              <CartItem
+                key={product.id}
+                addToCart={() => addToCart(product)}
+                {...product}
+              />
+            ))
             : null}
         </ul>
       </aside>
