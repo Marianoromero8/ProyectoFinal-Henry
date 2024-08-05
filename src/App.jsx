@@ -14,6 +14,7 @@ import Dashboard from "./components/Admin/Dashboard/Dashboard"
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/slice/authSlice";
 import { useEffect } from "react";
+import Error404 from "./components/Error404/Error404";
 
 // npm run dev ==> en la terminal dentro de la carpeta 'vite-project' para correr el front
 // Lo comentado es para el login y register para autorizacion de terceros
@@ -44,6 +45,8 @@ function App() {
         <Route path="/Register" element={<Register />} />
 
         <Route path="/Cart" element={<Cart />} />
+
+        <Route path="*" element={<Error404 />} />
 
         <Route path="/form" element={
           <RouteProtect>
