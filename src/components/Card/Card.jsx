@@ -12,11 +12,11 @@ const Card = ({
   category,
   color,
   size,
-  onAddToCart
+  onAddToCart,
 }) => {
   return (
     <div className={styles.containerCard}>
-      <Link to={`/details/${id}`} >
+      <Link to={`/details/${id}`}>
         <div>
           <img src={images[0]} alt={name} className={styles.image} />
         </div>
@@ -40,7 +40,14 @@ const Card = ({
           </div>
         </div>
       </Link>
-      <button onClick={() => onAddToCart({ id, name, images, price, brand, color, size, category })}>ADD+</button>
+      <button
+        onClick={() =>
+          onAddToCart({ id, name, images, price, brand, color, size, category })
+        }
+        className={styles.buttonAdd}
+      >
+        ADD+
+      </button>
     </div>
   );
 };

@@ -26,7 +26,9 @@ const Login = () => {
 
   return (
     <div className={styles.containerGeneral}>
-      <h2 className={styles.h1Titile}>Sign in to ChampionGear</h2>
+      <h2 className={styles.h1Titile}>
+        Sign in to<strong> ChampionGear </strong>
+      </h2>
       <div className={styles.container1}>
         <form onSubmit={handleSubmit} className={styles.container1}>
           <input
@@ -46,22 +48,22 @@ const Login = () => {
 
           <div className={styles.formbuttons}>
             <button type="submit" disabled={loading}>
-              Login
+              LOGIN
             </button>
           </div>
-
         </form>
-        <div className={styles.formbuttons}>
-        </div>
+        <div className={styles.errorContainer}>{error && <p>{error}</p>}</div>
       </div>
-      <div>
+      <div className={styles.containerDown}>
         <p>You don't have an account?</p>
-        <Link to="/register">Create an account</Link>
+        <Link to="/register" className={styles.containerDownDatos}>
+          Create an account
+        </Link>
+
+        <Link to="/home" className={styles.containerDownDatosButton}>
+          GO HOME
+        </Link>
       </div>
-      <div>
-        <Link to='/home'>Go home</Link>
-      </div>
-      {error && <p>{error}</p>}
     </div>
   );
 };

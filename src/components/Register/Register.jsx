@@ -28,34 +28,40 @@ const Register = () => {
   return (
     <div className={styles.containerGeneral}>
       <h2 className={styles.h1Titile}>Sign up</h2>
-      <form onSubmit={handleSubmit} className={styles.container1}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
+      <div className={styles.container1}>
+        <form onSubmit={handleSubmit} className={styles.container1}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
 
-        <div className={styles.formbuttons}>
-          <button type="submit">Register</button>
-          {loading && <p>Loading...</p>}
-          {error && <p>{error}</p>}
-        </div>
-        <div>
-          <p>Do you have an account?</p>
-          <Link to="/login">Sign In</Link>
-        </div>
-      </form>
+          <div className={styles.formbuttons}>
+            <button type="submit">REGISTER</button>
+          </div>
+          <div className={styles.errorContainer}>
+            {loading && <p>Loading...</p>}
+            {error && <p className={styles.error}>{error}</p>}
+          </div>
+          <div className={styles.containerDown}>
+            <p>Do you have an account?</p>
+            <Link to="/login" className={styles.containerDownDatos}>
+              Sign In
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

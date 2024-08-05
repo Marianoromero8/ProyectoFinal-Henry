@@ -15,21 +15,21 @@
   margin-bottom: 40px;
 }
 
-.container1 label {
-  font-family: "Montserrat", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  font-style: normal;
-  margin-bottom: 10px;
-  width: 200px;
-}
-
-.container1 input,
-.container1 textarea,
-.container1 select {
-  background-color: rgba(134, 138, 141, 0.095);
+.container1 input {
+  background-color: rgba(255, 255, 255, 0.414);
   border: 0;
   width: 300px;
+  padding: 15px;
+  margin-top: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.container1 select {
+  background-color: rgba(134, 138, 141, 0.095);
+  border: 1px solid rgb(206, 202, 202);
+  width: 100px;
   padding: 8px;
   margin-top: 20px;
 }
@@ -42,19 +42,23 @@
   margin-bottom: 10px;
 }
 .formbuttons button {
-  padding: 15px 25px;
-  font-size: 16px;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 20px;
+  padding: 0.5rem 1rem;
   background-color: #134eff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
   border: 0;
-  color: aliceblue;
-  margin-top: 40px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.5s;
+  margin-top: 30px;
+  margin-bottom: 40px;
 }
-
+.formbuttons button:hover {
+  background-color: #ff6e1f;
+  transition: 0.3s linear;
+}
 .formbuttons button:disabled {
   background-color: #cccccc90;
   cursor: not-allowed;
@@ -63,8 +67,18 @@
 .containerGeneral {
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  background-image: url(../../assets/fondoDetail-19.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  margin: -10px;
 }
 
 .img {
@@ -83,4 +97,45 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.containerDownDatos {
+  position: relative;
+  display: block;
+  width: 200px;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  font-style: normal;
+
+  transition: all 0.5s;
+  border: 0;
+  color: #ff6e1f;
+  align-items: center;
+  background-color: #e0ddda00;
+}
+
+.containerDownDatos:hover {
+  transition: all 0.5s;
+  color: #134eff;
+  font-weight: 800;
+}
+
+.containerDown p {
+  font-size: 14px;
+  font-weight: 700;
+  font-style: italic;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.errorContainer {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  font-style: italic;
+  height: 30px;
+  margin-bottom: 50px;
+  color: #d90303;
 }
