@@ -27,19 +27,22 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h2>Welcome to the Dashboard</h2>
-      <button onClick={handleLogout}>Log Out</button>
+      <h2>Dashboard</h2>
       {loading && <p>Loading...</p>}
       {user && (
         <div>
-          <p>Type user: {user.role}</p>
+          <p><strong>Type user: {user.role}</strong></p>
         </div>
       )}
       {error && <p>Error: {error}</p>}
+      <button onClick={handleLogout} className={styles.menuButton}>Log Out</button>
       <Link to="/form" className={styles.links}>
         <button className={styles.menuButton}>
-          Add new product <img src={arrow} alt="" className={styles.arrow} />
+          Add new product
         </button>
+      </Link>
+      <Link to='/home'>
+        <button className={styles.menuButton}>Home</button>
       </Link>
     </div>
   );
