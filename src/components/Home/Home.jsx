@@ -133,9 +133,6 @@ const Home = () => {
                 <button className={styles.menuButton}>CREATE</button>
               </Link>
             )}
-          <Link to="/" className={styles.links}>
-            <button className={styles.menuButton}>EXIT</button>
-          </Link>
         </div>
       </div>
       <NavBar
