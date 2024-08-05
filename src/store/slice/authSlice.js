@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, logoutUser, registerUser } from "./authThunks";
 
 const initialState = {
-  user: JSON.parse(localStorage.getItem('user')) || null,
+  user: JSON.parse(sessionStorage.getItem('user')) || null,
   loading: false,
   error: null,
 };
@@ -17,6 +17,7 @@ const authSlice = createSlice({
     },
     setUser: (state, action) => {
       state.user = action.payload;
+      sessionStorage.setItem('user', JSON.stringify(action.payload));
     }
   },
   extraReducers: (builder) => {
