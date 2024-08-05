@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
+import Paginate from "../Paginate/Paginate";
+import NoFound from "../Nofound/Nofound";
 import styles from "../Home/Home.module.css";
 
 import Aboutus from "../../assets/abouUs-18.png";
@@ -25,10 +27,20 @@ const Home = () => {
   const { user } = useSelector((state) => state.auth);
   const [searchTerm, setSearchTerm] = useState("");
   const { addToCart } = useCart();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalProducts, setTotalProducts] = useState(0);
+
+  const productsPerPage = 12;
 
   useEffect(() => {
-    dispatch(callProductsFilters(filters));
-  }, [dispatch, filters]);
+    dispatch(callProductsFilters({ ...filters, page: currentPage }));
+  }, [dispatch, filters, currentPage]);
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      setTotalProducts(products.length); // Asumiendo que la respuesta contiene la longitud total de productos
+    }
+  }, [products]);
 
   const handleFilterChange = (filt) => {
     dispatch(
@@ -46,6 +58,7 @@ const Home = () => {
 
   const handleClear = () => {
     setSearchTerm("");
+    setCurrentPage(1); // Reiniciar a la primera página
     dispatch(
       setFilters({
         size: "",
@@ -67,6 +80,10 @@ const Home = () => {
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
     }
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   if (status === "loading") {
@@ -96,12 +113,22 @@ const Home = () => {
             </button>
           </Link>
         </div>
+        {user &&
+          user.role === "admin" && ( // Verificar si el usuario tiene el rol de administrador
+            <Link to="/form" className={styles.links}>
+              <button className={styles.menuButton}>
+                CREATE <img src={arrow} alt="" className={styles.arrow} />
+              </button>
+            </Link>
+          )}
         <Link to="/" className={styles.links}>
           <button className={styles.menuButton}>
             EXIT <img src={arrowExit} alt="" className={styles.arrow} />
           </button>
         </Link>
-        <button className={styles.cartButton} onClick={() => navigate('/cart')}>Cart</button>
+        <button className={styles.cartButton} onClick={() => navigate("/cart")}>
+          Cart
+        </button>
       </div>
       <NavBar
         onFilterChange={handleFilterChange}
@@ -110,22 +137,32 @@ const Home = () => {
         searchTerm={searchTerm}
       />
       <div className={styles.productList}>
-        {products.map((product) => (
-          <Card
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            images={product.images}
-            price={product.price}
-            stock={product.stock}
-            brand={product.brand}
-            category={product.category}
-            size={product.size}
-            color={product.color}
-            onAddToCart={addToCart}
-          />
-        ))}
+        {products.length > 0 ? (
+          products.map((product) => (
+            <Card
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              images={product.images}
+              price={product.price}
+              stock={product.stock}
+              brand={product.brand}
+              category={product.category}
+              size={product.size}
+              color={product.color}
+              onAddToCart={addToCart}
+            />
+          ))
+        ) : (
+          <NoFound />
+        )}
       </div>
+      <Paginate
+        currentPage={currentPage}
+        totalProducts={totalProducts}
+        productsPerPage={productsPerPage}
+        paginate={handlePageChange}
+      />
     </div>
   );
 };

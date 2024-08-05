@@ -8,8 +8,12 @@ import {
   setFormData,
   clearForm,
 } from "../../store/slice/formSlice";
+import axios from "axios";
 
 const API_URL = "https://pf-henry-backend-ts0n.onrender.com/product/create";
+const CLOUDINARY_URL =
+  "https://api.cloudinary.com/v1_1/YOUR_CLOUDINARY_NAME/image/upload";
+const CLOUDINARY_UPLOAD_PRESET = "YOUR_UPLOAD_PRESET";
 
 const structureData = (formData) => {
   return {
@@ -41,11 +45,36 @@ const Form = () => {
     color,
     brand,
     errorMessage,
+    validationErrors,
   } = useSelector((state) => state.productForm);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    dispatch(setFormData({ [name]: value }));
+    dispatch(setFormData({ name, value }));
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (file && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+      try {
+        const response = await axios.post(CLOUDINARY_URL, formData);
+        const imageUrl = response.data.secure_url;
+        dispatch(setFormData({ name: "image", value: imageUrl }));
+      } catch (error) {
+        console.error("Error uploading image:", error);
+        dispatch(setError("Failed to upload image. Please try again."));
+      }
+    } else {
+      dispatch(
+        setError(
+          "Invalid file format. Please upload a jpg, jpeg, png, or gif file."
+        )
+      );
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -67,7 +96,6 @@ const Form = () => {
       color,
       brand,
     });
-    console.log("Data being sent:", structuredData);
 
     try {
       const response = await fetch(API_URL, {
@@ -108,6 +136,9 @@ const Form = () => {
             onChange={handleChange}
             required
           />
+          {validationErrors.name && (
+            <p className={styles.error}>{validationErrors.name}</p>
+          )}
         </div>
         <div className={styles.container1}>
           <label htmlFor="description">Description:</label>
@@ -118,17 +149,23 @@ const Form = () => {
             onChange={handleChange}
             required
           />
+          {validationErrors.description && (
+            <p className={styles.error}>{validationErrors.description}</p>
+          )}
         </div>
         <div className={styles.container1}>
-          <label htmlFor="image">Image URL:</label>
+          <label htmlFor="image">Image:</label>
           <input
-            type="url"
+            type="file"
             id="image"
             name="image"
-            value={image}
-            onChange={handleChange}
+            accept="image/*"
+            onChange={handleImageUpload}
             required
           />
+          {validationErrors.image && (
+            <p className={styles.error}>{validationErrors.image}</p>
+          )}
         </div>
         <div className={styles.container1}>
           <label htmlFor="price">Price:</label>
@@ -140,6 +177,9 @@ const Form = () => {
             onChange={handleChange}
             required
           />
+          {validationErrors.price && (
+            <p className={styles.error}>{validationErrors.price}</p>
+          )}
         </div>
         <div className={styles.container1}>
           <label htmlFor="gender">Gender:</label>
@@ -155,6 +195,9 @@ const Form = () => {
             <option value="Female">Female</option>
             <option value="Unisex">Unisex</option>
           </select>
+          {validationErrors.gender && (
+            <p className={styles.error}>{validationErrors.gender}</p>
+          )}
         </div>
         <div className={styles.container1}>
           <label htmlFor="category">Category:</label>
@@ -171,6 +214,9 @@ const Form = () => {
             <option value="Jackets">Jackets</option>
             <option value="Shoes">Shoes</option>
           </select>
+          {validationErrors.category && (
+            <p className={styles.error}>{validationErrors.category}</p>
+          )}
         </div>
         <div className={styles.container1}>
           <label htmlFor="size">Size:</label>
@@ -188,6 +234,9 @@ const Form = () => {
             <option value="XL">XL</option>
             <option value="XXL">XXL</option>
           </select>
+          {validationErrors.size && (
+            <p className={styles.error}>{validationErrors.size}</p>
+          )}
         </div>
         <div className={styles.container1}>
           <label htmlFor="color">Color:</label>
@@ -207,6 +256,9 @@ const Form = () => {
             <option value="Black">Black</option>
             <option value="White">White</option>
           </select>
+          {validationErrors.color && (
+            <p className={styles.error}>{validationErrors.color}</p>
+          )}
         </div>
         <div className={styles.container1}>
           <label htmlFor="brand">Brand:</label>
@@ -223,6 +275,9 @@ const Form = () => {
             <option value="Puma">Puma</option>
             <option value="Reebok">Reebok</option>
           </select>
+          {validationErrors.brand && (
+            <p className={styles.error}>{validationErrors.brand}</p>
+          )}
         </div>
         <div className={styles.formbuttons}>
           <Link to="/home">
