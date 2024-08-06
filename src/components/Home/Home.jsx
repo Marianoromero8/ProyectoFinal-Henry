@@ -138,6 +138,12 @@ const Home = () => {
                 <button className={styles.menuButton}>CREATE</button>
               </Link>
             )}
+          {user &&
+            user.role === "admin" && ( // Verificar si el usuario tiene el rol de administrador
+              <Link to="/Dashboard" className={styles.links}>
+                <button className={styles.menuButton}>DASHBOARD</button>
+              </Link>
+            )}
         </div>
       </div>
       <NavBar
