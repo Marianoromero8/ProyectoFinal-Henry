@@ -30,6 +30,7 @@ const Paginate = ({
       <button
         onClick={() => paginate(currentPage - 1)}
         disabled={currentPage === 1}
+        className={styles.buttomBackNext}
       >
         BACK
       </button>
@@ -45,6 +46,7 @@ const Paginate = ({
       <button
         onClick={() => paginate(currentPage + 1)}
         disabled={currentPage === totalPages}
+        className={styles.buttomBackNext}
       >
         NEXT
       </button>

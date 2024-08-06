@@ -1,0 +1,13 @@
+.buttomBackNext {
+  border: 0;
+  padding: 10px;
+  margin: 10px;
+}
+
+.active {
+  padding: 5px;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0.91);
+  color: aliceblue;
+  border-radius: 5px;
+}

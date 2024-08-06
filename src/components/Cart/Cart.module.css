@@ -96,18 +96,47 @@
 
 .totalCartButton {
   font-size: 18px;
-  font-weight: bold;
-  padding: 10px;
+  font-weight: 300;
+  padding: 10px 15px;
   cursor: pointer;
-  border: none;
+  margin: 10px;
+  border: 0;
   background-color: #007bff;
   color: white;
-  border-radius: 5px;
-  width: 200px;
-  /* Ajusta este valor según el tamaño más largo que necesites */
+  border-radius: 10px;
   text-align: center;
+  margin-bottom: 45px;
 }
 
 .totalCartButton:hover {
+  background-color: #ff6e1f;
+}
+
+.buttonContainer {
+  background-color: #007bff;
+  padding: 10px;
+  margin: 10px;
+  border: 0;
+  color: aliceblue;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+
+.buttonContainer:hover {
+  background-color: #ff6e1f;
+  transition: all 0.5s;
+}
+
+.buttonContainer2 {
+  background-color: #000000e8;
+  padding: 10px;
+  margin: 10px;
+  border: 0;
+  color: aliceblue;
+  border-radius: 10px;
+  transition: all 0.5s;
+}
+.buttonContainer2:hover {
   background-color: #0056b3;
+  transition: all 0.5s;
 }

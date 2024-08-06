@@ -5,7 +5,14 @@ import style from "./Cart.module.css";
 import LogoCart from "../../assets/CART-32.png";
 const Cart = () => {
   const cartCheckboxId = useId();
-  const { cart, addToCart, clearCart, decreaseQuantity, increaseQuantity, removeFromCart } = useCart();
+  const {
+    cart,
+    addToCart,
+    clearCart,
+    decreaseQuantity,
+    increaseQuantity,
+    removeFromCart,
+  } = useCart();
 
   const calculateTotal = () => {
     return cart.reduce((total, product) => {
@@ -29,15 +36,32 @@ const Cart = () => {
       <div className={style.containerCart}>
         <img src={images} alt={name} className={style.cartImg} />
         <div className={style.detailCart}>
-          <strong>{name}</strong> ${price}
+          <strong>{name}</strong> <strong>$ {price}</strong>
           <footer>
-            <small>Quantity: {quantity}</small>
-            <div>
-              <button onClick={() => decreaseQuantity(id)}>-</button>
-              <button onClick={() => increaseQuantity(id)}>+</button>
-              <button onClick={() => removeFromCart(id)}>Remove All</button>
-            </div>
+            <p>
+              Quantity: <strong>{quantity}</strong>{" "}
+            </p>
           </footer>
+          <div>
+            <button
+              onClick={() => decreaseQuantity(id)}
+              className={style.buttonContainer}
+            >
+              -
+            </button>
+            <button
+              onClick={() => increaseQuantity(id)}
+              className={style.buttonContainer}
+            >
+              +
+            </button>
+            <button
+              onClick={() => removeFromCart(id)}
+              className={style.buttonContainer2}
+            >
+              Remove All
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -69,19 +93,22 @@ const Cart = () => {
         <ul className={style.conteienrCards}>
           {Array.isArray(cart)
             ? cart.map((product) => (
-              <CartItem
-                key={product.id}
-                addToCart={() => addToCart(product)}
-                {...product}
-              />
-            ))
+                <CartItem
+                  key={product.id}
+                  addToCart={() => addToCart(product)}
+                  {...product}
+                />
+              ))
             : null}
         </ul>
         <div className={style.totalCart}>
           <button
             className={style.totalCartButton}
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}>{buttonText}</button>
+            onMouseLeave={handleMouseLeave}
+          >
+            {buttonText}
+          </button>
         </div>
       </aside>
     </div>
