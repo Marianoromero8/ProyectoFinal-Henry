@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import Style from "./Landing.module.css";
@@ -9,17 +9,21 @@ import singIN from "../../assets/singIn-20.png";
 import singup from "../../assets/singUp-21.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/slice/authThunks";
+import { CartContext } from "../../context/cart";
+
 
 //Login y register para lo que es inicio de sesion y autorizacion de terceros
 
 const Landing = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { user } = useSelector((state) => state.auth);
+  const { clearCart } = useContext(CartContext)
+
 
   const handleLogout = async () => {
     try {
+      clearCart()
       await dispatch(logoutUser());
       navigate("/login");
     } catch (error) {

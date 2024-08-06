@@ -72,10 +72,27 @@
   font-family: "Montserrat", sans-serif;
   font-size: 13px;
   font-weight: 500;
-  background-image: url(../../assets/fondoDetail-19.png);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
+  background: linear-gradient(
+      45deg,
+      rgba(236, 233, 233, 0.069) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(192, 191, 191, 0.1) 50%,
+      rgba(171, 169, 169, 0.1) 75%,
+      transparent 75%,
+      transparent
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.035) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(215, 208, 230, 0.051) 50%,
+      rgba(255, 255, 255, 0.1) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-size: 20px 20px;
   width: 100vw;
   height: 100vh;
   margin: -10px;

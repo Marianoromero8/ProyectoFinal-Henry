@@ -5,12 +5,11 @@ import noFoundImage from "../../assets/Notfound.jpg";
 const NotFound = () => {
   return (
     <div className={styles.noFoundContainer}>
-      <img
-        src={noFoundImage}
-        alt="No products found"
-        className={styles.noFoundImage}
-      />
-      <p className={styles.noFoundText}>No products found</p>
+      <p>WHOOPS!</p>
+      <h1>404</h1>
+
+      <h2 className={styles.noFoundText}>No products found </h2>
+
     </div>
   );
 };

@@ -10,7 +10,7 @@ import Register from "./components/Register/Register";
 import Cart from "./components/Cart/Cart";
 import RouteProtect from "./components/RoutePotect/RouteProtect";
 import ViewRole from "./components/ViewRole/ViewRole";
-import Dashboard from "./components/Admin/Dashboard/Dashboard"
+import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/slice/authSlice";
 import { useEffect } from "react";
@@ -19,11 +19,10 @@ import Error404 from "./components/Error404/Error404";
 // npm run dev ==> en la terminal dentro de la carpeta 'vite-project' para correr el front
 // Lo comentado es para el login y register para autorizacion de terceros
 function App() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const user = JSON.parse(sessionStorage.getItem('user'));
+    const user = JSON.parse(sessionStorage.getItem("user"));
     if (user) {
       dispatch(setUser(user));
     }
@@ -48,23 +47,32 @@ function App() {
 
         <Route path="*" element={<Error404 />} />
 
-        <Route path="/form" element={
-          <RouteProtect>
-            <Form />
-          </RouteProtect>
-        } />
+        <Route
+          path="/form"
+          element={
+            <RouteProtect>
+              <Form />
+            </RouteProtect>
+          }
+        />
 
-        <Route path="/ViewRole" element={
-          <RouteProtect>
-            <ViewRole />
-          </RouteProtect>
-        } />
+        <Route
+          path="/ViewRole"
+          element={
+            <RouteProtect>
+              <ViewRole />
+            </RouteProtect>
+          }
+        />
 
-        <Route path="/Dashboard" element={
-          <RouteProtect>
-            <Dashboard />
-          </RouteProtect>
-        } />
+        <Route
+          path="/Dashboard"
+          element={
+            <RouteProtect>
+              <Dashboard />
+            </RouteProtect>
+          }
+        />
       </Routes>
     </div>
   );
