@@ -5,7 +5,7 @@ import style from "./Cart.module.css";
 import LogoCart from "../../assets/CART-32.png";
 const Cart = () => {
   const cartCheckboxId = useId();
-  const { cart, addToCart, clearCart } = useCart();
+  const { cart, addToCart, clearCart, decreaseQuantity, increaseQuantity, removeFromCart } = useCart();
 
   const calculateTotal = () => {
     return cart.reduce((total, product) => {
@@ -24,7 +24,7 @@ const Cart = () => {
     }
   }, [cart]);
 
-  const CartItem = ({ images, price, name, quantity, addToCart }) => {
+  const CartItem = ({ id, images, price, name, quantity, addToCart }) => {
     return (
       <div className={style.containerCart}>
         <img src={images} alt={name} className={style.cartImg} />
@@ -32,6 +32,11 @@ const Cart = () => {
           <strong>{name}</strong> ${price}
           <footer>
             <small>Quantity: {quantity}</small>
+            <div>
+              <button onClick={() => decreaseQuantity(id)}>-</button>
+              <button onClick={() => increaseQuantity(id)}>+</button>
+              <button onClick={() => removeFromCart(id)}>Remove All</button>
+            </div>
           </footer>
         </div>
       </div>

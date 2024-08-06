@@ -39,6 +39,26 @@ const reducer = (state, action) => {
         case 'CLEAR_CART': {
             return { cart: [] };
         }
+        case 'INCREASE_QUANTITY': {
+            const { id } = payload;
+            return {
+                cart: state.cart.map(item =>
+                    item.id === id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+            };
+        }
+        case 'DECREASE_QUANTITY': {
+            const { id } = payload;
+            return {
+                cart: state.cart.map(item =>
+                    item.id === id
+                        ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity }
+                        : item
+                )
+            };
+        }
         default: {
             return state;
         }
@@ -64,11 +84,21 @@ export function CartProvider({ children }) {
 
     const removeFromCart = product => dispatch({
         type: 'REMOVE_FROM_CART',
-        payload: product
+        payload: { id: product }
     });
 
     const clearCart = () => dispatch({
         type: 'CLEAR_CART'
+    });
+
+    const increaseQuantity = (id) => dispatch({
+        type: 'INCREASE_QUANTITY',
+        payload: { id }
+    });
+
+    const decreaseQuantity = (id) => dispatch({
+        type: 'DECREASE_QUANTITY',
+        payload: { id }
     });
 
     return (
@@ -76,7 +106,9 @@ export function CartProvider({ children }) {
             cart: state.cart,
             addToCart,
             removeFromCart,
-            clearCart
+            clearCart,
+            increaseQuantity,
+            decreaseQuantity
         }}>
             {children}
         </CartContext.Provider>
