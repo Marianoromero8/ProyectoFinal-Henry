@@ -128,18 +128,13 @@ const Home = () => {
           >
             CART
           </button>
-          <Link to="/" className={styles.links}>
-            <button className={styles.menuButton}>EXIT</button>
-          </Link>
+          {user &&
+            user.role === "admin" && ( // Verificar si el usuario tiene el rol de administrador
+              <Link to="/form" className={styles.links}>
+                <button className={styles.menuButton}>CREATE</button>
+              </Link>
+            )}
         </div>
-        {user &&
-          user.role === "admin" && ( // Verificar si el usuario tiene el rol de administrador
-            <Link to="/form" className={styles.links}>
-              <button className={styles.menuButton}>
-                CREATE <img src={arrow} alt="" className={styles.arrow} />
-              </button>
-            </Link>
-          )}
       </div>
       <NavBar
         onFilterChange={handleFilterChange}

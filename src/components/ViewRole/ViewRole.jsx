@@ -23,8 +23,7 @@ const ViewRole = () => {
         Role: <strong>{role} </strong>
       </p>
       {role === "admin" ? (
-        <div>
-          <h2>Admin View</h2>
+        <div className={styles.container2}>
           <Admin />
         </div>
       ) : (

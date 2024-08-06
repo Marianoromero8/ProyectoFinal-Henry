@@ -1,0 +1,42 @@
+.containerGeneral {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 10px;
+    font-style: none;
+    font-weight: 200;
+}
+
+.containerGeneral h1 {
+    font-size: 15px;
+    font-style: none;
+    font-weight: 500;
+    font-style: none;
+}
+
+.containerGeneral button {
+    padding: 0.5rem 1rem;
+    background-color: #134eff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.containerButtons {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.containerGeneral button:hover {
+    background-color: #ff6e1f;
+    transition: 0.3s linear;
+}

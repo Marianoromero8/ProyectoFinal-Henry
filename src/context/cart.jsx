@@ -6,26 +6,6 @@ const initialState = {
     cart: JSON.parse(localStorage.getItem("cart") || "[]"),
 };
 
-// const getCartFromLocalStorage = () => {
-//     const cart = localStorage.getItem("cart");
-//     console.log("Cart from localStorage:", cart); // Agregar log para verificar el valor recuperado
-//     if (cart) {
-//         try {
-//             const parsedCart = JSON.parse(cart);
-//             console.log("Parsed cart:", parsedCart); // Agregar log para verificar el valor analizado
-//             return parsedCart;
-//         } catch (e) {
-//             console.error("Invalid JSON in localStorage for 'cart'", e);
-//             return [];
-//         }
-//     }
-//     return [];
-// };
-
-// const initialState = {
-//     cart: getCartFromLocalStorage(),
-// };
-
 const reducer = (state, action) => {
     console.log("Current cart:", state.cart);
     const { type, payload } = action
@@ -59,6 +39,26 @@ const reducer = (state, action) => {
         case 'CLEAR_CART': {
             return { cart: [] };
         }
+        case 'INCREASE_QUANTITY': {
+            const { id } = payload;
+            return {
+                cart: state.cart.map(item =>
+                    item.id === id
+                        ? { ...item, quantity: item.quantity + 1 }
+                        : item
+                )
+            };
+        }
+        case 'DECREASE_QUANTITY': {
+            const { id } = payload;
+            return {
+                cart: state.cart.map(item =>
+                    item.id === id
+                        ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity }
+                        : item
+                )
+            };
+        }
         default: {
             return state;
         }
@@ -84,11 +84,21 @@ export function CartProvider({ children }) {
 
     const removeFromCart = product => dispatch({
         type: 'REMOVE_FROM_CART',
-        payload: product
+        payload: { id: product }
     });
 
     const clearCart = () => dispatch({
         type: 'CLEAR_CART'
+    });
+
+    const increaseQuantity = (id) => dispatch({
+        type: 'INCREASE_QUANTITY',
+        payload: { id }
+    });
+
+    const decreaseQuantity = (id) => dispatch({
+        type: 'DECREASE_QUANTITY',
+        payload: { id }
     });
 
     return (
@@ -96,7 +106,9 @@ export function CartProvider({ children }) {
             cart: state.cart,
             addToCart,
             removeFromCart,
-            clearCart
+            clearCart,
+            increaseQuantity,
+            decreaseQuantity
         }}>
             {children}
         </CartContext.Provider>
