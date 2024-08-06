@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, logoutUser } from "../../../store/slice/authThunks";
 import { Form, Link, useNavigate } from "react-router-dom";
 import styles from '../Dashboard/Dashboard.module.css'
 import arrow from '../../../assets/flecha-17.png'
+import { CartContext } from "../../../context/cart";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, loading, error } = useSelector((state) => state.auth);
+  const { clearCart } = useContext(CartContext)
 
   useEffect(() => {
     dispatch(loginUser());
@@ -17,6 +19,7 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
+      clearCart()
       logoutUser();
       dispatch(logoutUser());
       navigate('/login');

@@ -2,14 +2,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/slice/authThunks";
 import { useNavigate } from "react-router-dom";
 import styles from "./User.module.css";
+import { useContext } from "react";
+import { CartContext } from "../../context/cart";
 
 const User = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading } = useSelector((state) => state.auth);
+  const { clearCart } = useContext(CartContext)
 
   const handleLogout = () => {
-    dispatch(logoutUser()).then(() => navigate("/login"));
+    clearCart()
+    dispatch(logoutUser())
+      .then(() => navigate("/login"));
   };
 
   return (

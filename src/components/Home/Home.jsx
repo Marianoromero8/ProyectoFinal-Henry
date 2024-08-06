@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../Card/Card";
@@ -19,6 +19,7 @@ import {
   setFilters,
 } from "../../store/slice/productSlice";
 import { useCart } from "../../hooks/useCart";
+import { CartContext } from "../../context/cart";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ const Home = () => {
   const { addToCart } = useCart();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
+  const { clearCart } = useContext(CartContext)
+
 
   const productsPerPage = 12;
 
@@ -76,6 +79,7 @@ const Home = () => {
 
   const handleLogout = async () => {
     try {
+      clearCart()
       await dispatch(logoutUser());
       navigate("/login");
     } catch (error) {

@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/slice/authThunks";
 import { useNavigate } from "react-router-dom";
 import styles from './Admin.module.css'
+import { CartContext } from "../../context/cart";
 
 const Admin = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { loading } = useSelector((state) => state.auth)
+    const { clearCart } = useContext(CartContext)
 
     const handleLogout = () => {
+        clearCart()
         dispatch(logoutUser())
             .then(() => navigate('/login'))
     }
