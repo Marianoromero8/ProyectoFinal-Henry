@@ -30,8 +30,7 @@ const Home = () => {
   const { addToCart } = useCart();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
-  const { clearCart } = useContext(CartContext)
-
+  const { clearCart } = useContext(CartContext);
 
   const productsPerPage = 12;
 
@@ -79,7 +78,7 @@ const Home = () => {
 
   const handleLogout = async () => {
     try {
-      clearCart()
+      clearCart();
       await dispatch(logoutUser());
       navigate("/login");
     } catch (error) {
