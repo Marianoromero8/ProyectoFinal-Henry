@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setFilters,
   callProductsFilters,
-} from "./../../store/slice/productSlice"; // Asegúrate de importar correctamente
+} from "../../store/slice/productSlice"; // Asegúrate de importar correctamente
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styles from "../NavBar/Filters.module.css";
@@ -30,7 +30,6 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
     },
     [dispatch]
   );
-  //sabes donde es la ruta?
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
@@ -135,13 +134,15 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
               )}
             </div>
             <div className={styles.ContainerSize}>
-              {[red, blue, green, yellow, pink, black, white].map((color) => (
-                <div key={color} className={styles.ContainerSize}>
-                  <div className={styles.Sizes}>
-                    <img src={color} className={styles.ContainerColorIMg} />
+              {[red, blue, green, yellow, pink, black, white].map(
+                (color, index) => (
+                  <div key={index} className={styles.ContainerSize}>
+                    <div className={styles.Sizes}>
+                      <img src={color} className={styles.ContainerColorIMg} />
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
           </div>
 
@@ -193,7 +194,7 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
             </div>
             <div className={styles.filterSectionGender}>
               {["Adidas", "Nike", "Puma", "Reebok"].map((brand) => (
-                <div className={styles.genderCon}>
+                <div key={brand} className={styles.genderCon}>
                   <input
                     type="checkbox"
                     name="brand"

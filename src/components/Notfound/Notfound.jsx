@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "../Nofound/Nofound.module.css";
-import noFoundImage from "../../assets/Nofound.jpg";
+import styles from "../Notfound/Notfound.module.css";
+import noFoundImage from "../../assets/Notfound.jpg";
 
-const NoFound = () => {
+const NotFound = () => {
   return (
     <div className={styles.noFoundContainer}>
       <img
@@ -15,4 +15,4 @@ const NoFound = () => {
   );
 };
 
-export default NoFound;
+export default NotFound;

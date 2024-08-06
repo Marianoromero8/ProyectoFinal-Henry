@@ -10,10 +10,11 @@ import {
 } from "../../store/slice/formSlice";
 import axios from "axios";
 
+const { VITE_CLOUDINARY_CLOUD_NAME } = process.env;
+
 const API_URL = "https://pf-henry-backend-ts0n.onrender.com/product/create";
-const CLOUDINARY_URL =
-  "https://api.cloudinary.com/v1_1/YOUR_CLOUDINARY_NAME/image/upload";
-const CLOUDINARY_UPLOAD_PRESET = "YOUR_UPLOAD_PRESET";
+const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${process.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`;
+const CLOUDINARY_UPLOAD_PRESET = "YOUR_UPLOAD_PRESET"; // Si tienes un preset para subir
 
 const structureData = (formData) => {
   return {

@@ -5,7 +5,7 @@ import Card from "../Card/Card";
 import Loader from "../Loader/Loader";
 import NavBar from "../NavBar/NavBar";
 import Paginate from "../Paginate/Paginate";
-import NoFound from "../Nofound/Nofound";
+import NotFound from "../Notfound/Notfound";
 import styles from "../Home/Home.module.css";
 
 import Aboutus from "../../assets/abouUs-18.png";
@@ -45,8 +45,9 @@ const Home = () => {
   const handleFilterChange = (filt) => {
     dispatch(
       setFilters({
+        ...filters,
         ...filt,
-        size: filt.size.join(","), // Convertir el array de size en una cadena separada por comas
+        size: Array.isArray(filt.size) ? filt.size.join(",") : filt.size, // Convertir el array de size en una cadena separada por comas
       })
     );
   };
@@ -159,7 +160,7 @@ const Home = () => {
             />
           ))
         ) : (
-          <NoFound />
+          <NotFound />
         )}
       </div>
       <Paginate
