@@ -7,7 +7,6 @@ const API_URL = "https://pf-henry-backend-ts0n.onrender.com/product";
 export const callProductsFilters = createAsyncThunk(
   "products/callProductsFilters",
   async (filters) => {
-    console.log("filtros", filters);
     const response = await axios.get(API_URL, { params: filters });
     return response.data;
   }
@@ -26,13 +25,14 @@ const initialState = {
   status: "idle",
   error: null,
   filters: {
-    size: "",
-    color: "",
-    gender: "",
-    category: "",
-    brand: "",
-    minPrice: "",
-    maxPrice: "",
+    size: [],
+    color: [],
+    gender: [],
+    category: [],
+    brand: [],
+    minPrice: 10,
+    maxPrice: 200,
+    name: "",
   },
   productsDetails: null,
   productsStatus: "idle",

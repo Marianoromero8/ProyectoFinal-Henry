@@ -10,11 +10,11 @@ import {
 } from "../../store/slice/formSlice";
 import axios from "axios";
 
-const { VITE_CLOUDINARY_CLOUD_NAME } = process.env;
-
 const API_URL = "https://pf-henry-backend-ts0n.onrender.com/product/create";
-const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${process.env.VITE_CLOUDINARY_CLOUD_NAME}/image/upload`;
-const CLOUDINARY_UPLOAD_PRESET = "YOUR_UPLOAD_PRESET"; // Si tienes un preset para subir
+const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${
+  import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+}/image/upload`;
+const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
 const structureData = (formData) => {
   return {
@@ -22,12 +22,12 @@ const structureData = (formData) => {
     description: formData.description,
     images: [formData.image],
     stock: Math.floor(Math.random() * 100),
-    price: parseFloat(formData.price), // Asegurar que el precio sea un número
+    price: parseFloat(formData.price),
     gender: formData.gender,
     category: formData.category,
     brand: formData.brand,
     color: formData.color,
-    size: formData.size ? [formData.size] : [], // Convertir size en array si es un valor único
+    size: formData.size ? [formData.size] : [],
     active: true,
   };
 };
@@ -99,18 +99,13 @@ const Form = () => {
     });
 
     try {
-      const response = await fetch(API_URL, {
-        method: "POST",
+      const response = await axios.post(API_URL, structuredData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(structuredData),
       });
 
-      if (!response.ok) {
-        throw new Error("Error in the petition");
-      }
-
+      // Aquí se elimina la verificación redundante de estado de respuesta
       alert("Product Created Successfully");
       navigate("/home");
       dispatch(clearForm());
@@ -213,7 +208,6 @@ const Form = () => {
             <option value="T-shirt">T-shirt</option>
             <option value="Pants">Pants</option>
             <option value="Jackets">Jackets</option>
-            <option value="Shoes">Shoes</option>
           </select>
           {validationErrors.category && (
             <p className={styles.error}>{validationErrors.category}</p>

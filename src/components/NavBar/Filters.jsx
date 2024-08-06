@@ -15,7 +15,7 @@ import pink from "../../assets/colors-26.png";
 import black from "../../assets/colors-23.png";
 import white from "../../assets/colors-30.png";
 
-const Filters = ({ onFilterChange, onClearFilters }) => {
+const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
   const dispatch = useDispatch();
   const globalFilters = useSelector((state) => state.products.filters);
 
@@ -64,8 +64,10 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
       brand: [],
       minPrice: 10,
       maxPrice: 200,
+      name: "",
     };
     handleFilterChange(initialFilters);
+    onClearSearch(); // Añadimos esta llamada para limpiar la búsqueda
   };
 
   const toggleVisibility = () => {
@@ -172,7 +174,7 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
               <h4>Category</h4>
             </div>
             <div className={styles.filterSectionGender}>
-              {["T-shirt", "Pants", "Jackets", "Shoes"].map((category) => (
+              {["T-shirt", "Pants", "Jackets"].map((category) => (
                 <div key={category} className={styles.genderCon}>
                   <input
                     type="checkbox"
@@ -220,7 +222,7 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
                 max={200}
                 defaultValue={[globalFilters.minPrice, globalFilters.maxPrice]}
                 onChange={handlePriceChange}
-                onAfterChange={handlePriceChangeComplete}
+                onChangeComplete={handlePriceChangeComplete}
                 value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
               />
               <div className={styles.priceValues}>
