@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setFilters,
   callProductsFilters,
-} from "../../store/slice/productSlice"; // Asegúrate de importar correctamente
+} from "../../store/slice/productSlice";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styles from "../NavBar/Filters.module.css";
@@ -24,18 +24,28 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
 
   const handleFilterChange = useCallback(
     (updatedFilters) => {
-      setSelectedFilters(updatedFilters);
-      dispatch(setFilters(updatedFilters));
-      dispatch(callProductsFilters(updatedFilters));
+      const formattedFilters = {
+        ...updatedFilters,
+        size: Array.isArray(updatedFilters.size)
+          ? updatedFilters.size.join(",")
+          : updatedFilters.size,
+      };
+      setSelectedFilters(formattedFilters);
+      dispatch(setFilters(formattedFilters));
+      dispatch(callProductsFilters(formattedFilters));
     },
     [dispatch]
   );
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
-    const newValues = checked
-      ? [...selectedFilters[name], value]
-      : selectedFilters[name].filter((v) => v !== value);
+    const newValues = Array.isArray(selectedFilters[name])
+      ? checked
+        ? [...selectedFilters[name], value]
+        : selectedFilters[name].filter((v) => v !== value)
+      : checked
+      ? [value]
+      : [];
     handleFilterChange({ ...selectedFilters, [name]: newValues });
   };
 
@@ -67,7 +77,7 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
       name: "",
     };
     handleFilterChange(initialFilters);
-    onClearSearch(); // Añadimos esta llamada para limpiar la búsqueda
+    onClearSearch();
   };
 
   const toggleVisibility = () => {
@@ -102,7 +112,10 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
                       id={`size-${size}`}
                       value={size}
                       onChange={handleCheckboxChange}
-                      checked={selectedFilters.size.includes(size)}
+                      checked={
+                        Array.isArray(selectedFilters.size) &&
+                        selectedFilters.size.includes(size)
+                      }
                     />
                     <label htmlFor={`size-${size}`}>{size}</label>
                   </div>
