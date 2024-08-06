@@ -64,16 +64,20 @@ const Home = () => {
     setCurrentPage(1); // Reiniciar a la primera página
     dispatch(
       setFilters({
-        size: "",
-        color: "",
-        gender: "",
-        category: "",
-        brand: "",
+        size: [],
+        color: [],
+        gender: [],
+        category: [],
+        brand: [],
         minPrice: 10,
         maxPrice: 200,
         name: "",
       })
     );
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
   };
 
   const handleLogout = async () => {
@@ -150,6 +154,7 @@ const Home = () => {
         onSearch={handleSearch}
         onClear={handleClear}
         searchTerm={searchTerm}
+        onClearSearch={handleClearSearch} // Añadimos esta prop para la función de limpiar búsqueda
       />
       <div className={styles.productList}>
         {products.length > 0 ? (
