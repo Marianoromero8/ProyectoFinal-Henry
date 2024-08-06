@@ -1,13 +1,118 @@
-import React from 'react'
-import Loader from '../Loader/Loader';
-
+import React, { useEffect, useId, useState } from "react";
+import { useCart } from "../../hooks/useCart";
+import { Link } from "react-router-dom";
+import style from "./Cart.module.css";
+import LogoCart from "../../assets/CART-32.png";
 const Cart = () => {
+  const cartCheckboxId = useId();
+  const {
+    cart,
+    addToCart,
+    clearCart,
+    decreaseQuantity,
+    increaseQuantity,
+    removeFromCart,
+  } = useCart();
+
+  const calculateTotal = () => {
+    return cart.reduce((total, product) => {
+      return total + product.price * product.quantity;
+    }, 0);
+  };
+
+  const [buttonText, setButtonText] = useState("");
+
+  useEffect(() => {
+    const total = calculateTotal();
+    if (total > 0) {
+      setButtonText(`Total: $${total.toFixed(2)}`);
+    } else {
+      setButtonText("Total: $0.00");
+    }
+  }, [cart]);
+
+  const CartItem = ({ id, images, price, name, quantity, addToCart }) => {
+    return (
+      <div className={style.containerCart}>
+        <img src={images} alt={name} className={style.cartImg} />
+        <div className={style.detailCart}>
+          <strong>{name}</strong> <strong>$ {price}</strong>
+          <footer>
+            <p>
+              Quantity: <strong>{quantity}</strong>{" "}
+            </p>
+          </footer>
+          <div>
+            <button
+              onClick={() => decreaseQuantity(id)}
+              className={style.buttonContainer}
+            >
+              -
+            </button>
+            <button
+              onClick={() => increaseQuantity(id)}
+              className={style.buttonContainer}
+            >
+              +
+            </button>
+            <button
+              onClick={() => removeFromCart(id)}
+              className={style.buttonContainer2}
+            >
+              Remove All
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const handleMouseEnter = () => {
+    if (calculateTotal() > 0) {
+      setButtonText("Pagar");
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setButtonText(`Total: $${calculateTotal().toFixed(2)}`);
+  };
+
   return (
-    <div>
-      <h1>CHANGUITO DE COMPRAS</h1>
-      <Loader />
+    <div className={style.containerGeneralCart}>
+      <div className={style.ContainerButtonCart}>
+        <img src={LogoCart} className={style.LogoCart} />
+        <Link to="/home">
+          <button className={style.buttonCart}>HOME</button>
+        </Link>
+        <button onClick={clearCart} className={style.buttonCart}>
+          CLEAR
+        </button>
+      </div>
+      <input id={cartCheckboxId} type="checkbox" hidden />
+      <aside>
+        <ul className={style.conteienrCards}>
+          {Array.isArray(cart)
+            ? cart.map((product) => (
+                <CartItem
+                  key={product.id}
+                  addToCart={() => addToCart(product)}
+                  {...product}
+                />
+              ))
+            : null}
+        </ul>
+        <div className={style.totalCart}>
+          <button
+            className={style.totalCartButton}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {buttonText}
+          </button>
+        </div>
+      </aside>
     </div>
-  )
-}
+  );
+};
 
 export default Cart;

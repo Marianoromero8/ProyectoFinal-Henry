@@ -2,34 +2,37 @@ import { useSelector } from "react-redux";
 import User from "../User/User";
 import Admin from "../Admin/Admin";
 
+import styles from "./ViewRole.module.css";
 
 const ViewRole = () => {
-    const user = useSelector(state => state.auth.user)
-    console.log(user)
-    if(!user){
-        return "No user data available"
-    }
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
+  if (!user) {
+    return "No user data available";
+  }
 
-    const {email, uid, role = 'user' } = user;
+  const { email, role = "user" } = user;
 
-    return(
-        <div>
-            <h1>User Profile</h1>
-            <p>Email: {email}</p>
-            <p>UID: {uid}</p>
-            {role === 'admin' ? (
-                <div>
-                    <h2>Admin View</h2>
-                    <Admin/>
-                </div>
-            ) : (
-                <div>
-                    <h2>Regular User</h2>
-                    <User/>
-                </div>
-            )}
+  return (
+    <div className={styles.container}>
+      <h2>User Profile</h2>
+      <p>
+        Email: <strong> {email}</strong>{" "}
+      </p>
+      <p>
+        Role: <strong>{role} </strong>
+      </p>
+      {role === "admin" ? (
+        <div className={styles.container2}>
+          <Admin />
         </div>
-    )
-}
+      ) : (
+        <div className={styles.container2}>
+          <User />
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default ViewRole;

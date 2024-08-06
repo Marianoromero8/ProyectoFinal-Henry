@@ -1,0 +1,82 @@
+.containerDashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 150px;
+  margin: -10px;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      45deg,
+      rgba(236, 233, 233, 0.1) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(192, 191, 191, 0.1) 50%,
+      rgba(171, 169, 169, 0.1) 75%,
+      transparent 75%,
+      transparent
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.1) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(215, 208, 230, 0.11) 50%,
+      rgba(255, 255, 255, 0.1) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-size: 20px 20px;
+}
+
+.containerDashboard h2 {
+  font-size: 30px;
+  font-style: normal;
+}
+
+.menuButton {
+  padding: 0.5rem 1rem;
+  background-color: #134eff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.5s;
+  margin: 50px 15px;
+}
+
+.menuButton:hover {
+  background-color: #ff6e1f;
+  transition: 0.3s linear;
+}
+
+.errors {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  color: black;
+  font-style: italic;
+  font-weight: 800;
+}
+
+.Type {
+  background-color: rgba(255, 255, 255, 0.31);
+  padding: 8px 25px;
+  border-radius: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+}
+
+.containerDASh {
+  background-color: rgba(191, 190, 190, 0.412);
+  padding: 50px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginUser, logoutUser, registerUser } from "./authThunks";
 
 const initialState = {
-  user: null,
+  user: JSON.parse(sessionStorage.getItem('user')) || null,
   loading: false,
   error: null,
 };
@@ -13,7 +13,12 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.user = null;
+      sessionStorage.removeItem('user');    
     },
+    setUser: (state, action) => {
+      state.user = action.payload;
+      sessionStorage.setItem('user', JSON.stringify(action.payload));
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -24,6 +29,7 @@ const authSlice = createSlice({
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        sessionStorage.setItem('user', JSON.stringify(action.payload));
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;
@@ -36,6 +42,7 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
+        sessionStorage.setItem('user', JSON.stringify(action.payload));
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
@@ -48,6 +55,7 @@ const authSlice = createSlice({
       .addCase(logoutUser.fulfilled, (state) => {
         state.loading = false;
         state.user = null;
+        sessionStorage.removeItem('user');
       })
       .addCase(logoutUser.rejected, (state, action) => {
         state.loading = false;
@@ -56,6 +64,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setUser } = authSlice.actions;
 
 export default authSlice.reducer;

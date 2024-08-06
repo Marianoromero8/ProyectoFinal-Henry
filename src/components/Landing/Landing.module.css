@@ -1,73 +1,135 @@
-.generalContainer{
-    padding: 0;
-    margin: -10px;
-    background-image: url('../../assets/Untitled-1-06.png');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    
+.generalContainer {
+  padding: 0;
+  margin: -10px;
+  background-image: url("../../assets/Untitled-1-06.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.logoContainer{
-    width: 170px;
-    margin-top: 45px;
+.logoContainer {
+  width: 150px;
+  margin-top: 45px;
 }
 
-.iconoContainer{
-    width: 80px;
-    margin-bottom: 35px;
+.iconoContainer {
+  width: 70px;
 }
 .iconoContainer:hover {
-    transition: 1s linear;
-    transform: scale(1.3);
+  transition: 1s linear;
+  transform: scale(1.3);
 }
 
-.textContainer{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-top: 60px;
-  
+.textContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 90px;
 }
-.light{
-    font-family: "Montserrat", sans-serif;
-    font-size: 40px;
-    font-weight: 300;
-    font-style: normal;
-    color: aliceblue;
-    margin: -50px;
+.light {
+  font-family: "Montserrat", sans-serif;
+  font-size: 40px;
+  font-weight: 300;
+  font-style: normal;
+  color: aliceblue;
+  margin: -50px;
 }
-.bold{
-    font-family: "Montserrat", sans-serif;
-    font-size: 50px;
-    font-weight: 600;
-    font-style: normal;
-    color: aliceblue;
-    
+.bold {
+  font-family: "Montserrat", sans-serif;
+  font-size: 50px;
+  font-weight: 600;
+  font-style: normal;
+  color: aliceblue;
 }
 
-.text{
-    font-family: "Montserrat", sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    font-style: normal;
-    color: aliceblue;
-    margin-top: -3px;
-   
+.text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: normal;
+  color: aliceblue;
+  margin-top: -3px;
 }
 
-.line{
-    background-color: aliceblue;
-    color: aliceblue;
-    width: 455px;
-    margin-top: -30px;
-    
-   
+.line {
+  background-color: aliceblue;
+  color: aliceblue;
+  width: 455px;
+  margin-top: -30px;
 }
-    
+
+.containerButtons {
+  display: flex;
+  height: 130px;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+}
+
+.menuButton {
+  position: relative;
+  display: block;
+  transition: all 0.5s;
+
+  width: 100px;
+  padding: 10px 0;
+
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+
+  border: 0;
+  color: aliceblue;
+  align-items: center;
+  background-color: #e0ddda00;
+}
+
+.menuButton:hover {
+  padding-right: 5px;
+  color: black;
+  background-color: #dadee0d5;
+  border-radius: 25px;
+  width: 150px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.arrow {
+  visibility: hidden;
+  position: absolute;
+  transition: all 0.5s;
+  opacity: 0;
+  height: 20px;
+  margin-left: 5px;
+  margin-right: 15px;
+  background-color: #edf2f400;
+}
+
+.menuButton:hover .arrow {
+  visibility: visible;
+  position: absolute;
+  opacity: 1;
+}
+
+a {
+  text-decoration: none;
+}
+
+.containerIcono {
+  display: flex;
+}

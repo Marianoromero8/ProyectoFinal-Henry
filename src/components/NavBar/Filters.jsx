@@ -1,69 +1,71 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setFilters,
+  callProductsFilters,
+} from "../../store/slice/productSlice"; // Asegúrate de importar correctamente
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import styles from "../NavBar/Filters.module.css";
-import { useSelector } from "react-redux";
+import red from "../../assets/colors-27.png";
+import blue from "../../assets/colors-25.png";
+import green from "../../assets/colors-31.png";
+import yellow from "../../assets/colors-24.png";
+import pink from "../../assets/colors-26.png";
+import black from "../../assets/colors-23.png";
+import white from "../../assets/colors-30.png";
 
-const Filters = ({ onFilterChange }) => {
-  const [selectedFilters, setSelectedFilters] = useState({
-    size: [],
-    color: [],
-    gender: [],
-    category: [],
-    brand: [],
-    minPrice: "",
-    maxPrice: "",
-  });
-
+const Filters = ({ onFilterChange, onClearFilters }) => {
+  const dispatch = useDispatch();
   const globalFilters = useSelector((state) => state.products.filters);
 
-  useEffect(() => {
-    setSelectedFilters((prevFilters) => ({
-      size: Array.isArray(globalFilters.size) ? globalFilters.size : [],
-      color: Array.isArray(globalFilters.color) ? globalFilters.color : [],
-      gender: Array.isArray(globalFilters.gender) ? globalFilters.gender : [],
-      category: Array.isArray(globalFilters.category) ? globalFilters.category : [],
-      brand: Array.isArray(globalFilters.brand) ? globalFilters.brand : [],
-      minPrice: globalFilters.minPrice || "",
-      maxPrice: globalFilters.maxPrice || "",
-    }));
-  }, [globalFilters]);
-
   const [isVisible, setIsVisible] = useState(true);
+  const [selectedFilters, setSelectedFilters] = useState(globalFilters);
+
+  const handleFilterChange = useCallback(
+    (updatedFilters) => {
+      setSelectedFilters(updatedFilters);
+      dispatch(setFilters(updatedFilters));
+      dispatch(callProductsFilters(updatedFilters));
+    },
+    [dispatch]
+  );
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
-    setSelectedFilters((prevFilters) => {
-      const updatedFilters = { ...prevFilters };
-      if (Array.isArray(updatedFilters[name])) {
-        if (checked) {
-          // Añadir al array
-          updatedFilters[name] = [...updatedFilters[name], value];
-        } else {
-          // Eliminar del array
-          updatedFilters[name] = updatedFilters[name].filter(
-            (item) => item !== value
-          );
-        }
-      }
-      console.log("Updated Filters:", updatedFilters); // Verifica el estado actualizado
-      return updatedFilters;
+    const newValues = checked
+      ? [...selectedFilters[name], value]
+      : selectedFilters[name].filter((v) => v !== value);
+    handleFilterChange({ ...selectedFilters, [name]: newValues });
+  };
+
+  const handlePriceChange = (values) => {
+    setSelectedFilters({
+      ...selectedFilters,
+      minPrice: values[0],
+      maxPrice: values[1],
     });
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setSelectedFilters((prevFilters) => ({
-      ...prevFilters,
-      [name]: value,
-    }));
+  const handlePriceChangeComplete = (values) => {
+    handleFilterChange({
+      ...selectedFilters,
+      minPrice: values[0],
+      maxPrice: values[1],
+    });
   };
 
-  const handleApplyFilters = () => {
-    const filters = {
-      ...selectedFilters,
-      size: selectedFilters.size.join(","), // Convierte el array de size en una cadena si es necesario
+  const handleClear = () => {
+    const initialFilters = {
+      size: [],
+      color: [],
+      gender: [],
+      category: [],
+      brand: [],
+      minPrice: 10,
+      maxPrice: 200,
     };
-    console.log(filters);
-    onFilterChange(filters);
+    handleFilterChange(initialFilters);
   };
 
   const toggleVisibility = () => {
@@ -77,113 +79,159 @@ const Filters = ({ onFilterChange }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
-          }`}
+        className={`${styles.filtersContainer} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
       >
-        <div className={styles.filters}>
-          <h3>Filters</h3>
-
-          <div className={styles.filterSection}>
-            <h4>Size</h4>
-            {["S", "M", "L", "XL", "XXL"].map((size) => (
-              <div key={size}>
-                <input
-                  type="checkbox"
-                  name="size"
-                  value={size}
-                  onChange={handleCheckboxChange}
-                  checked={selectedFilters.size.includes(size)}
-                />
-                <label>{size}</label>
-              </div>
-            ))}
+        <div>
+          <h3 className={styles.h3}>Filters</h3>
+          <div className={styles.filterSectionSize}>
+            <div className={styles.h4Style2}>
+              <h4>Size</h4>
+            </div>
+            <div className={styles.ContainerSize}>
+              {["S", "M", "L", "XL", "XXL"].map((size) => (
+                <div key={size}>
+                  <div className={styles.Sizes}>
+                    <input
+                      className={styles.inputSize}
+                      type="checkbox"
+                      name="size"
+                      id={`size-${size}`}
+                      value={size}
+                      onChange={handleCheckboxChange}
+                      checked={selectedFilters.size.includes(size)}
+                    />
+                    <label htmlFor={`size-${size}`}>{size}</label>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className={styles.filterSection}>
-            <h4>Color</h4>
-            {["Red", "Blue", "Green", "Yellow", "Pink", "Black", "White"].map(
-              (color) => (
-                <div key={color}>
+          <div className={styles.filterSectionSize}>
+            <div className={styles.h4Style2}>
+              <h4>Color</h4>
+            </div>
+            <div className={styles.ContainerSize}>
+              {["Red", "Blue", "Green", "Yellow", "Pink", "Black", "White"].map(
+                (color) => (
+                  <div key={color} className={styles.ContainerSize}>
+                    <div className={styles.colorss}>
+                      <input
+                        className={styles.inputSize}
+                        type="checkbox"
+                        name="color"
+                        id={`color-${color}`}
+                        value={color}
+                        onChange={handleCheckboxChange}
+                        checked={selectedFilters.color.includes(color)}
+                      />
+                      <label htmlFor={`color-${color}`}></label>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+            <div className={styles.ContainerSize}>
+              {[red, blue, green, yellow, pink, black, white].map(
+                (color, index) => (
+                  <div key={index} className={styles.ContainerSize}>
+                    <div className={styles.Sizes}>
+                      <img src={color} className={styles.ContainerColorIMg} />
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className={styles.filterSectionGarden}>
+            <div className={styles.h4Style}>
+              <h4>Gender</h4>
+            </div>
+            <div className={styles.filterSectionGender}>
+              {["Male", "Female", "Unisex"].map((gender) => (
+                <div key={gender} className={styles.genderCon}>
                   <input
                     type="checkbox"
-                    name="color"
-                    value={color}
+                    name="gender"
+                    id={`gender-${gender}`}
+                    value={gender}
                     onChange={handleCheckboxChange}
-                    checked={selectedFilters.color.includes(color)}
+                    checked={selectedFilters.gender.includes(gender)}
                   />
-                  <label>{color}</label>
+                  <label htmlFor={`gender-${gender}`}>{gender}</label>
                 </div>
-              )
-            )}
+              ))}
+            </div>
           </div>
 
-          <div className={styles.filterSection}>
-            <h4>Gender</h4>
-            {["Male", "Female", "Unisex"].map((gender) => (
-              <div key={gender}>
-                <input
-                  type="checkbox"
-                  name="gender"
-                  value={gender}
-                  onChange={handleCheckboxChange}
-                  checked={selectedFilters.gender.includes(gender)}
-                />
-                <label>{gender}</label>
+          <div className={styles.filterSectionGarden}>
+            <div className={styles.h4Style}>
+              <h4>Category</h4>
+            </div>
+            <div className={styles.filterSectionGender}>
+              {["T-shirt", "Pants", "Jackets", "Shoes"].map((category) => (
+                <div key={category} className={styles.genderCon}>
+                  <input
+                    type="checkbox"
+                    name="category"
+                    id={`category-${category}`}
+                    value={category}
+                    onChange={handleCheckboxChange}
+                    checked={selectedFilters.category.includes(category)}
+                  />
+                  <label htmlFor={`category-${category}`}>{category}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.filterSectionGarden}>
+            <div className={styles.h4Style}>
+              <h4>Brand</h4>
+            </div>
+            <div className={styles.filterSectionGender}>
+              {["Adidas", "Nike", "Puma", "Reebok"].map((brand) => (
+                <div key={brand} className={styles.genderCon}>
+                  <input
+                    type="checkbox"
+                    name="brand"
+                    id={`brand-${brand}`}
+                    value={brand}
+                    onChange={handleCheckboxChange}
+                    checked={selectedFilters.brand.includes(brand)}
+                  />
+                  <label htmlFor={`brand-${brand}`}>{brand}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.ContainerPrice}>
+            <div className={styles.h4Style2}>
+              <h4>Price</h4>
+            </div>
+            <div className={styles.containerPrice}>
+              <Slider
+                range
+                min={10}
+                max={200}
+                defaultValue={[globalFilters.minPrice, globalFilters.maxPrice]}
+                onChange={handlePriceChange}
+                onAfterChange={handlePriceChangeComplete}
+                value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
+              />
+              <div className={styles.priceValues}>
+                <span>${selectedFilters.minPrice} </span> -{" "}
+                <span>${selectedFilters.maxPrice} </span>
               </div>
-            ))}
+            </div>
           </div>
 
-          <div className={styles.filterSection}>
-            <h4>Category</h4>
-            {["T-shirt", "Pants", "Jackets", "Shoes"].map((category) => (
-              <div key={category}>
-                <input
-                  type="checkbox"
-                  name="category"
-                  value={category}
-                  onChange={handleCheckboxChange}
-                  checked={selectedFilters.category.includes(category)}
-                />
-                <label>{category}</label>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.filterSection}>
-            <h4>Brand</h4>
-            {["Adidas", "Nike", "Puma", "Reebok"].map((brand) => (
-              <div key={brand}>
-                <input
-                  type="checkbox"
-                  name="brand"
-                  value={brand}
-                  onChange={handleCheckboxChange}
-                  checked={selectedFilters.brand.includes(brand)}
-                />
-                <label>{brand}</label>
-              </div>
-            ))}
-          </div>
-
-          <div className={styles.priceFilter}>
-            <input
-              type="number"
-              name="minPrice"
-              placeholder="Min Price"
-              onChange={handleInputChange}
-              value={selectedFilters.minPrice}
-            />
-            <input
-              type="number"
-              name="maxPrice"
-              placeholder="Max Price"
-              onChange={handleInputChange}
-              value={selectedFilters.maxPrice}
-            />
-          </div>
-
-          <button className={styles.buttonAplly} onClick={handleApplyFilters}>
-            Apply Filters
+          <button className={styles.toggleButton} onClick={handleClear}>
+            Clear
           </button>
         </div>
       </div>

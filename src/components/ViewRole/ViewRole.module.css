@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  background: linear-gradient(
+      45deg,
+      rgba(236, 233, 233, 0.069) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(192, 191, 191, 0.1) 50%,
+      rgba(171, 169, 169, 0.1) 75%,
+      transparent 75%,
+      transparent
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.035) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(215, 208, 230, 0.051) 50%,
+      rgba(255, 255, 255, 0.1) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-size: 20px 20px;
+  width: 100vw;
+  height: 100vh;
+  margin: -10px;
+}
+
+.container2 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 20px;
+  background-color: rgba(255, 254, 254, 0.551);
+  align-items: center;
+  border-radius: 15px;
+  margin-top: 15px;
+}
+
+.container h2 {
+  font-weight: 800;
+  font-style: normal;
+  font-size: 30px;
+}
+.container p {
+  font-size: 15px;
+  margin: 5px;
+}
