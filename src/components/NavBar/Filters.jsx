@@ -15,9 +15,10 @@ import pink from "../../assets/colors-26.png";
 import black from "../../assets/colors-23.png";
 import white from "../../assets/colors-30.png";
 
-const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
+const Filters = ({ onClearFilters, onClearSearch }) => {
   const dispatch = useDispatch();
   const globalFilters = useSelector((state) => state.products.filters);
+  const currentPage = useSelector((state) => state.products.currentPage);
 
   const [isVisible, setIsVisible] = useState(true);
   const [selectedFilters, setSelectedFilters] = useState(globalFilters);
@@ -30,11 +31,12 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
           ? updatedFilters.size.join(",")
           : updatedFilters.size,
       };
+      console.log("Applying filters:", formattedFilters);
       setSelectedFilters(formattedFilters);
       dispatch(setFilters(formattedFilters));
-      dispatch(callProductsFilters(formattedFilters));
+      dispatch(callProductsFilters({ ...formattedFilters, page: currentPage })); // Mantén la página actual
     },
-    [dispatch]
+    [dispatch, currentPage]
   );
 
   const handleCheckboxChange = (e) => {
@@ -44,8 +46,8 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
         ? [...selectedFilters[name], value]
         : selectedFilters[name].filter((v) => v !== value)
       : checked
-        ? [value]
-        : [];
+      ? [value]
+      : [];
     handleFilterChange({ ...selectedFilters, [name]: newValues });
   };
 
@@ -67,7 +69,7 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
 
   const handleClear = () => {
     const initialFilters = {
-      size: [],
+      size: "",
       color: [],
       gender: [],
       category: [],
@@ -76,6 +78,7 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
       maxPrice: 200,
       name: "",
     };
+    console.log("Clearing filters:", initialFilters);
     handleFilterChange(initialFilters);
     onClearSearch();
   };
@@ -90,7 +93,6 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
     handleFilterChange({ ...selectedFilters, size: newSizeValue });
   };
 
-
   return (
     <div>
       <button onClick={toggleVisibility} className={styles.toggleButton}>
@@ -98,8 +100,9 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
-          }`}
+        className={`${styles.filtersContainer} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
       >
         <div>
           <h3 className={styles.h3}>Filters</h3>
@@ -112,7 +115,7 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
                 name="size"
                 id="size-select"
                 onChange={handleSelectChange}
-                value={selectedFilters.size}
+                value={selectedFilters.size || ""}
               >
                 <option value="All">All</option>
                 {["S", "M", "L", "XL", "XXL"].map((size) => (
@@ -123,7 +126,6 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
               </select>
             </div>
           </div>
-
 
           <div className={styles.filterSectionSize}>
             <div className={styles.h4Style2}>
