@@ -165,15 +165,15 @@
   align-items: center;
 }
 .colorss :hover {
-  border: #b5b6ba solid 1px;
+  border: #6d6d71 solid 1px;
   padding: 3px;
   border-radius: 10px;
 }
 
 .colorss input[type="checkbox"] + label:before {
   content: "";
-  border: 1px solid #cccccc8a;
-  background-color: #ebe8e8;
+  border: 1px solid #3736368a;
+  background-color: #f3f2f2;
   height: 4px;
   padding-left: 10px;
   border-radius: 10px;
@@ -275,4 +275,26 @@
 .priceValues span {
   font-size: 13px;
   font-weight: 600;
+}
+
+.containerSizeList {
+  padding: 5px 15px;
+  background-color: #a2a2a227;
+  margin-bottom: 5px;
+  display: flex;
+  border: 1px solid rgb(173, 171, 171);
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.filterSectionSize2 {
+  display: flex;
+  justify-content: space-around;
+  background-color: #edf2f4;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.051);
+  border-radius: 15px;
+  padding: 5px 25px;
+  margin-bottom: 15px;
 }

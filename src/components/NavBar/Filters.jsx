@@ -106,7 +106,7 @@ const Filters = ({ onClearFilters, onClearSearch }) => {
       >
         <div>
           <h3 className={styles.h3}>Filters</h3>
-          <div className={styles.filterSectionSize}>
+          <div className={styles.filterSectionSize2}>
             <div className={styles.h4Style2}>
               <h4>Size</h4>
             </div>
@@ -115,7 +115,8 @@ const Filters = ({ onClearFilters, onClearSearch }) => {
                 name="size"
                 id="size-select"
                 onChange={handleSelectChange}
-                value={selectedFilters.size || ""}
+                value={selectedFilters.size}
+                className={styles.containerSizeList}
               >
                 <option value="All">All</option>
                 {["S", "M", "L", "XL", "XXL"].map((size) => (

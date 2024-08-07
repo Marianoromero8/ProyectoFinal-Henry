@@ -28,7 +28,7 @@ const initialState = {
   status: "idle",
   error: null,
   filters: {
-    size: [],
+    size: "",
     color: [],
     gender: [],
     category: [],

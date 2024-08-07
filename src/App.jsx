@@ -48,11 +48,14 @@ function App() {
 
         <Route path="*" element={<Error404 />} />
 
-        <Route path="/Payment" element={
-          <RouteProtect>
-            <Payment />
-          </RouteProtect>
-        } />
+        <Route
+          path="/Payment"
+          element={
+            <RouteProtect>
+              <Payment />
+            </RouteProtect>
+          }
+        />
 
         <Route
           path="/form"
