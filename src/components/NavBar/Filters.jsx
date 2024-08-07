@@ -44,8 +44,8 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
         ? [...selectedFilters[name], value]
         : selectedFilters[name].filter((v) => v !== value)
       : checked
-      ? [value]
-      : [];
+        ? [value]
+        : [];
     handleFilterChange({ ...selectedFilters, [name]: newValues });
   };
 
@@ -84,6 +84,13 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
     setIsVisible((prevState) => !prevState);
   };
 
+  const handleSelectChange = (event) => {
+    const { value } = event.target;
+    const newSizeValue = value === "All" ? "" : value;
+    handleFilterChange({ ...selectedFilters, size: newSizeValue });
+  };
+
+
   return (
     <div>
       <button onClick={toggleVisibility} className={styles.toggleButton}>
@@ -91,9 +98,8 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${
-          isVisible ? styles.visible : styles.hidden
-        }`}
+        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
+          }`}
       >
         <div>
           <h3 className={styles.h3}>Filters</h3>
@@ -102,27 +108,22 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
               <h4>Size</h4>
             </div>
             <div className={styles.ContainerSize}>
-              {["S", "M", "L", "XL", "XXL"].map((size) => (
-                <div key={size}>
-                  <div className={styles.Sizes}>
-                    <input
-                      className={styles.inputSize}
-                      type="checkbox"
-                      name="size"
-                      id={`size-${size}`}
-                      value={size}
-                      onChange={handleCheckboxChange}
-                      checked={
-                        Array.isArray(selectedFilters.size) &&
-                        selectedFilters.size.includes(size)
-                      }
-                    />
-                    <label htmlFor={`size-${size}`}>{size}</label>
-                  </div>
-                </div>
-              ))}
+              <select
+                name="size"
+                id="size-select"
+                onChange={handleSelectChange}
+                value={selectedFilters.size}
+              >
+                <option value="All">All</option>
+                {["S", "M", "L", "XL", "XXL"].map((size) => (
+                  <option key={size} value={size}>
+                    {size}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
+
 
           <div className={styles.filterSectionSize}>
             <div className={styles.h4Style2}>
