@@ -15,9 +15,10 @@ import pink from "../../assets/colors-26.png";
 import black from "../../assets/colors-23.png";
 import white from "../../assets/colors-30.png";
 
-const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
+const Filters = ({ onClearFilters, onClearSearch }) => {
   const dispatch = useDispatch();
   const globalFilters = useSelector((state) => state.products.filters);
+  const currentPage = useSelector((state) => state.products.currentPage);
 
   const [isVisible, setIsVisible] = useState(true);
   const [selectedFilters, setSelectedFilters] = useState(globalFilters);
@@ -30,11 +31,12 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
           ? updatedFilters.size.join(",")
           : updatedFilters.size,
       };
+      console.log("Applying filters:", formattedFilters);
       setSelectedFilters(formattedFilters);
       dispatch(setFilters(formattedFilters));
-      dispatch(callProductsFilters(formattedFilters));
+      dispatch(callProductsFilters({ ...formattedFilters, page: currentPage })); // Mantén la página actual
     },
-    [dispatch]
+    [dispatch, currentPage]
   );
 
   const handleCheckboxChange = (e) => {
@@ -67,7 +69,7 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
 
   const handleClear = () => {
     const initialFilters = {
-      size: [],
+      size: "",
       color: [],
       gender: [],
       category: [],
@@ -76,6 +78,7 @@ const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
       maxPrice: 200,
       name: "",
     };
+    console.log("Clearing filters:", initialFilters);
     handleFilterChange(initialFilters);
     onClearSearch();
   };
