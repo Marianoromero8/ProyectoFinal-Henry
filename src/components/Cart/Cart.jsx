@@ -1,6 +1,6 @@
 import React, { useEffect, useId, useState } from "react";
 import { useCart } from "../../hooks/useCart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import style from "./Cart.module.css";
 import LogoCart from "../../assets/CART-32.png";
 const Cart = () => {
@@ -13,6 +13,7 @@ const Cart = () => {
     increaseQuantity,
     removeFromCart,
   } = useCart();
+  const navigate = useNavigate()
 
   const calculateTotal = () => {
     return cart.reduce((total, product) => {
@@ -77,6 +78,13 @@ const Cart = () => {
     setButtonText(`Total: $${calculateTotal().toFixed(2)}`);
   };
 
+  const handlePayment = () => {
+    const totalAmount = calculateTotal();
+    if (totalAmount > 0) {
+      navigate('/Payment', { state: { total: totalAmount } })
+    }
+  }
+
   return (
     <div className={style.containerGeneralCart}>
       <div className={style.ContainerButtonCart}>
@@ -93,12 +101,12 @@ const Cart = () => {
         <ul className={style.conteienrCards}>
           {Array.isArray(cart)
             ? cart.map((product) => (
-                <CartItem
-                  key={product.id}
-                  addToCart={() => addToCart(product)}
-                  {...product}
-                />
-              ))
+              <CartItem
+                key={product.id}
+                addToCart={() => addToCart(product)}
+                {...product}
+              />
+            ))
             : null}
         </ul>
         <div className={style.totalCart}>
@@ -106,6 +114,7 @@ const Cart = () => {
             className={style.totalCartButton}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
+            onClick={handlePayment}
           >
             {buttonText}
           </button>

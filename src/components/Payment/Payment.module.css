@@ -1,0 +1,127 @@
+/* Payment.module.css */
+/* .container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+} */
+
+.row {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  width: 400px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.032);
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.cardElement {
+  margin: 40px;
+}
+
+.button {
+  background-color: #007bff;
+  padding: 10px;
+  margin: 10px;
+  border: 0;
+  color: aliceblue;
+  border-radius: 10px;
+  transition: all 0.5s;
+  width: 100px;
+  margin-left: 45px;
+}
+.button:hover {
+  background-color: #ff6e1f;
+  transition: all 0.5s;
+}
+
+.button:disabled {
+  background-color: #ccc;
+}
+
+.spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.container {
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    background: linear-gradient(
+        45deg,
+        rgba(236, 233, 233, 0.069) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(192, 191, 191, 0.1) 50%,
+        rgba(171, 169, 169, 0.1) 75%,
+        transparent 75%,
+        transparent
+      ),
+      linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.035) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(215, 208, 230, 0.051) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 75%,
+        transparent
+      );
+    background-size: 20px 20px;
+    width: 100vw;
+    height: 100vh;
+    margin: -10px;
+  }
+}

@@ -11,8 +11,6 @@
   width: 80%;
   margin-bottom: 40px;
   justify-content: space-between;
-  border-bottom: 0.5px solid rgba(192, 189, 189, 0.523);
-  padding-bottom: 10px;
 }
 
 .menuContainerIzq {
@@ -25,7 +23,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 20%;
 }
 
 .links {
@@ -36,27 +33,31 @@
   position: relative;
   display: block;
   width: 100px;
-  padding: 10px 10px;
+  padding: 9px 9px;
 
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
 
   transition: all 0.5s;
-  border: 0;
   color: black;
   align-items: center;
-  background-color: #dadee000;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(240, 248, 255, 0);
+  margin: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.092);
 }
 
 .menuButton:hover {
   color: black;
-  background-color: #dadee0d5;
-  border-radius: 25px;
-  width: 150px;
+  border-radius: 15px;
+  width: 140px;
   align-items: center;
   justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.092);
+  transition: all 0.5s;
 }
 
 .arrow {
@@ -80,15 +81,17 @@
 .productList {
   margin-top: 50px;
   margin-bottom: 50px;
+  padding-left: 100px;
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 
-  gap: 50px;
+  gap: 25px;
   justify-items: center;
   /* margin-top: 30px;
   margin-bottom: 30px; */
-  width: 55%;
+
+  width: 100%;
   @media (max-width: 1080px) {
     grid-template-columns: repeat(2, 1fr);
   }

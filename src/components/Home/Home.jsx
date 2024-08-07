@@ -24,54 +24,74 @@ import { CartContext } from "../../context/cart";
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { products, status, filters } = useSelector((state) => state.products);
+  const { products, status, filters, totalProducts } = useSelector(
+    (state) => state.products
+  );
   const { user } = useSelector((state) => state.auth);
   const [searchTerm, setSearchTerm] = useState("");
   const { addToCart } = useCart();
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalProducts, setTotalProducts] = useState(0);
-  const { clearCart } = useContext(CartContext);
-
   const productsPerPage = 12;
 
   useEffect(() => {
-    dispatch(callProductsFilters({ ...filters, page: currentPage }));
+    console.log("Fetching products with filters:", {
+      ...filters,
+      page: currentPage,
+    });
+    dispatch(
+      callProductsFilters({
+        ...filters,
+        page: currentPage,
+        limit: productsPerPage,
+      })
+    );
   }, [dispatch, filters, currentPage]);
 
-  useEffect(() => {
-    if (products && products.length > 0) {
-      setTotalProducts(products.length); // Asumiendo que la respuesta contiene la longitud total de productos
-    }
-  }, [products]);
-
   const handleFilterChange = (filt) => {
+    const newFilters = {
+      ...filters,
+      ...filt,
+      size: Array.isArray(filt.size) ? filt.size.join(",") : filt.size,
+    };
+    console.log("Setting new filters:", newFilters);
+    setCurrentPage(1); // Reinicia la página a 1 al cambiar los filtros
+    dispatch(setFilters(newFilters));
     dispatch(
-      setFilters({
-        ...filters,
-        ...filt,
-        size: Array.isArray(filt.size) ? filt.size.join(",") : filt.size, // Convertir el array de size en una cadena separada por comas
-      })
+      callProductsFilters({ ...newFilters, page: 1, limit: productsPerPage })
     );
   };
 
   const handleSearch = (search) => {
     setSearchTerm(search);
-    dispatch(setFilters({ ...filters, name: search }));
+    const newFilters = { ...filters, name: search };
+    console.log("Setting new search filters:", newFilters);
+    setCurrentPage(1); // Reinicia la página a 1 al cambiar la búsqueda
+    dispatch(setFilters(newFilters));
+    dispatch(
+      callProductsFilters({ ...newFilters, page: 1, limit: productsPerPage })
+    );
   };
 
   const handleClear = () => {
     setSearchTerm("");
-    setCurrentPage(1); // Reiniciar a la primera página
+    const initialFilters = {
+      size: [],
+      color: [],
+      gender: [],
+      category: [],
+      brand: [],
+      minPrice: 10,
+      maxPrice: 200,
+      name: "",
+    };
+    console.log("Clearing filters:", initialFilters);
+    setCurrentPage(1); // Reinicia la página a 1 al limpiar los filtros
+    dispatch(setFilters(initialFilters));
     dispatch(
-      setFilters({
-        size: [],
-        color: [],
-        gender: [],
-        category: [],
-        brand: [],
-        minPrice: 10,
-        maxPrice: 200,
-        name: "",
+      callProductsFilters({
+        ...initialFilters,
+        page: 1,
+        limit: productsPerPage,
       })
     );
   };
@@ -91,7 +111,10 @@ const Home = () => {
   };
 
   const handlePageChange = (page) => {
+    if (page < 1) return; // Asegurarse de que la página no sea menor que 1
+    console.log("Changing to page:", page);
     setCurrentPage(page);
+    dispatch(callProductsFilters({ ...filters, page, limit: productsPerPage }));
   };
 
   if (status === "loading") {
@@ -135,18 +158,16 @@ const Home = () => {
           >
             CART
           </button>
-          {user &&
-            user.role === "admin" && ( // Verificar si el usuario tiene el rol de administrador
-              <Link to="/form" className={styles.links}>
-                <button className={styles.menuButton}>CREATE</button>
-              </Link>
-            )}
-          {user &&
-            user.role === "admin" && ( // Verificar si el usuario tiene el rol de administrador
-              <Link to="/Dashboard" className={styles.links}>
-                <button className={styles.menuButton}>DASHBOARD</button>
-              </Link>
-            )}
+          {user && user.role === "admin" && (
+            <Link to="/form" className={styles.links}>
+              <button className={styles.menuButton}>CREATE</button>
+            </Link>
+          )}
+          {user && user.role === "admin" && (
+            <Link to="/Dashboard" className={styles.links}>
+              <button className={styles.menuButton}>DASHBOARD</button>
+            </Link>
+          )}
         </div>
       </div>
       <NavBar
@@ -154,7 +175,7 @@ const Home = () => {
         onSearch={handleSearch}
         onClear={handleClear}
         searchTerm={searchTerm}
-        onClearSearch={handleClearSearch} // Añadimos esta prop para la función de limpiar búsqueda
+        onClearSearch={handleClearSearch}
       />
       <div className={styles.productList}>
         {products.length > 0 ? (
@@ -177,12 +198,7 @@ const Home = () => {
           <NotFound />
         )}
       </div>
-      <Paginate
-        currentPage={currentPage}
-        totalProducts={totalProducts}
-        productsPerPage={productsPerPage}
-        paginate={handlePageChange}
-      />
+      <Paginate currentPage={currentPage} paginate={handlePageChange} />
     </div>
   );
 };

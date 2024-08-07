@@ -8,7 +8,10 @@ export const callProductsFilters = createAsyncThunk(
   "products/callProductsFilters",
   async (filters) => {
     const response = await axios.get(API_URL, { params: filters });
-    return response.data;
+    return {
+      products: response.data,
+      total: response.headers["x-total-count"] || response.data.length, // Suponiendo que el header X-Total-Count contiene el total
+    };
   }
 );
 
@@ -25,7 +28,7 @@ const initialState = {
   status: "idle",
   error: null,
   filters: {
-    size: [],
+    size: "",
     color: [],
     gender: [],
     category: [],
@@ -37,6 +40,7 @@ const initialState = {
   productsDetails: null,
   productsStatus: "idle",
   productsError: null,
+  totalProducts: 0, // Añadido para almacenar el total de productos
 };
 
 const productSlice = createSlice({
@@ -54,7 +58,8 @@ const productSlice = createSlice({
       })
       .addCase(callProductsFilters.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.products = action.payload;
+        state.products = action.payload.products;
+        state.totalProducts = action.payload.total;
       })
       .addCase(callProductsFilters.rejected, (state, action) => {
         state.status = "failed";

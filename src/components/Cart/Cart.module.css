@@ -51,28 +51,32 @@
   position: relative;
   display: block;
   width: 100px;
-  padding: 10px 0;
+  padding: 9px 9px;
 
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
 
   transition: all 0.5s;
-  border: 0;
   color: black;
   align-items: center;
-  background-color: #dadee000;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(240, 248, 255, 0);
+  margin: 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.092);
 }
 
 .buttonCart:hover {
   color: black;
-  background-color: #dadee0d5;
-  border-radius: 25px;
-  width: 150px;
+  border-radius: 15px;
+  width: 140px;
   align-items: center;
   justify-content: center;
-  margin-left: 10px;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.092);
+  transition: all 0.5s;
 }
 
 .LogoCart {
@@ -80,9 +84,9 @@
 }
 
 .ContainerButtonCart {
-  width: 300px;
+  width: 400px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin: 50px;
 }
@@ -106,10 +110,13 @@
   border-radius: 10px;
   text-align: center;
   margin-bottom: 45px;
+  width: 180px;
+  transition: all 1s;
 }
 
 .totalCartButton:hover {
   background-color: #ff6e1f;
+  transition: all 1s;
 }
 
 .buttonContainer {
