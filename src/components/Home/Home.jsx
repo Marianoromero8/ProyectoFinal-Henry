@@ -30,8 +30,7 @@ const Home = () => {
   const { addToCart } = useCart();
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
-  const { clearCart } = useContext(CartContext)
-
+  const { clearCart } = useContext(CartContext);
 
   const productsPerPage = 12;
 
@@ -65,11 +64,11 @@ const Home = () => {
     setCurrentPage(1); // Reiniciar a la primera página
     dispatch(
       setFilters({
-        size: "",
-        color: "",
-        gender: "",
-        category: "",
-        brand: "",
+        size: [],
+        color: [],
+        gender: [],
+        category: [],
+        brand: [],
         minPrice: 10,
         maxPrice: 200,
         name: "",
@@ -77,9 +76,13 @@ const Home = () => {
     );
   };
 
+  const handleClearSearch = () => {
+    setSearchTerm("");
+  };
+
   const handleLogout = async () => {
     try {
-      clearCart()
+      clearCart();
       await dispatch(logoutUser());
       navigate("/login");
     } catch (error) {
@@ -151,6 +154,7 @@ const Home = () => {
         onSearch={handleSearch}
         onClear={handleClear}
         searchTerm={searchTerm}
+        onClearSearch={handleClearSearch} // Añadimos esta prop para la función de limpiar búsqueda
       />
       <div className={styles.productList}>
         {products.length > 0 ? (

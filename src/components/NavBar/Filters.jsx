@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setFilters,
   callProductsFilters,
-} from "../../store/slice/productSlice"; // Asegúrate de importar correctamente
+} from "../../store/slice/productSlice";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styles from "../NavBar/Filters.module.css";
@@ -15,7 +15,7 @@ import pink from "../../assets/colors-26.png";
 import black from "../../assets/colors-23.png";
 import white from "../../assets/colors-30.png";
 
-const Filters = ({ onFilterChange, onClearFilters }) => {
+const Filters = ({ onFilterChange, onClearFilters, onClearSearch }) => {
   const dispatch = useDispatch();
   const globalFilters = useSelector((state) => state.products.filters);
 
@@ -24,18 +24,28 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
 
   const handleFilterChange = useCallback(
     (updatedFilters) => {
-      setSelectedFilters(updatedFilters);
-      dispatch(setFilters(updatedFilters));
-      dispatch(callProductsFilters(updatedFilters));
+      const formattedFilters = {
+        ...updatedFilters,
+        size: Array.isArray(updatedFilters.size)
+          ? updatedFilters.size.join(",")
+          : updatedFilters.size,
+      };
+      setSelectedFilters(formattedFilters);
+      dispatch(setFilters(formattedFilters));
+      dispatch(callProductsFilters(formattedFilters));
     },
     [dispatch]
   );
 
   const handleCheckboxChange = (e) => {
     const { name, value, checked } = e.target;
-    const newValues = checked
-      ? [...selectedFilters[name], value]
-      : selectedFilters[name].filter((v) => v !== value);
+    const newValues = Array.isArray(selectedFilters[name])
+      ? checked
+        ? [...selectedFilters[name], value]
+        : selectedFilters[name].filter((v) => v !== value)
+      : checked
+      ? [value]
+      : [];
     handleFilterChange({ ...selectedFilters, [name]: newValues });
   };
 
@@ -64,8 +74,10 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
       brand: [],
       minPrice: 10,
       maxPrice: 200,
+      name: "",
     };
     handleFilterChange(initialFilters);
+    onClearSearch();
   };
 
   const toggleVisibility = () => {
@@ -100,7 +112,10 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
                       id={`size-${size}`}
                       value={size}
                       onChange={handleCheckboxChange}
-                      checked={selectedFilters.size.includes(size)}
+                      checked={
+                        Array.isArray(selectedFilters.size) &&
+                        selectedFilters.size.includes(size)
+                      }
                     />
                     <label htmlFor={`size-${size}`}>{size}</label>
                   </div>
@@ -172,7 +187,7 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
               <h4>Category</h4>
             </div>
             <div className={styles.filterSectionGender}>
-              {["T-shirt", "Pants", "Jackets", "Shoes"].map((category) => (
+              {["T-shirt", "Pants", "Jackets"].map((category) => (
                 <div key={category} className={styles.genderCon}>
                   <input
                     type="checkbox"
@@ -220,7 +235,7 @@ const Filters = ({ onFilterChange, onClearFilters }) => {
                 max={200}
                 defaultValue={[globalFilters.minPrice, globalFilters.maxPrice]}
                 onChange={handlePriceChange}
-                onAfterChange={handlePriceChangeComplete}
+                onChangeComplete={handlePriceChangeComplete}
                 value={[selectedFilters.minPrice, selectedFilters.maxPrice]}
               />
               <div className={styles.priceValues}>
