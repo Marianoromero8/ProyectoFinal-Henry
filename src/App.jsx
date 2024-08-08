@@ -60,7 +60,7 @@ function App() {
         <Route
           path="/form"
           element={
-            <RouteProtect>
+            <RouteProtect role="admin">
               <Form />
             </RouteProtect>
           }
@@ -78,7 +78,7 @@ function App() {
         <Route
           path="/Dashboard"
           element={
-            <RouteProtect>
+            <RouteProtect role="admin">
               <Dashboard />
             </RouteProtect>
           }
