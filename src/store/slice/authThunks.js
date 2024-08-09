@@ -1,8 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { auth, db } from "../../firebaseConfig";
+import { auth, db, provider } from "../../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
@@ -68,6 +69,44 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const googleLogin = createAsyncThunk(
+  "auth/googleLogin",
+  async (_, { rejectWithValue }) => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Verifica si el usuario ya existe en la base de datos de tu backend
+      const response = await axios.get(
+        `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
+      );
+
+      let userData;
+      if (response.data) {
+        // Si existe, obtén los datos del usuario
+        userData = response.data;
+      } else {
+        // Si no existe, crea un nuevo documento para el usuario
+        const role = "user"; // Establece un rol predeterminado o según lo que necesites
+        await axios.post(
+          "https://pf-henry-backend-ts0n.onrender.com/user/create",
+          { uid: user.uid, email: user.email, role }
+        );
+        userData = { email: user.email, role };
+      }
+
+      return {
+        uid: user.uid,
+        email: user.email,
+        role: userData.role,
+      };
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 
 export const logoutUser = createAsyncThunk(
   "auth/logoutUser",

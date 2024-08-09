@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, logoutUser } from "../../../store/slice/authThunks";
+import { loginUser, logoutUser } from "../../store/slice/authThunks";
 import { Form, Link, useNavigate } from "react-router-dom";
 import styles from "../Dashboard/Dashboard.module.css";
-import arrow from "../../../assets/flecha-17.png";
-import { CartContext } from "../../../context/cart";
+import arrow from "../../assets/flecha-17.png";
+import { CartContext } from "../../context/cart";
 
 const Dashboard = () => {
   const navigate = useNavigate();

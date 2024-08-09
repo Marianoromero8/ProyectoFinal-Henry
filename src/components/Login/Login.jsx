@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../store/slice/authThunks";
+import { googleLogin, loginUser } from "../../store/slice/authThunks";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 
@@ -17,6 +17,10 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
   };
+
+  const handleGoogleLogin = () => {
+    dispatch(googleLogin())
+  }
 
   useEffect(() => {
     if (user) {
@@ -49,6 +53,16 @@ const Login = () => {
           <div className={styles.formbuttons}>
             <button type="submit" disabled={loading}>
               LOGIN
+            </button>
+          </div>
+
+          <div className={styles.googleButton}>
+            <button
+              type="button"
+              className={styles.buttonGoogle}
+              onClick={handleGoogleLogin}
+              disabled={loading}>
+              Login with Google
             </button>
           </div>
         </form>
