@@ -70,6 +70,43 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+// export const googleLogin = createAsyncThunk(
+//   "auth/googleLogin",
+//   async (_, { rejectWithValue }) => {
+//     try {
+//       const result = await signInWithPopup(auth, provider);
+//       const user = result.user;
+
+//       // Verifica si el usuario ya existe en la base de datos de tu backend
+//       const response = await axios.get(
+//         `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
+//       );
+
+//       let userData;
+//       if (response.data) {
+//         // Si existe, obtén los datos del usuario
+//         userData = response.data;
+//       } else {
+//         // Si no existe, crea un nuevo documento para el usuario
+//         const role = "user"; // Establece un rol predeterminado o según lo que necesites
+//         await axios.post(
+//           "https://pf-henry-backend-ts0n.onrender.com/user/create",
+//           { uid: user.uid, email: user.email, role }
+//         );
+//         userData = { email: user.email, role };
+//       }
+
+//       return {
+//         uid: user.uid,
+//         email: user.email,
+//         role: userData.role,
+//       };
+//     } catch (error) {
+//       return rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const googleLogin = createAsyncThunk(
   "auth/googleLogin",
   async (_, { rejectWithValue }) => {
@@ -78,22 +115,27 @@ export const googleLogin = createAsyncThunk(
       const user = result.user;
 
       // Verifica si el usuario ya existe en la base de datos de tu backend
-      const response = await axios.get(
-        `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
-      );
-
+      let response;
       let userData;
-      if (response.data) {
-        // Si existe, obtén los datos del usuario
-        userData = response.data;
-      } else {
-        // Si no existe, crea un nuevo documento para el usuario
-        const role = "user"; // Establece un rol predeterminado o según lo que necesites
-        await axios.post(
-          "https://pf-henry-backend-ts0n.onrender.com/user/create",
-          { uid: user.uid, email: user.email, role }
+      
+      try {
+        response = await axios.get(
+          `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
         );
-        userData = { email: user.email, role };
+        userData = response.data;
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          // Si el usuario no existe, crea un nuevo documento para el usuario
+          const role = "user"; // Establece un rol predeterminado o según lo que necesites
+          await axios.post(
+            "https://pf-henry-backend-ts0n.onrender.com/user/create",
+            { uid: user.uid, email: user.email, role }
+          );
+          userData = { email: user.email, role };
+        } else {
+          // Manejar otros tipos de errores si es necesario
+          throw error;
+        }
       }
 
       return {

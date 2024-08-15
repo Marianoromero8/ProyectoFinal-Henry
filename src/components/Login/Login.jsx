@@ -23,7 +23,8 @@ const Login = () => {
   }
 
   useEffect(() => {
-    if (user) {
+    if (user && user.uid) {
+      console.log("Usuario autenticado:", user);
       navigate("/ViewRole");
     }
   }, [user, navigate]);
