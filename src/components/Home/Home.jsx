@@ -32,6 +32,8 @@ const Home = () => {
   const { addToCart } = useCart();
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
+  const { clearCart } = useContext(CartContext);
+
 
   useEffect(() => {
     console.log("Fetching products with filters:", {

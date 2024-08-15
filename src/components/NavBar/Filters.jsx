@@ -20,7 +20,7 @@ const Filters = ({ onClearFilters, onClearSearch }) => {
   const globalFilters = useSelector((state) => state.products.filters);
   const currentPage = useSelector((state) => state.products.currentPage);
 
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState(globalFilters);
 
   const handleFilterChange = useCallback(
@@ -46,8 +46,8 @@ const Filters = ({ onClearFilters, onClearSearch }) => {
         ? [...selectedFilters[name], value]
         : selectedFilters[name].filter((v) => v !== value)
       : checked
-      ? [value]
-      : [];
+        ? [value]
+        : [];
     handleFilterChange({ ...selectedFilters, [name]: newValues });
   };
 
@@ -100,9 +100,8 @@ const Filters = ({ onClearFilters, onClearSearch }) => {
       </button>
 
       <div
-        className={`${styles.filtersContainer} ${
-          isVisible ? styles.visible : styles.hidden
-        }`}
+        className={`${styles.filtersContainer} ${isVisible ? styles.visible : styles.hidden
+          }`}
       >
         <div>
           <h3 className={styles.h3}>Filters</h3>
