@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { productsDetails } from "../../store/slice/productSlice";
 import style from "./Details.module.css";
 import arrowExit from "../../assets/flecha-17.png";
+import { useCart } from "../../hooks/useCart";
 
 const Details = () => {
   const { id } = useParams();
@@ -12,6 +13,8 @@ const Details = () => {
   const product = useSelector((state) => state.products.productsDetails);
   const productStatus = useSelector((state) => state.products.productsStatus);
   const productError = useSelector((state) => state.products.productsError);
+  const { addToCart } = useCart();
+
 
   useEffect(() => {
     dispatch(productsDetails(id));
@@ -62,6 +65,7 @@ const Details = () => {
             </p>
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetailDescrip}>{product.description}</p>
+            <button onClick={() => { addToCart(product) }}>Icono de carrito</button>
             <Link to="/home" className={style.links}>
               <button className={style.menuButton}>
                 GO TO HOME{" "}

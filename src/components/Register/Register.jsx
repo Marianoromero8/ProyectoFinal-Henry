@@ -10,7 +10,8 @@ const Register = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user"); // O 'admin' según el caso
+  //Rol por default
+  const role = "user"
 
   const { loading, error, user } = useSelector((state) => state.auth);
 
@@ -42,10 +43,10 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
-          <select value={role} onChange={(e) => setRole(e.target.value)}>
+          {/* <select value={role} onChange={(e) => setRole(e.target.value)}>
             <option value="user">User</option>
             <option value="admin">Admin</option>
-          </select>
+          </select> */}
 
           <div className={styles.formbuttons}>
             <button type="submit">REGISTER</button>

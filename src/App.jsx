@@ -10,7 +10,7 @@ import Register from "./components/Register/Register";
 import Cart from "./components/Cart/Cart";
 import RouteProtect from "./components/RoutePotect/RouteProtect";
 import ViewRole from "./components/ViewRole/ViewRole";
-import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import Dashboard from "./components/Dashboard/Dashboard";
 import { useDispatch } from "react-redux";
 import { setUser } from "./store/slice/authSlice";
 import { useEffect } from "react";
@@ -60,7 +60,7 @@ function App() {
         <Route
           path="/form"
           element={
-            <RouteProtect>
+            <RouteProtect role="admin">
               <Form />
             </RouteProtect>
           }
@@ -78,7 +78,7 @@ function App() {
         <Route
           path="/Dashboard"
           element={
-            <RouteProtect>
+            <RouteProtect role="admin">
               <Dashboard />
             </RouteProtect>
           }
