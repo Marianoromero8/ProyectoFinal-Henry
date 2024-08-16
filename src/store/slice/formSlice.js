@@ -7,19 +7,33 @@ const initialState = {
   price: "",
   gender: "",
   category: "",
-  size: "",
+  sizes: [], // Manejo de múltiples tamaños
+  stocks: {}, // Manejo del stock por tamaño
   color: "",
   brand: "",
   errorMessage: "",
   validationErrors: {},
 };
 
+// Funciones de validación
 const validateName = (name) => name.length >= 4 && name.length <= 50;
 const validateDescription = (description) =>
   description.length >= 4 && description.length <= 500;
 const validateImage = (image) => /\.(jpg|png|gif)$/i.test(image);
 const validatePrice = (price) => price >= 10 && price <= 200;
 
+// Nueva validación para el stock
+const validateStocks = (stocks, sizes) => {
+  for (let size of sizes) {
+    const stockValue = stocks[size];
+    if (!stockValue || stockValue < 1 || stockValue > 80) {
+      return false;
+    }
+  }
+  return true;
+};
+
+// Función principal de validación
 const performValidation = (state) => {
   const {
     name,
@@ -28,7 +42,8 @@ const performValidation = (state) => {
     price,
     gender,
     category,
-    size,
+    sizes,
+    stocks,
     color,
     brand,
   } = state;
@@ -55,8 +70,11 @@ const performValidation = (state) => {
   if (!category.trim()) {
     validationErrors.category = "Category is required.";
   }
-  if (!size.trim()) {
-    validationErrors.size = "Size is required.";
+  if (!sizes.length) {
+    validationErrors.sizes = "At least one size must be selected.";
+  } else if (!validateStocks(stocks, sizes)) {
+    validationErrors.stocks =
+      "Each selected size must have a valid stock (1-80).";
   }
   if (!color.trim()) {
     validationErrors.color = "Color is required.";
@@ -68,6 +86,7 @@ const performValidation = (state) => {
   return validationErrors;
 };
 
+// Crear el slice del formulario
 const productFormSlice = createSlice({
   name: "productForm",
   initialState,
