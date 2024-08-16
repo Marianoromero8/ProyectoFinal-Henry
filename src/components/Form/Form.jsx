@@ -21,13 +21,13 @@ const structureData = (formData) => {
     name: formData.name,
     description: formData.description,
     images: [formData.image],
-    stock: Math.floor(Math.random() * 100),
+    stock: formData.stocks, // Aquí se guarda el stock por tamaño
     price: parseFloat(formData.price),
     gender: formData.gender,
     category: formData.category,
     brand: formData.brand,
     color: formData.color,
-    size: formData.size ? [formData.size] : [],
+    sizes: formData.sizes, // Se guarda la lista de tamaños seleccionados
     active: true,
   };
 };
@@ -42,18 +42,74 @@ const Form = () => {
     price,
     gender,
     category,
-    size,
+    sizes,
+    stocks,
     color,
     brand,
     errorMessage,
     validationErrors,
   } = useSelector((state) => state.productForm);
 
+  // Manejo de cambio en los campos de formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
-    dispatch(setFormData({ name, value }));
+    if (name === "sizes") {
+      const selectedSizes = Array.from(
+        e.target.selectedOptions,
+        (option) => option.value
+      );
+      dispatch(setFormData({ name, value: selectedSizes }));
+    } else {
+      dispatch(setFormData({ name, value }));
+    }
   };
 
+  // Manejo de cambio en los campos de stock
+  const handleStockChange = (e, size) => {
+    const { value } = e.target;
+    const updatedStocks = { ...stocks, [size]: value };
+    dispatch(setFormData({ name: "stocks", value: updatedStocks }));
+  };
+
+  // Manejo del envío del formulario
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(validateForm());
+
+    if (Object.keys(validationErrors).length > 0) {
+      return;
+    }
+
+    const structuredData = structureData({
+      name,
+      description,
+      image,
+      price,
+      gender,
+      category,
+      sizes,
+      stocks,
+      color,
+      brand,
+    });
+
+    try {
+      await axios.post(API_URL, structuredData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      alert("Product Created Successfully");
+      navigate("/home");
+      dispatch(clearForm());
+    } catch (error) {
+      console.error("Error:", error);
+      dispatch(setError("Failed to create product. Please try again."));
+    }
+  };
+
+  // Manejo de la carga de imagen
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file && /\.(jpg|jpeg|png|gif)$/i.test(file.name)) {
@@ -75,43 +131,6 @@ const Form = () => {
           "Invalid file format. Please upload a jpg, jpeg, png, or gif file."
         )
       );
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    dispatch(validateForm());
-
-    if (errorMessage) {
-      return;
-    }
-
-    const structuredData = structureData({
-      name,
-      description,
-      image,
-      price,
-      gender,
-      category,
-      size,
-      color,
-      brand,
-    });
-
-    try {
-      const response = await axios.post(API_URL, structuredData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      // Aquí se elimina la verificación redundante de estado de respuesta
-      alert("Product Created Successfully");
-      navigate("/home");
-      dispatch(clearForm());
-    } catch (error) {
-      console.error("Error:", error);
-      dispatch(setError("Failed to create product. Please try again."));
     }
   };
 
@@ -214,25 +233,43 @@ const Form = () => {
           )}
         </div>
         <div className={styles.container1}>
-          <label htmlFor="size">Size:</label>
+          <label htmlFor="sizes">Sizes:</label>
           <select
-            id="size"
-            name="size"
-            value={size}
+            id="sizes"
+            name="sizes"
+            multiple
+            value={sizes}
             onChange={handleChange}
             required
           >
-            <option value="">Select Size</option>
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
             <option value="XL">XL</option>
             <option value="XXL">XXL</option>
           </select>
-          {validationErrors.size && (
-            <p className={styles.error}>{validationErrors.size}</p>
+          {validationErrors.sizes && (
+            <p className={styles.error}>{validationErrors.sizes}</p>
           )}
         </div>
+
+        {sizes.map((size) => (
+          <div key={size} className={styles.container1}>
+            <label htmlFor={`stock-${size}`}>Stock for {size}:</label>
+            <input
+              type="number"
+              id={`stock-${size}`}
+              name={`stock-${size}`}
+              value={stocks[size] || ""}
+              onChange={(e) => handleStockChange(e, size)}
+              required
+            />
+          </div>
+        ))}
+        {validationErrors.stocks && (
+          <p className={styles.error}>{validationErrors.stocks}</p>
+        )}
+
         <div className={styles.container1}>
           <label htmlFor="color">Color:</label>
           <select
