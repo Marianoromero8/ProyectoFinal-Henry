@@ -50,14 +50,15 @@ export const loginUser = createAsyncThunk(
       );
       const user = userCredential.user;
 
-      //?Obtener el rol del usuario desde firestore
-      // const userDoc = await getDoc(doc(db, "user", user.uid));
-      // const userData = userDoc.data();
-
       const response = await axios.get(
         ` https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
       );
       const userData = response.data;
+
+      if (!userData.active) {
+        // Si el usuario no está activo, rechazar con un mensaje
+        return rejectWithValue("Your account is banned.");
+      }
 
       return {
         uid: user.uid,
@@ -78,22 +79,31 @@ export const loginUser = createAsyncThunk(
 //       const user = result.user;
 
 //       // Verifica si el usuario ya existe en la base de datos de tu backend
-//       const response = await axios.get(
-//         `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
-//       );
-
+//       let response;
 //       let userData;
-//       if (response.data) {
-//         // Si existe, obtén los datos del usuario
-//         userData = response.data;
-//       } else {
-//         // Si no existe, crea un nuevo documento para el usuario
-//         const role = "user"; // Establece un rol predeterminado o según lo que necesites
-//         await axios.post(
-//           "https://pf-henry-backend-ts0n.onrender.com/user/create",
-//           { uid: user.uid, email: user.email, role }
+      
+//       try {
+//         response = await axios.get(
+//           `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
 //         );
-//         userData = { email: user.email, role };
+//         userData = response.data;
+//       } catch (error) {
+//         if (error.response && error.response.status === 404) {
+//           // Si el usuario no existe, crea un nuevo documento para el usuario
+//           const role = "user"; // Establece un rol predeterminado o según lo que necesites
+//           await axios.post(
+//             "https://pf-henry-backend-ts0n.onrender.com/user/create",
+//             { uid: user.uid, email: user.email, role }
+//           );
+//           userData = { email: user.email, role };
+//         } else {
+//           // Manejar otros tipos de errores si es necesario
+//           throw error;
+//         }
+//       }
+
+//       if (!userData.active) {
+//         return rejectWithValue("Your account is banned.");
 //       }
 
 //       return {
@@ -117,7 +127,7 @@ export const googleLogin = createAsyncThunk(
       // Verifica si el usuario ya existe en la base de datos de tu backend
       let response;
       let userData;
-      
+
       try {
         response = await axios.get(
           `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
@@ -129,13 +139,17 @@ export const googleLogin = createAsyncThunk(
           const role = "user"; // Establece un rol predeterminado o según lo que necesites
           await axios.post(
             "https://pf-henry-backend-ts0n.onrender.com/user/create",
-            { uid: user.uid, email: user.email, role }
+            { uid: user.uid, email: user.email, role, active: true } // Explicitly set active to true
           );
-          userData = { email: user.email, role };
+          userData = { email: user.email, role, active: true };
         } else {
           // Manejar otros tipos de errores si es necesario
           throw error;
         }
+      }
+
+      if (!userData.active) {
+        return rejectWithValue("Your account is banned.");
       }
 
       return {
