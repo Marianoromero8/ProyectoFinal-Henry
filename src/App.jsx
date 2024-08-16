@@ -16,6 +16,8 @@ import { setUser } from "./store/slice/authSlice";
 import { useEffect } from "react";
 import Error404 from "./components/Error404/Error404";
 import Payment from "./components/Payment/Payment";
+import ProductsAdmin from "./components/Dashboard/ProductsAdmin";
+import UsersAdmin from "./components/Dashboard/UsersAdmin";
 
 // npm run dev ==> en la terminal dentro de la carpeta 'vite-project' para correr el front
 // Lo comentado es para el login y register para autorizacion de terceros
@@ -78,13 +80,26 @@ function App() {
         <Route
           path="/Dashboard"
           element={
-            <RouteProtect role="admin">
+            <RouteProtect roles={['admin', 'superAdmin']}>
               <Dashboard />
             </RouteProtect>
           }
         />
+
+        <Route path="/Dashboard/Products" element={
+          <RouteProtect role='superAdmin'>
+            <ProductsAdmin />
+          </RouteProtect>
+        } />
+
+        <Route path="/Dashboard/Users" element={
+          <RouteProtect role='superAdmin'>
+            <UsersAdmin />
+          </RouteProtect>
+        } />
+
       </Routes>
-    </div>
+    </div >
   );
 }
 
