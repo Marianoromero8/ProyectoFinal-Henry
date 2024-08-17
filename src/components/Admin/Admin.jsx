@@ -19,7 +19,7 @@ const Admin = () => {
 
     return (
         <div className={styles.containerGeneral}>
-            <h1><strong>Hello Admin</strong></h1>
+            <h1><strong>Hello</strong></h1>
             <div className={styles.containerButtons}>
                 <button onClick={handleLogout} disabled={loading}>
                     {loading ? 'logging out ...' : 'Logout'}
