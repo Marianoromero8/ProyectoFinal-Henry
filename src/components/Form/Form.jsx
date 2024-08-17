@@ -18,6 +18,10 @@ const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
 const structureData = (formData) => {
   // Construir la estructura esperada por el backend
+  const sizesWithStock = Object.keys(formData.stocks).filter(
+    (size) => formData.stocks[size] > 0
+  );
+
   return {
     name: formData.name,
     description: formData.description,
@@ -28,7 +32,7 @@ const structureData = (formData) => {
     category: formData.category,
     brand: formData.brand,
     color: formData.color,
-    size: formData.sizes, // El tamaño es una lista de las tallas seleccionadas
+    size: sizesWithStock, // Se envían todas las tallas con stock asignado
     active: true,
   };
 };
