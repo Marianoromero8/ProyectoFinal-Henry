@@ -21,7 +21,7 @@ const Dashboard = () => {
     try {
       clearCart();
       logoutUser();
-      dispatch(logoutUser());
+      await dispatch(logoutUser());
       navigate("/login");
     } catch (error) {
       console.error("Error al cerrar sesión:", error);
@@ -49,6 +49,16 @@ const Dashboard = () => {
         <Link to="/form" className={styles.links}>
           <button className={styles.menuButton}>Add new product</button>
         </Link>
+        {user && user.role === "superAdmin" && (
+          <Link to="/Dashboard/Products">
+            <button className={styles.menuButton}>Products</button>
+          </Link>
+        )}
+        {user && user.role === "superAdmin" && (
+          <Link to="/Dashboard/Users">
+            <button className={styles.menuButton}>Users</button>
+          </Link>
+        )}
         <Link to="/home">
           <button className={styles.menuButton}>Home</button>
         </Link>
