@@ -17,17 +17,18 @@ const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${
 const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
 const structureData = (formData) => {
+  // Construir la estructura esperada por el backend
   return {
     name: formData.name,
     description: formData.description,
     images: [formData.image],
-    stock: formData.stocks, // Aquí se guarda el stock por tamaño
+    stock: formData.stocks, // El stock es un objeto con las tallas y cantidades
     price: parseFloat(formData.price),
     gender: formData.gender,
     category: formData.category,
     brand: formData.brand,
     color: formData.color,
-    sizes: formData.sizes, // Se guarda la lista de tamaños seleccionados
+    size: formData.sizes, // El tamaño es una lista de las tallas seleccionadas
     active: true,
   };
 };
@@ -67,7 +68,7 @@ const Form = () => {
   // Manejo de cambio en los campos de stock
   const handleStockChange = (e, size) => {
     const { value } = e.target;
-    const updatedStocks = { ...stocks, [size]: value };
+    const updatedStocks = { ...stocks, [size]: parseInt(value, 10) }; // Convertir a entero
     dispatch(setFormData({ name: "stocks", value: updatedStocks }));
   };
 
