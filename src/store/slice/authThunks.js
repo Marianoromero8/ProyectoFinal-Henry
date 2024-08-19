@@ -6,7 +6,6 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
 import axios from "axios";
 
 export const registerUser = createAsyncThunk(
@@ -25,7 +24,11 @@ export const registerUser = createAsyncThunk(
 
       await axios.post(
         "https://pf-henry-backend-ts0n.onrender.com/user/create",
-        { uid: user.uid, email, role }
+        { uid: user.uid, email, role },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // Incluye las credenciales
+        }
       );
 
       return {
@@ -51,7 +54,11 @@ export const loginUser = createAsyncThunk(
       const user = userCredential.user;
 
       const response = await axios.get(
-        ` https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
+        ` https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`,
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true, // Incluye las credenciales
+        }
       );
       const userData = response.data;
 
@@ -71,51 +78,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// export const googleLogin = createAsyncThunk(
-//   "auth/googleLogin",
-//   async (_, { rejectWithValue }) => {
-//     try {
-//       const result = await signInWithPopup(auth, provider);
-//       const user = result.user;
-
-//       // Verifica si el usuario ya existe en la base de datos de tu backend
-//       let response;
-//       let userData;
-      
-//       try {
-//         response = await axios.get(
-//           `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
-//         );
-//         userData = response.data;
-//       } catch (error) {
-//         if (error.response && error.response.status === 404) {
-//           // Si el usuario no existe, crea un nuevo documento para el usuario
-//           const role = "user"; // Establece un rol predeterminado o según lo que necesites
-//           await axios.post(
-//             "https://pf-henry-backend-ts0n.onrender.com/user/create",
-//             { uid: user.uid, email: user.email, role }
-//           );
-//           userData = { email: user.email, role };
-//         } else {
-//           // Manejar otros tipos de errores si es necesario
-//           throw error;
-//         }
-//       }
-
-//       if (!userData.active) {
-//         return rejectWithValue("Your account is banned.");
-//       }
-
-//       return {
-//         uid: user.uid,
-//         email: user.email,
-//         role: userData.role,
-//       };
-//     } catch (error) {
-//       return rejectWithValue(error.message);
-//     }
-//   }
-// );
 
 export const googleLogin = createAsyncThunk(
   "auth/googleLogin",
@@ -130,7 +92,11 @@ export const googleLogin = createAsyncThunk(
 
       try {
         response = await axios.get(
-          `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`
+          `https://pf-henry-backend-ts0n.onrender.com/user/${user.uid}`,
+          {
+            headers: { "Content-Type": "application/json" },
+            withCredentials: true, // Incluye las credenciales
+          }
         );
         userData = response.data;
       } catch (error) {

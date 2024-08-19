@@ -10,6 +10,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Payment.module.css";
 import { useCart } from "../../hooks/useCart";
+import { useSelector } from "react-redux";
 
 const stripePromise = loadStripe(
   "pk_test_51Pj8ScIbsoegOUXclAD67Mt70fEPVz9HmiVOFCxTprozUZKmly3uRYFdihVhJayHP2mZZcuZ6MTPC7y5uyzygYXd00Wwpj4aCi"
@@ -19,8 +20,10 @@ const CheckoutForm = ({ total }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-  const { clearCart } = useCart();
+  const { clearCart, cartItem } = useCart();
   const navigate = useNavigate();
+  const email = useSelector((state) => state.auth.user?.email); // Getting email from Redux
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,6 +49,8 @@ const CheckoutForm = ({ total }) => {
         {
           id,
           amount: total * 100, // Convertir en centavos el total
+          email,
+          cartItem
         }
       );
 

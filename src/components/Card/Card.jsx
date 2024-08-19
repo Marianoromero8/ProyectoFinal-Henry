@@ -23,7 +23,7 @@ const Card = ({
         <div className={styles.details}>
           <div className={styles.containerTop}>
             <div>
-              <h2>{brand}</h2>
+              <h2>{name}</h2>
               <p>
                 Color:<strong> {color}</strong>
               </p>
