@@ -160,12 +160,12 @@ const Home = () => {
           >
             CART
           </button>
-          {user && user.role === "admin" && (
+          {user && (user.role === "admin" || user.role === "superAdmin") && (
             <Link to="/form" className={styles.links}>
               <button className={styles.menuButton}>CREATE</button>
             </Link>
           )}
-          {user && user.role === "admin" && (
+          {user && (user.role === "admin" || user.role === "superAdmin") && (
             <Link to="/Dashboard" className={styles.links}>
               <button className={styles.menuButton}>DASHBOARD</button>
             </Link>
