@@ -17,7 +17,6 @@ const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${
 const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
 const structureData = (formData) => {
-  // Construir la estructura esperada por el backend
   const sizesWithStock = Object.keys(formData.stocks).filter(
     (size) => formData.stocks[size] > 0
   );
