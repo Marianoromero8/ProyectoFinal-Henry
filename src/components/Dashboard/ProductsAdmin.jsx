@@ -10,6 +10,29 @@ const ProductsAdmin = () => {
     const [error, setError] = useState(null);
     const [nameFilter, setNameFilter] = useState('');
 
+    // useEffect(() => {
+    //     const fetchProducts = async () => {
+    //         setLoading(true);
+    //         setError(null);
+    //         try {
+    //             const response = await axios.get(API_URL, {
+    //                 params: { name: nameFilter }
+    //             });
+    //             // setProducts(response.data);
+    //             if (Array.isArray(response.data)) {
+    //                 setProducts(response.data);
+    //             } else {
+    //                 setProducts([]); // o manejar esto de manera diferente según el caso
+    //             }
+    //         } catch (err) {
+    //             setError(err.message);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //     fetchProducts();
+    // }, [nameFilter]);
+
     useEffect(() => {
         const fetchProducts = async () => {
             setLoading(true);
@@ -18,7 +41,13 @@ const ProductsAdmin = () => {
                 const response = await axios.get(API_URL, {
                     params: { name: nameFilter }
                 });
-                setProducts(response.data);
+
+                // Asegúrate de que la respuesta sea un array
+                if (Array.isArray(response.data)) {
+                    setProducts(response.data);
+                } else {
+                    setProducts([]); // o manejar esto de manera diferente según el caso
+                }
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -64,6 +93,9 @@ const ProductsAdmin = () => {
                         <button onClick={() => handleToggleProductStatus(product.id)}>
                             {product.active ? 'Desactivate' : 'Activate'}
                         </button>
+                        <Link to={`/Dashboard/Products/edit/${product.id}`}>
+                            <button>Edit</button>
+                        </Link>
                     </li>
                 ))}
             </ul>
