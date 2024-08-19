@@ -6,6 +6,7 @@ import { productsDetails } from "../../store/slice/productSlice";
 import style from "./Details.module.css";
 import arrowExit from "../../assets/flecha-17.png";
 import { useCart } from "../../hooks/useCart";
+import carrito from "../../assets/CART-32.png";
 
 const Details = () => {
   const { id } = useParams();
@@ -14,7 +15,6 @@ const Details = () => {
   const productStatus = useSelector((state) => state.products.productsStatus);
   const productError = useSelector((state) => state.products.productsError);
   const { addToCart } = useCart();
-
 
   useEffect(() => {
     dispatch(productsDetails(id));
@@ -48,7 +48,7 @@ const Details = () => {
             </p>
             <div className={style.sizeContainer}>
               <p className={style.pDetail}>Size: </p>
-              <p className={style.pDetailContainer}>
+              <p className={style.pDetail}>
                 <strong> {product.size} </strong>
               </p>
             </div>
@@ -57,15 +57,22 @@ const Details = () => {
               {" "}
               Brand : <strong>{product.brand} </strong>
             </p>
-            <p>
+            <p className={style.pDetail}>
               Gender : <strong> {product.gender}</strong>
             </p>
-            <p>
+            <p className={style.pDetail}>
               Category : <strong>{product.category} </strong>
             </p>
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetailDescrip}>{product.description}</p>
-            <button onClick={() => { addToCart(product) }}>Icono de carrito</button>
+            <button
+              onClick={() => {
+                addToCart(product);
+              }}
+              className={style.containerCarr}
+            >
+              <img src={carrito} className={style.carrito} />
+            </button>
             <Link to="/home" className={style.links}>
               <button className={style.menuButton}>
                 GO TO HOME{" "}

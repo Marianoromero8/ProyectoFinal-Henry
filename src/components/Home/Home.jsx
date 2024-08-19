@@ -34,7 +34,6 @@ const Home = () => {
   const productsPerPage = 12;
   const { clearCart } = useContext(CartContext);
 
-
   useEffect(() => {
     console.log("Fetching products with filters:", {
       ...filters,
@@ -126,7 +125,6 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <img src={logo} className={styles.logo} />
-
       <div className={styles.menuContainer}>
         {user ? (
           <div className={styles.menuContainerR}>
@@ -200,6 +198,7 @@ const Home = () => {
           <NotFound />
         )}
       </div>
+
       <Paginate currentPage={currentPage} paginate={handlePageChange} />
     </div>
   );
