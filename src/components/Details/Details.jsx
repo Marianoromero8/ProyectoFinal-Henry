@@ -160,7 +160,10 @@ const Details = () => {
           </div>
           <div className={style.containerRDetail}>
             <h1 className={style.h1Detail}>{product.name}</h1>
-            Price:<strong> ${product.price}</strong>
+            <p className={style.pDetail}>
+              {" "}
+              Price:<strong> ${product.price}</strong>
+            </p>
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetail}>
               Color: <strong>{product.color}</strong>
@@ -196,8 +199,11 @@ const Details = () => {
               Category : <strong>{product.category} </strong>
             </p>
             <hr className={style.hrDetail}></hr>
-            <p className={style.pDetailDescrip}>{product.description}</p>
-            <button onClick={handleAddToCart}>Add to Cart</button>
+
+            <p className={style.pDetailDescrip2}>{product.description}</p>
+            <button onClick={handleAddToCart} className={style.buttonDe}>
+              ADD TO CART
+            </button>
             <Link to="/home" className={style.links}>
               <button className={style.menuButton}>
                 GO TO HOME{" "}
