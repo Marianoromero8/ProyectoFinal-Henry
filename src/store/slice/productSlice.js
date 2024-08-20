@@ -16,10 +16,23 @@ export const callProductsFilters = createAsyncThunk(
 );
 
 export const productsDetails = createAsyncThunk(
-  "products/productosDetails",
+  "products/productsDetails",
   async (id) => {
     const response = await axios.get(`${API_URL}/${id}`);
     return response.data;
+  }
+);
+
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async ({ id, product }, { rejectWithValue }) => {
+    try {
+      const response = await axios.put(`https://pf-henry-backend-ts0n.onrender.com/admin/edit/${id}`, product);
+      return response.data;
+    } catch (err) {
+      // Proporciona más detalles sobre el error
+      return rejectWithValue(err.response ? err.response.data : err.message);
+    }
   }
 );
 
@@ -50,6 +63,12 @@ const productSlice = createSlice({
     setFilters: (state, action) => {
       state.filters = { ...state.filters, ...action.payload };
     },
+    updateProductSuccess: (state, action) => {
+      const updatedProduct = action.payload;
+      if (state.productsDetails.id === updatedProduct.id) {
+          state.productsDetails = updatedProduct;
+      }
+  },
   },
   extraReducers: (builder) => {
     builder
@@ -74,8 +93,20 @@ const productSlice = createSlice({
       })
       .addCase(productsDetails.rejected, (state, action) => {
         state.productsStatus = "failed";
-        state.productsError = action.error.message;
-      });
+        state.productsError = action.payload?.message || action.error.message;
+      })
+      .addCase(updateProduct.pending, (state) => {
+        state.productsStatus = "loading";
+      })
+      .addCase(updateProduct.fulfilled, (state, action) => {
+        const updatedProduct = action.payload;
+        state.productsDetails = updatedProduct;
+        state.productsStatus = 'succeeded';
+    })      
+      .addCase(updateProduct.rejected, (state, action) => {
+        state.productsStatus = "failed";
+        state.productsError = action.payload || action.error.message;
+    });
   },
 });
 
