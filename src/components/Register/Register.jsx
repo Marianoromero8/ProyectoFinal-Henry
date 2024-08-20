@@ -11,7 +11,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //Rol por default
-  const role = "user"
+  const role = "user";
 
   const { loading, error, user } = useSelector((state) => state.auth);
 
@@ -28,8 +28,10 @@ const Register = () => {
 
   return (
     <div className={styles.containerGeneral}>
-      <h2 className={styles.h1Titile}>Sign up</h2>
-      <div className={styles.container1}>
+      <h2 className={styles.h1Titile}>
+        Sign<strong> up</strong>{" "}
+      </h2>
+      <div>
         <form onSubmit={handleSubmit} className={styles.container1}>
           <input
             type="email"

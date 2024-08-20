@@ -3,9 +3,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 30px;
-  width: 200px;
-  background-color: rgba(0, 0, 0, 0.052);
+  text-align: center;
+
+  width: 150px;
   border-radius: 10px;
   align-items: center;
   justify-content: center;
@@ -15,6 +15,7 @@
   font-style: normal;
   color: black;
   padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.084);
 }
 
 .noFoundContainer h1 {
@@ -23,10 +24,42 @@
 }
 
 .noFoundContainer h2 {
-  font-size: 20px;
-  margin: 0;
+  font-size: 15px;
+  margin: 20px 0;
+  font-weight: 400;
+  font-style: normal;
 }
 .noFoundContainer p {
-  font-size: 20px;
-  margin: 10px 0;
+  font-size: 16px;
+  margin: 20px 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.imgNot {
+  width: 80px;
+}
+
+/*celular*/
+
+@media (max-device-width: 600px) and (orientation: portrait) {
+  .noFoundContainer {
+    width: 100px;
+    margin-left: 25px;
+    padding: 10px;
+  }
+
+  .imgNot {
+    width: 50px;
+  }
+  .noFoundContainer h2 {
+    font-size: 11px;
+    margin: 15px 0;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .noFoundContainer p {
+    font-size: 12px;
+  }
 }

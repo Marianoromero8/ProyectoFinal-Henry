@@ -1,5 +1,4 @@
 .container1 {
-  margin-bottom: 15px;
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
   font-weight: 700;
@@ -10,9 +9,9 @@
 
 .h1Titile {
   font-family: "Montserrat", sans-serif;
-  font-size: 30px;
-  font-weight: 800;
-  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 15px;
 }
 
 .container1 label {
@@ -20,42 +19,109 @@
   font-size: 15px;
   font-weight: 600;
   font-style: normal;
+  margin-top: 15px;
   margin-bottom: 10px;
   width: 200px;
 }
-
-.container1 input,
-.container1 textarea,
-.container1 select {
-  background-color: rgba(134, 138, 141, 0.095);
+.container3 label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  font-style: normal;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+.container3 {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
   border: 0;
   width: 300px;
   padding: 8px;
 }
+.container1 input,
+.container1 textarea,
+.container1 select {
+  background-color: rgba(134, 138, 141, 0);
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.169);
+  width: 300px;
+  padding: 8px;
+}
+.inpuFile {
+  padding: 0.5rem 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: black;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
+  margin: 0;
+}
+.inpuFile::-webkit-file-upload-button {
+  padding: 0.5rem 1rem;
+  background-color: #59595a1d;
+  font-family: "Montserrat", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: black;
+  border: 0;
+  margin: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
+  margin: 10px;
+}
+.container1 input:focus {
+  outline: none;
+}
 
+.container1 textarea:focus {
+  outline: none;
+}
 .formbuttons {
   display: flex;
   justify-content: space-between;
-  width: 300px;
+  width: 200px;
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
   font-weight: 700;
-  margin-top: 40px;
 }
 
 .formbuttons button {
-  padding: 15px 25px;
-  font-size: 16px;
-  cursor: pointer;
-  font-family: "Montserrat", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  border-radius: 20px;
+  padding: 0.5rem 1rem;
   background-color: #134eff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
   border: 0;
-  color: aliceblue;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 70px;
+  margin-top: 30px;
+  transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
 }
-
+.formbuttons button:hover {
+  background-color: #ff6e1f;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: rotate(3deg);
+}
 .formbuttons button:disabled {
   background-color: #cccccc90;
   cursor: not-allowed;
@@ -64,9 +130,13 @@
 .containerGeneral {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
+  justify-content: center;
+  height: 95vh;
+  @media (max-width: 900px) {
+    height: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }
 
 .img {
@@ -85,4 +155,56 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.cont0 {
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 10px 50px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+}
+
+.cont1 {
+  margin: 20px;
+}
+.error {
+  font-size: 11px;
+  color: #ff6e1f;
+  margin: 5px 0;
+  font-style: italic;
+}
+
+@media (max-device-width: 600px) and (orientation: portrait) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .containerGeneral {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 90vw;
+  }
+  .cont0 {
+    display: flex;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+  .h1Titile {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 15px;
+  }
 }

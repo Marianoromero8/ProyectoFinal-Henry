@@ -13,7 +13,7 @@ const Cart = () => {
     increaseQuantity,
     removeFromCart,
   } = useCart();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const calculateTotal = () => {
     return cart.reduce((total, product) => {
@@ -81,32 +81,41 @@ const Cart = () => {
   const handlePayment = () => {
     const totalAmount = calculateTotal();
     if (totalAmount > 0) {
-      navigate('/Payment', { state: { total: totalAmount } })
+      navigate("/Payment", { state: { total: totalAmount } });
     }
-  }
+  };
 
   return (
     <div className={style.containerGeneralCart}>
-      <div className={style.ContainerButtonCart}>
-        <img src={LogoCart} className={style.LogoCart} />
-        <Link to="/home">
-          <button className={style.buttonCart}>HOME</button>
-        </Link>
-        <button onClick={clearCart} className={style.buttonCart}>
-          CLEAR
-        </button>
+      <div className={style.navCon}>
+        <div>
+          <img src={LogoCart} className={style.LogoCart} />
+        </div>
+        <div className={style.ContainerButtonCart}>
+          <Link to="/home">
+            <button className={style.buttonCart}>HOME</button>
+          </Link>
+          <button onClick={clearCart} className={style.buttonCart}>
+            CLEAR
+          </button>
+        </div>
       </div>
-      <input id={cartCheckboxId} type="checkbox" hidden />
+      <input
+        id={cartCheckboxId}
+        type="checkbox"
+        hidden
+        className={style.inputcon}
+      />
       <aside>
         <ul className={style.conteienrCards}>
           {Array.isArray(cart)
             ? cart.map((product) => (
-              <CartItem
-                key={product.id}
-                addToCart={() => addToCart(product)}
-                {...product}
-              />
-            ))
+                <CartItem
+                  key={product.id}
+                  addToCart={() => addToCart(product)}
+                  {...product}
+                />
+              ))
             : null}
         </ul>
         <div className={style.totalCart}>

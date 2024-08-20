@@ -140,186 +140,194 @@ const Form = () => {
 
   return (
     <div className={styles.containerGeneral}>
-      <h1 className={styles.h1Titile}>Create a New Clothing Item</h1>
+      <h1 className={styles.h1Titile}>
+        Create a <strong>New Clothing Item </strong>{" "}
+      </h1>
       {errorMessage && (
         <div className={styles["error-message"]}>{errorMessage}</div>
       )}
-      <form onSubmit={handleSubmit}>
-        <div className={styles.container1}>
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            required
-          />
-          {validationErrors.name && (
-            <p className={styles.error}>{validationErrors.name}</p>
-          )}
-        </div>
-        <div className={styles.container1}>
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={description}
-            onChange={handleChange}
-            required
-          />
-          {validationErrors.description && (
-            <p className={styles.error}>{validationErrors.description}</p>
-          )}
-        </div>
-        <div className={styles.container1}>
-          <label htmlFor="image">Image:</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            accept="image/*"
-            onChange={handleImageUpload}
-            required
-          />
-          {validationErrors.image && (
-            <p className={styles.error}>{validationErrors.image}</p>
-          )}
-        </div>
-        <div className={styles.container1}>
-          <label htmlFor="price">Price:</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={price}
-            onChange={handleChange}
-            required
-          />
-          {validationErrors.price && (
-            <p className={styles.error}>{validationErrors.price}</p>
-          )}
-        </div>
-        <div className={styles.container1}>
-          <label htmlFor="gender">Gender:</label>
-          <select
-            id="gender"
-            name="gender"
-            value={gender}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Unisex">Unisex</option>
-          </select>
-          {validationErrors.gender && (
-            <p className={styles.error}>{validationErrors.gender}</p>
-          )}
-        </div>
-        <div className={styles.container1}>
-          <label htmlFor="category">Category:</label>
-          <select
-            id="category"
-            name="category"
-            value={category}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Category</option>
-            <option value="T-shirt">T-shirt</option>
-            <option value="Pants">Pants</option>
-            <option value="Jackets">Jackets</option>
-          </select>
-          {validationErrors.category && (
-            <p className={styles.error}>{validationErrors.category}</p>
-          )}
-        </div>
-        <div className={styles.container1}>
-          <label htmlFor="sizes">Sizes:</label>
-          <select
-            id="sizes"
-            name="sizes"
-            multiple
-            value={sizes}
-            onChange={handleChange}
-            required
-          >
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="XXL">XXL</option>
-          </select>
-          {validationErrors.sizes && (
-            <p className={styles.error}>{validationErrors.sizes}</p>
-          )}
-        </div>
-
-        {sizes.map((size) => (
-          <div key={size} className={styles.container1}>
-            <label htmlFor={`stock-${size}`}>Stock for {size}:</label>
+      <form onSubmit={handleSubmit} className={styles.cont0}>
+        <div className={styles.cont1}>
+          <div className={styles.container1}>
+            <label htmlFor="name">Name:</label>
             <input
-              type="number"
-              id={`stock-${size}`}
-              name={`stock-${size}`}
-              value={stocks[size] || ""}
-              onChange={(e) => handleStockChange(e, size)}
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={handleChange}
               required
             />
+            {validationErrors.name && (
+              <p className={styles.error}>{validationErrors.name}</p>
+            )}
           </div>
-        ))}
-        {validationErrors.stocks && (
-          <p className={styles.error}>{validationErrors.stocks}</p>
-        )}
+          <div className={styles.container1}>
+            <label htmlFor="description">Description:</label>
+            <textarea
+              id="description"
+              name="description"
+              value={description}
+              onChange={handleChange}
+              required
+            />
+            {validationErrors.description && (
+              <p className={styles.error}>{validationErrors.description}</p>
+            )}
+          </div>
+          <div className={styles.container3}>
+            <label htmlFor="image">Image:</label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              accept="image/*"
+              onChange={handleImageUpload}
+              required
+              className={styles.inpuFile}
+            />
+            {validationErrors.image && (
+              <p className={styles.error}>{validationErrors.image}</p>
+            )}
+          </div>
+          <div className={styles.container1}>
+            <label htmlFor="price">Price:</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              value={price}
+              onChange={handleChange}
+              required
+            />
+            {validationErrors.price && (
+              <p className={styles.error}>{validationErrors.price}</p>
+            )}
+          </div>
+          <div className={styles.container1}>
+            <label htmlFor="gender">Gender:</label>
+            <select
+              id="gender"
+              name="gender"
+              value={gender}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Unisex">Unisex</option>
+            </select>
+            {validationErrors.gender && (
+              <p className={styles.error}>{validationErrors.gender}</p>
+            )}
+          </div>
+        </div>
+        <div className={styles.cont1}>
+          <div className={styles.container1}>
+            <label htmlFor="category">Category:</label>
+            <select
+              id="category"
+              name="category"
+              value={category}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Category</option>
+              <option value="T-shirt">T-shirt</option>
+              <option value="Pants">Pants</option>
+              <option value="Jackets">Jackets</option>
+            </select>
+            {validationErrors.category && (
+              <p className={styles.error}>{validationErrors.category}</p>
+            )}
+          </div>
+          <div className={styles.container1}>
+            <label htmlFor="sizes">Sizes:</label>
+            <select
+              id="sizes"
+              name="sizes"
+              multiple
+              value={sizes}
+              onChange={handleChange}
+              required
+            >
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+            {validationErrors.sizes && (
+              <p className={styles.error}>{validationErrors.sizes}</p>
+            )}
+          </div>
 
-        <div className={styles.container1}>
-          <label htmlFor="color">Color:</label>
-          <select
-            name="color"
-            id="color"
-            value={color}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Color</option>
-            <option value="Yellow">Yellow</option>
-            <option value="Pink">Pink</option>
-            <option value="Blue">Blue</option>
-            <option value="Red">Red</option>
-            <option value="Green">Green</option>
-            <option value="Black">Black</option>
-            <option value="White">White</option>
-          </select>
-          {validationErrors.color && (
-            <p className={styles.error}>{validationErrors.color}</p>
+          {sizes.map((size) => (
+            <div key={size} className={styles.container1}>
+              <label htmlFor={`stock-${size}`}>Stock for {size}:</label>
+              <input
+                type="number"
+                id={`stock-${size}`}
+                name={`stock-${size}`}
+                value={stocks[size] || ""}
+                onChange={(e) => handleStockChange(e, size)}
+                required
+              />
+            </div>
+          ))}
+          {validationErrors.stocks && (
+            <p className={styles.error}>{validationErrors.stocks}</p>
           )}
-        </div>
-        <div className={styles.container1}>
-          <label htmlFor="brand">Brand:</label>
-          <select
-            name="brand"
-            id="brand"
-            value={brand}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Brand</option>
-            <option value="Adidas">Adidas</option>
-            <option value="Nike">Nike</option>
-            <option value="Puma">Puma</option>
-            <option value="Reebok">Reebok</option>
-          </select>
-          {validationErrors.brand && (
-            <p className={styles.error}>{validationErrors.brand}</p>
-          )}
-        </div>
-        <div className={styles.formbuttons}>
-          <Link to="/home">
-            <button type="button">Back</button>
-          </Link>
-          <button type="submit">Create</button>
+
+          <div className={styles.container1}>
+            <label htmlFor="color">Color:</label>
+            <select
+              name="color"
+              id="color"
+              value={color}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Color</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Pink">Pink</option>
+              <option value="Blue">Blue</option>
+              <option value="Red">Red</option>
+              <option value="Green">Green</option>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+            </select>
+            {validationErrors.color && (
+              <p className={styles.error}>{validationErrors.color}</p>
+            )}
+          </div>
+          <div className={styles.container1}>
+            <label htmlFor="brand">Brand:</label>
+            <select
+              name="brand"
+              id="brand"
+              value={brand}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Brand</option>
+              <option value="Adidas">Adidas</option>
+              <option value="Nike">Nike</option>
+              <option value="Puma">Puma</option>
+              <option value="Reebok">Reebok</option>
+            </select>
+            {validationErrors.brand && (
+              <p className={styles.error}>{validationErrors.brand}</p>
+            )}
+          </div>
+
+          <div className={styles.formbuttons}>
+            <Link to="/home">
+              <button type="button">Back</button>
+            </Link>
+            <button type="submit">Create</button>
+          </div>
         </div>
       </form>
     </div>
