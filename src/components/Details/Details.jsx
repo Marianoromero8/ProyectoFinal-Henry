@@ -39,12 +39,26 @@ const Details = () => {
   const handleAddToCart = async () => {
     if (selectedSize) {
       try {
+        // Verifica que haya suficiente stock disponible
+        if (product.stock[selectedSize] < quantity) {
+          alert("Not enough stock available.");
+          return;
+        }
+
+        // Actualiza la cantidad de stock para el tamaño seleccionado
+        const updatedStock = {
+          ...product.stock,
+          [selectedSize]: product.stock[selectedSize] - quantity,
+        };
+
         addToCart({ ...product, selectedSize, quantity });
 
-        await axios.put(
+        // Envía la actualización del stock al backend
+        const response = await axios.put(
           `https://pf-henry-backend-ts0n.onrender.com/admin/edit/${product.id}`,
-          { size: selectedSize, quantity }
+          { stock: updatedStock } // Enviar el stock actualizado
         );
+
         alert("Product added to cart and stock updated");
       } catch (error) {
         console.error(
@@ -59,7 +73,6 @@ const Details = () => {
       alert("Please select a size.");
     }
   };
-
   return (
     <div>
       {product && (
