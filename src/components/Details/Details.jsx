@@ -6,7 +6,7 @@ import style from "./Details.module.css";
 import arrowExit from "../../assets/flecha-17.png";
 import { useCart } from "../../hooks/useCart";
 import carrito from "../../assets/CART-32.png";
-import axios from 'axios';
+import axios from "axios";
 
 const Details = () => {
   const { id } = useParams();
@@ -28,9 +28,10 @@ const Details = () => {
   }
 
   if (productStatus === "failed") {
-    const errorMessage = typeof productError === 'object'
-      ? productError?.message || 'Unknown error occurred'
-      : productError;
+    const errorMessage =
+      typeof productError === "object"
+        ? productError?.message || "Unknown error occurred"
+        : productError;
 
     return <p>Error: {errorMessage}</p>;
   }
@@ -44,16 +45,20 @@ const Details = () => {
           `https://pf-henry-backend-ts0n.onrender.com/admin/edit/${product.id}`,
           { size: selectedSize, quantity }
         );
-        alert('Product added to cart and stock updated');
+        alert("Product added to cart and stock updated");
       } catch (error) {
-        console.error('Error updating stock:', error.response?.data || error.message);
-        alert('There was a problem updating the stock. Check the console for details.');
+        console.error(
+          "Error updating stock:",
+          error.response?.data || error.message
+        );
+        alert(
+          "There was a problem updating the stock. Check the console for details."
+        );
       }
     } else {
       alert("Please select a size.");
     }
   };
-
 
   return (
     <div>
@@ -68,7 +73,10 @@ const Details = () => {
           </div>
           <div className={style.containerRDetail}>
             <h1 className={style.h1Detail}>{product.name}</h1>
-            Price:<strong> ${product.price}</strong>
+            <p className={style.pDetail}>
+              {" "}
+              Price:<strong> ${product.price}</strong>
+            </p>
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetail}>
               Color: <strong>{product.color}</strong>

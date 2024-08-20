@@ -9,7 +9,7 @@
 
 .containerCard:hover {
   transform: scale(1.01);
-  box-shadow: rgba(0, 0, 0, 0.557) 0px 1px 6px;
+  box-shadow: rgba(0, 0, 0, 0.162) 0px 1px 6px;
   border-radius: 20px;
 }
 
@@ -46,10 +46,9 @@
 }
 
 .details h2 {
-  font-size: 1.2em;
   color: black;
   font-family: "Montserrat", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   margin: 0;
   margin-bottom: 3px;
@@ -133,7 +132,7 @@
     width: 260px;
     margin: top;
     transition: transform 0.2s;
-    box-shadow: rgba(0, 0, 0, 0.046) 0px 1px 5px;
+    box-shadow: rgba(0, 0, 0, 0.155) 0px 1px 5px;
     border-radius: 20px;
   }
 
