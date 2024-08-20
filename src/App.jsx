@@ -88,13 +88,13 @@ function App() {
         />
 
         <Route path="/Dashboard/Products" element={
-          <RouteProtect role='superAdmin'>
+          <RouteProtect roles={['admin', 'superAdmin']}>
             <ProductsAdmin />
           </RouteProtect>
         } />
 
         <Route path="/Dashboard/Users" element={
-          <RouteProtect role='superAdmin'>
+          <RouteProtect roles={['admin', 'superAdmin']}>
             <UsersAdmin />
           </RouteProtect>
         } />
