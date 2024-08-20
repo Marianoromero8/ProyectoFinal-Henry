@@ -24,7 +24,6 @@ const CheckoutForm = ({ total }) => {
   const navigate = useNavigate();
   const email = useSelector((state) => state.auth.user?.email); // Getting email from Redux
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,6 +42,21 @@ const CheckoutForm = ({ total }) => {
 
     const { id } = paymentMethod;
 
+    // Preparar los detalles del pedido para enviar al backend
+    const orderItems = cartItem.map((item) => ({
+      productId: item.id,
+      quantity: item.quantity, // Asumiendo que `cartItem` tiene `quantity`
+      size: item.size, // Asumiendo que `cartItem` tiene `size`
+      name: item.name,
+      description: item.description,
+      color: item.color,
+      brand: item.brand,
+      price: item.price,
+      images: item.images,
+      category: item.category,
+      stock: item.stock, // Puede ser útil para el backend manejar el stock
+    }));
+
     try {
       const response = await axios.post(
         "https://pf-henry-backend-ts0n.onrender.com/product/checkout",
@@ -50,7 +64,7 @@ const CheckoutForm = ({ total }) => {
           id,
           amount: total * 100, // Convertir en centavos el total
           email,
-          cartItem
+          orderItems, // Enviar los detalles del pedido
         }
       );
 
