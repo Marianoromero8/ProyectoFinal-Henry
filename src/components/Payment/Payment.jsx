@@ -24,7 +24,6 @@ const CheckoutForm = ({ total }) => {
   const navigate = useNavigate();
   const email = useSelector((state) => state.auth.user?.email); // Getting email from Redux
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -43,6 +42,21 @@ const CheckoutForm = ({ total }) => {
 
     const { id } = paymentMethod;
 
+    // Preparar los detalles del pedido para enviar al backend
+    const orderItems = cartItem.map((item) => ({
+      productId: item.id,
+      quantity: item.quantity, // Asumiendo que `cartItem` tiene `quantity`
+      size: item.size, // Asumiendo que `cartItem` tiene `size`
+      name: item.name,
+      description: item.description,
+      color: item.color,
+      brand: item.brand,
+      price: item.price,
+      images: item.images,
+      category: item.category,
+      stock: item.stock, // Stock del producto actual
+    }));
+
     try {
       const response = await axios.post(
         "https://pf-henry-backend-ts0n.onrender.com/product/checkout",
@@ -50,15 +64,32 @@ const CheckoutForm = ({ total }) => {
           id,
           amount: total * 100, // Convertir en centavos el total
           email,
-          cartItem
+          orderItems, // Enviar los detalles del pedido
         }
       );
 
       if (response.status === 200) {
+        // Restar el stock en el backend
+        for (let item of orderItems) {
+          const { productId, quantity, size } = item;
+
+          // Verificar el stock existente y restar la cantidad comprada
+          const currentStock = item.stock[size];
+          if (currentStock !== undefined && currentStock >= quantity) {
+            const updatedStock = { [size]: currentStock - quantity };
+
+            // Realiza la actualización del producto en el backend
+            await axios.put(
+              `https://pf-henry-backend-ts0n.onrender.com/product/${productId}`,
+              { stock: updatedStock }
+            );
+          }
+        }
+
         alert("Buy successfully");
         elements.getElement(CardElement).clear();
         clearCart();
-        navigate("/home"); //Mas adelante a un recibo o algo
+        navigate("/home"); // Mas adelante a un recibo o algo
       } else {
         alert("Payment failed");
         console.error("Payment failed:", response.data);
