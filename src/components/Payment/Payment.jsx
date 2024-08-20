@@ -54,7 +54,7 @@ const CheckoutForm = ({ total }) => {
       price: item.price,
       images: item.images,
       category: item.category,
-      stock: item.stock, // Puede ser útil para el backend manejar el stock
+      stock: item.stock, // Stock del producto actual
     }));
 
     try {
@@ -69,10 +69,27 @@ const CheckoutForm = ({ total }) => {
       );
 
       if (response.status === 200) {
+        // Restar el stock en el backend
+        for (let item of orderItems) {
+          const { productId, quantity, size } = item;
+
+          // Verificar el stock existente y restar la cantidad comprada
+          const currentStock = item.stock[size];
+          if (currentStock !== undefined && currentStock >= quantity) {
+            const updatedStock = { [size]: currentStock - quantity };
+
+            // Realiza la actualización del producto en el backend
+            await axios.put(
+              `https://pf-henry-backend-ts0n.onrender.com/product/${productId}`,
+              { stock: updatedStock }
+            );
+          }
+        }
+
         alert("Buy successfully");
         elements.getElement(CardElement).clear();
         clearCart();
-        navigate("/home"); //Mas adelante a un recibo o algo
+        navigate("/home"); // Mas adelante a un recibo o algo
       } else {
         alert("Payment failed");
         console.error("Payment failed:", response.data);
