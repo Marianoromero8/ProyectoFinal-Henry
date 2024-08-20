@@ -195,7 +195,7 @@ const EditProducts = () => {
             ...prevState,
             stock: {
                 ...prevState.stock,
-                [size]: value
+                [size]: Number(value)
             }
         }));
     };
