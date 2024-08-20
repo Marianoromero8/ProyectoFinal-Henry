@@ -39,10 +39,11 @@
   font-size: 14px;
   font-weight: 500;
   padding: 20px;
-  background-color: rgba(255, 254, 254, 0.551);
   align-items: center;
   border-radius: 15px;
   margin-top: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.171);
+  background-color: #edf2f4a1;
 }
 
 .container h2 {

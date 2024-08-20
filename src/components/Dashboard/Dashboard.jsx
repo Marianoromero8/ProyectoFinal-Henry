@@ -49,12 +49,12 @@ const Dashboard = () => {
         <Link to="/form" className={styles.links}>
           <button className={styles.menuButton}>Add new product</button>
         </Link>
-        {user && user.role === "superAdmin" && (
+        {user && (user.role === "admin" || user.role === "superAdmin") && (
           <Link to="/Dashboard/Products">
             <button className={styles.menuButton}>Products</button>
           </Link>
         )}
-        {user && user.role === "superAdmin" && (
+        {user && (user.role === "admin" || user.role === "superAdmin") && (
           <Link to="/Dashboard/Users">
             <button className={styles.menuButton}>Users</button>
           </Link>
