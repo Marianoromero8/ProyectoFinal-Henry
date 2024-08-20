@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const API_URL_USERS = "https://pf-henry-backend-ts0n.onrender.com/admin/user";
 
@@ -8,6 +9,7 @@ const UsersAdmin = () => {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const superAdmin = useSelector((state) => state.auth.user)
 
     // Function to fetch users
     const fetchUsers = async () => {
@@ -50,6 +52,10 @@ const UsersAdmin = () => {
         }
     };
 
+    const filteredUsers = superAdmin.role === 'superAdmin'
+        ? users
+        : users.filter(user => user.role !== 'superAdmin');
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
 
@@ -57,7 +63,7 @@ const UsersAdmin = () => {
         <div>
             <h1>Users Admin</h1>
             <ul>
-                {users.map(user => (
+                {filteredUsers.map(user => (
                     <li key={user.uid}>
                         {user.email} - {user.role} - {user.active ? 'Active' : 'Inactive'}
                         <button onClick={() => handleToggleUserStatus(user.uid)}>
@@ -69,7 +75,9 @@ const UsersAdmin = () => {
                         >
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
-                            <option value="superAdmin">Super Admin</option>
+                            {superAdmin.role === "superAdmin" && (
+                                <option value="superAdmin">Super Admin</option>
+                            )}
                         </select>
                     </li>
                 ))}
