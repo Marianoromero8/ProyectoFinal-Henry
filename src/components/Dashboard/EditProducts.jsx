@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { productsDetails, updateProduct } from '../../store/slice/productSlice';
+import style from './EditProducts.module.css'
 
 const EditProducts = () => {
   const { id } = useParams();
