@@ -83,13 +83,13 @@ const ProductsAdmin = () => {
       <div className={style.containerDatos}>
         <h1>Products Admin</h1>
 
-        <input
+        {/* <input
           type="text"
           placeholder="Filter by name"
           value={nameFilter}
           onChange={handleNameFilterChange}
           className={style.inputProduct}
-        />
+        /> */}
         <ul>
           {products.map((product) => (
             <li key={product.id} className={style.ulProduct}>
