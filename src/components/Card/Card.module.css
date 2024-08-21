@@ -4,7 +4,7 @@
   margin: top;
   transition: transform 0.2s;
   box-shadow: rgba(0, 0, 0, 0.132) 0px 1px 5px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .containerCard:hover {

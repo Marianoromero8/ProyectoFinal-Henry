@@ -143,26 +143,25 @@ const Details = () => {
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetailDescrip}>{product.description}</p>
             <div className={style.quantityContainer}>
-              <button
-                onClick={() => handleQuantityChange(quantity - 1)}
-                disabled={quantity <= 1}
-              >
-                -
-              </button>
-              <span>{quantity}</span>
-              <button
-                onClick={() => handleQuantityChange(quantity + 1)}
-                disabled={quantity >= (remainingStock[selectedSize] || 0)}
-              >
-                +
+              <div className={style.contbutt}>
+                <button
+                  onClick={() => handleQuantityChange(quantity - 1)}
+                  disabled={quantity <= 1}
+                >
+                  -
+                </button>
+                <span>{quantity}</span>
+                <button
+                  onClick={() => handleQuantityChange(quantity + 1)}
+                  disabled={quantity >= (remainingStock[selectedSize] || 0)}
+                >
+                  +
+                </button>
+              </div>
+              <button onClick={handleAddToCart} className={style.containerCarr}>
+                <img src={carrito} className={style.carrito} />
               </button>
             </div>
-            <button
-              onClick={handleAddToCart}
-              className={style.containerCarr}
-            >
-              <img src={carrito} className={style.carrito} />
-            </button>
             <Link to="/home" className={style.links}>
               <button className={style.menuButton}>
                 GO TO HOME{" "}

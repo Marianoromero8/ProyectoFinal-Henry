@@ -9,6 +9,12 @@ import icon2 from "../../assets/icoosAbout-07.png";
 import icon3 from "../../assets/icoosAbout-08.png";
 import icon4 from "../../assets/icoosAbout-09.png";
 
+import nahuel from "../../assets/fotos/nahuel.jpg";
+import shirley from "../../assets/fotos/shirley.jpeg";
+import marian from "../../assets/fotos/marian.jpg";
+import gonza from "../../assets/fotos/gonza.jpg";
+import blue from "../../assets/fotos/blue.jpg";
+
 const AboutUs = () => {
   return (
     <div className={style.containerGeneral}>
@@ -75,15 +81,9 @@ const AboutUs = () => {
           <div className={style.perfilesBack}>
             <p>BackEnd</p>
             <div>
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg}
-              />
+              <img src={nahuel} className={style.perfilesImg} />
 
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg}
-              />
+              <img src={shirley} className={style.perfilesImg} />
               <img
                 src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
                 className={style.perfilesImg}
@@ -92,18 +92,9 @@ const AboutUs = () => {
           </div>
           <div className={style.perfilesFront}>
             <div>
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg2}
-              />
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg2}
-              />
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg2}
-              />
+              <img src={marian} className={style.perfilesImg2} />
+              <img src={gonza} className={style.perfilesImg2} />
+              <img src={blue} className={style.perfilesImg2} />
             </div>
             <p>FrontEnd</p>
           </div>
