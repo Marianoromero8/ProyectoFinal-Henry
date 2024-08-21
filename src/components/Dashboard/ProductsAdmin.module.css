@@ -1,0 +1,187 @@
+.containerGeneral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 150px;
+  margin: -10px;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+      45deg,
+      rgba(236, 233, 233, 0.1) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(192, 191, 191, 0.1) 50%,
+      rgba(171, 169, 169, 0.1) 75%,
+      transparent 75%,
+      transparent
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.1) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(215, 208, 230, 0.11) 50%,
+      rgba(255, 255, 255, 0.1) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-size: 20px 20px;
+}
+.containerDatos {
+  background-color: #edf2f4;
+  width: 400px;
+  padding: 50px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
+}
+
+.containerDatos hr {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.containerDatos h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.containerDatos input {
+  border: 0;
+  background-color: #fdfdfd00;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.167);
+  width: 200px;
+  padding: 15px;
+  margin-top: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 10px;
+}
+
+.containerDatos input:focus {
+  outline: none;
+}
+.containerDatos input:not(:placeholder-shown) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.712);
+}
+
+.containerDatos ul {
+  padding: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+.containerDatos button {
+  padding: 5px 10px;
+  margin: 5px 10px;
+  background-color: rgba(81, 81, 81, 0.059);
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #134eff;
+  border: 1px solid rgba(0, 0, 0, 0.041);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
+  transition: all 0.5s;
+}
+.containerDatos button:hover {
+  border: 1px solid #ff6e1f;
+  transition: all 0.5s;
+}
+
+.buttonProduct {
+  padding: 0.5rem 1rem;
+  background-color: #134eff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
+  width: 70px;
+}
+
+.buttonProduct:hover {
+  background-color: #ff6e1f;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: rotate(3deg);
+}
+.ulProduct {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-device-width: 600px) and (orientation: portrait) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .containerGeneral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+    margin-top: 150px;
+    margin: -10px;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background: none;
+  }
+  .containerDatos {
+    animation: fadeIn 1s ease-in;
+    width: 80vw;
+    box-shadow: none;
+  }
+  .containerDatos button {
+    padding: 5px 5px;
+    margin: 5px 10px;
+    background-color: rgba(81, 81, 81, 0.059);
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #134eff;
+    border: 1px solid rgba(0, 0, 0, 0.041);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s;
+    transition: 0.3s linear;
+    text-align: center;
+    transition: all 0.5s;
+  }
+  .ulProduct {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin: 20px;
+  }
+  .containerDatos ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
