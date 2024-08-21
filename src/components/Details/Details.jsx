@@ -25,10 +25,8 @@ const Details = () => {
 
   useEffect(() => {
     if (product && product.stock) {
-      // Inicializar el stock restante basado en el stock inicial del producto
       const initialRemainingStock = { ...product.stock };
 
-      // Reducir el stock restante basado en los elementos ya en el carrito
       cart.forEach((item) => {
         if (item.id === product.id) {
           initialRemainingStock[item.selectedSize] -= item.quantity;
@@ -76,7 +74,6 @@ const Details = () => {
 
       alert("Product added to cart");
 
-      // Reiniciar cantidad y tamaño después de añadir al carrito
       setQuantity(1);
       setSelectedSize("");
     } else {
@@ -98,15 +95,14 @@ const Details = () => {
           <div className={style.containerRDetail}>
             <h1 className={style.h1Detail}>{product.name}</h1>
             <p className={style.pDetail}>
-              {" "}
-              Price:<strong> ${product.price}</strong>
+              Price: <strong>${product.price}</strong>
             </p>
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetail}>
               Color: <strong>{product.color}</strong>
             </p>
             <div className={style.sizeContainer}>
-              <p className={style.pDetail}>Sizes and Stock: </p>
+              <p className={style.pDetail}>Sizes and Stock:</p>
               <div className={style.pDetailContainer}>
                 {Object.entries(remainingStock || {}).length > 0 ? (
                   Object.entries(remainingStock).map(([size, stock]) => (
@@ -132,13 +128,13 @@ const Details = () => {
             </div>
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetail}>
-              Brand : <strong>{product.brand} </strong>
+              Brand: <strong>{product.brand}</strong>
             </p>
             <p className={style.pDetail}>
-              Gender : <strong> {product.gender}</strong>
+              Gender: <strong>{product.gender}</strong>
             </p>
             <p className={style.pDetail}>
-              Category : <strong>{product.category} </strong>
+              Category: <strong>{product.category}</strong>
             </p>
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetailDescrip}>{product.description}</p>
@@ -157,12 +153,12 @@ const Details = () => {
                 +
               </button>
             </div>
-            <button
-              onClick={handleAddToCart}
-              className={style.containerCarr}
-            >
-              <img src={carrito} className={style.carrito} />
+            <button onClick={handleAddToCart} className={style.containerCarr}>
+              <img src={carrito} className={style.carrito} alt="Add to cart" />
             </button>
+            <Link to={`/reviews/${id}`} className={style.links}>
+              <button className={style.menuButton}>GO TO REVIEWS</button>
+            </Link>
             <Link to="/home" className={style.links}>
               <button className={style.menuButton}>
                 GO TO HOME{" "}
