@@ -19,6 +19,7 @@ import Payment from "./components/Payment/Payment";
 import ProductsAdmin from "./components/Dashboard/ProductsAdmin";
 import UsersAdmin from "./components/Dashboard/UsersAdmin";
 import EditProducts from "./components/Dashboard/EditProducts";
+import Reviews from "./components/Reviews/Reviews"; // Importa el componente Reviews
 
 // npm run dev ==> en la terminal para correr el front
 function App() {
@@ -35,19 +36,12 @@ function App() {
     <div className=".App">
       <Routes>
         <Route path="/" element={<Landing />} />
-
         <Route path="/Home" element={<Home />} />
-
         <Route path="/Details/:id" element={<Details />} />
-
         <Route path="/AboutUs" element={<AboutUs />} />
-
         <Route path="/Login" element={<Login />} />
-
         <Route path="/Register" element={<Register />} />
-
         <Route path="/Cart" element={<Cart />} />
-
         <Route path="*" element={<Error404 />} />
 
         <Route
@@ -80,33 +74,43 @@ function App() {
         <Route
           path="/Dashboard"
           element={
-            <RouteProtect roles={['admin', 'superAdmin']}>
+            <RouteProtect roles={["admin", "superAdmin"]}>
               <Dashboard />
             </RouteProtect>
           }
         />
 
-        <Route path="/Dashboard/Products" element={
-          <RouteProtect roles={['admin', 'superAdmin']}>
-            <ProductsAdmin />
-          </RouteProtect>
-        } />
+        <Route
+          path="/Dashboard/Products"
+          element={
+            <RouteProtect roles={["admin", "superAdmin"]}>
+              <ProductsAdmin />
+            </RouteProtect>
+          }
+        />
 
-        <Route path="/Dashboard/Users" element={
-          <RouteProtect roles={['admin', 'superAdmin']}>
-            <UsersAdmin />
-          </RouteProtect>
-        } />
+        <Route
+          path="/Dashboard/Users"
+          element={
+            <RouteProtect roles={["admin", "superAdmin"]}>
+              <UsersAdmin />
+            </RouteProtect>
+          }
+        />
 
-        <Route path="/Dashboard/Products/edit/:id" element={
-          <RouteProtect roles={['admin', 'superAdmin']}>
-            <EditProducts />
-          </RouteProtect>
-        }>
-        </Route>
+        <Route
+          path="/Dashboard/Products/edit/:id"
+          element={
+            <RouteProtect roles={["admin", "superAdmin"]}>
+              <EditProducts />
+            </RouteProtect>
+          }
+        />
 
+        {/* Nueva ruta para Reviews */}
+        <Route path="/reviews/:idProduct" element={<Reviews />} />
       </Routes>
-    </div >
+    </div>
   );
 }
 
