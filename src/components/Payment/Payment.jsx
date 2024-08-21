@@ -10,7 +10,8 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./Payment.module.css";
 import { useCart } from "../../hooks/useCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { updateProduct } from "../../store/slice/productSlice";
 
 const stripePromise = loadStripe(
   "pk_test_51Pj8ScIbsoegOUXclAD67Mt70fEPVz9HmiVOFCxTprozUZKmly3uRYFdihVhJayHP2mZZcuZ6MTPC7y5uyzygYXd00Wwpj4aCi"
@@ -20,14 +21,13 @@ const CheckoutForm = ({ total }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
-  const { clearCart, cartItem } = useCart();
+  const { clearCart, cart } = useCart();
   const navigate = useNavigate();
   const email = useSelector((state) => state.auth.user?.email); // Getting email from Redux
-
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -43,42 +43,61 @@ const CheckoutForm = ({ total }) => {
 
     const { id } = paymentMethod;
 
+    const formattedCartItems = cart.map(item => ({
+      productId: item.id, // Asegúrate de que 'id' en cartItem sea 'productId' en el backend
+      size: item.selectedSize,
+      quantity: item.quantity
+    }));
+
+    const dataToSend = {
+      id,
+      amount: total * 100, // Convertir en centavos el total
+      email,
+      cartItems: formattedCartItems
+    };
+
+    console.log("Body:", dataToSend);
+
+
     try {
       const response = await axios.post(
         "https://pf-henry-backend-ts0n.onrender.com/product/checkout",
-        {
-          id,
-          amount: total * 100, // Convertir en centavos el total
-          email,
-          cartItem
-        }
+        dataToSend
       );
 
       if (response.status === 200) {
+        for (const item of formattedCartItems) {
+          const { productId, size, quantity } = item;
+
+          const product = await axios.get(`https://pf-henry-backend-ts0n.onrender.com/product/${productId}`);
+          const currentStock = product.data.stock;
+
+          await dispatch(updateProduct({
+            id: productId,
+            product: {
+              stock: {
+                [size]: currentStock[size] - quantity
+              }
+            }
+          }));
+        }
+
         alert("Buy successfully");
         elements.getElement(CardElement).clear();
         clearCart();
-        navigate("/home"); //Mas adelante a un recibo o algo
+        navigate("/home");
       } else {
         alert("Payment failed");
         console.error("Payment failed:", response.data);
       }
     } catch (error) {
-      if (error.response) {
-        // El servidor respondió con un código de estado fuera del rango 2xx
-        console.error("Error response:", error.response.data);
-      } else if (error.request) {
-        // La solicitud fue hecha pero no hubo respuesta
-        console.error("Error request:", error.request);
-      } else {
-        // Algo sucedió al configurar la solicitud
-        console.error("Error message:", error.message);
-      }
+      console.error("Error:", error.message);
       alert("An error occurred");
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
     <div className={styles.container}>
