@@ -106,7 +106,9 @@ const Reviews = () => {
           reviews.map((review) => (
             <div key={review.id} className={styles.reviewItem}>
               <p>
-                <strong>{review.user.email}</strong>
+                <strong>{review.user.email}</strong> -{" "}
+                <span>{review.createdAt.slice(0, 10)}</span>{" "}
+                {/* Mostrar la fecha de creación */}
               </p>
               <p>{review.comment}</p>
             </div>

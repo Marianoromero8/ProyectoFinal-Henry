@@ -93,13 +93,16 @@
 
 .perfilesImg {
   width: 90px;
-  border-radius: 50px;
+  height: 90px;
+  border-radius: 45px;
+
   margin-left: 10px;
 }
 
 .perfilesImg2 {
-  width: 100px;
-  border-radius: 50px;
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
   margin-right: 10px;
 }
 
@@ -252,9 +255,16 @@
   }
   .containerGeneral {
     animation: fadeIn 1s ease-in;
-    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
+  }
+  .containerPerfilesGeneral {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    align-items: center;
   }
   .aboutChaContainer {
     background-color: #dadee0;
@@ -292,17 +302,16 @@
     font-style: normal;
     line-height: 1.8;
     margin: 0;
-    padding-left: 18%;
-    padding-right: 18%;
     padding-top: 10px;
     padding-bottom: 20px;
     text-align: justify;
   }
 
   .iconoContainer {
-    width: 80px;
+    width: 70px;
     margin-top: 25px;
     margin-bottom: 35px;
+    margin-right: 10%;
     transition: all 0.5s;
   }
   .parrafo {
@@ -313,7 +322,7 @@
     width: 90%;
     height: 30px;
     color: #dadee0;
-    margin: 20px;
+    margin: 5px;
   }
   .perfilesFront {
     width: 90%;
@@ -323,12 +332,17 @@
     margin-bottom: 50px;
   }
   .perfilesImg {
-    width: 55px;
+    width: 45px;
+    height: 45px;
+    border-radius: 45px;
+
     margin-left: 10px;
   }
   .perfilesImg2 {
-    width: 55px;
+    width: 45px;
+    height: 45px;
     margin-right: 10px;
-    background-color: red;
+  }
+  .parrafo3 {
   }
 }
