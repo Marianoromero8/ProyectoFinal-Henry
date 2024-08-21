@@ -46,6 +46,11 @@ const EditProducts = () => {
   };
 
   const handleStockChange = (size, value) => {
+    const quantityStock = Number(value)
+    if (quantityStock > 80) {
+      alert(`El stock no puede exceder de ${MAX_STOCK} unidades para el talle ${size}.`);
+      return;
+    }
     setLocalProduct((prevState) => ({
       ...prevState,
       stock: {
