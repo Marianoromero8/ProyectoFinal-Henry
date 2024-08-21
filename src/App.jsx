@@ -20,8 +20,7 @@ import ProductsAdmin from "./components/Dashboard/ProductsAdmin";
 import UsersAdmin from "./components/Dashboard/UsersAdmin";
 import EditProducts from "./components/Dashboard/EditProducts";
 
-// npm run dev ==> en la terminal dentro de la carpeta 'vite-project' para correr el front
-// Lo comentado es para el login y register para autorizacion de terceros
+// npm run dev ==> en la terminal para correr el front
 function App() {
   const dispatch = useDispatch();
 

@@ -6,7 +6,6 @@ const initialState = {
     cart: JSON.parse(localStorage.getItem("cart") || "[]"),
 };
 
-
 const reducer = (state, action) => {
     console.log("Current cart:", state.cart);
     const { type, payload } = action;

@@ -11,9 +11,8 @@ import {
 import axios from "axios";
 
 const API_URL = "https://pf-henry-backend-ts0n.onrender.com/product/create";
-const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${
-  import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
-}/image/upload`;
+const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+  }/image/upload`;
 const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
 const structureData = (formData) => {

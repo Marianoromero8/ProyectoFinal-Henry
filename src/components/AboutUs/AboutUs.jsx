@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
-
 import style from "./AboutUs.module.css";
 import Icono from "../../assets/iconos-11.png";
 import Logo from "../../assets/Untitled-1-10.png";

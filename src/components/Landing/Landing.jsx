@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/slice/authThunks";
 import { CartContext } from "../../context/cart";
 
-
 //Login y register para lo que es inicio de sesion y autorizacion de terceros
 
 const Landing = () => {
