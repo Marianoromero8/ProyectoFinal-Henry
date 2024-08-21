@@ -121,7 +121,7 @@
   color: #ff6e1f;
   align-items: center;
   background-color: #e0ddda00;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .menuButton:hover {
@@ -156,7 +156,8 @@ a {
   text-decoration: none;
 }
 .carrito {
-  width: 60px;
+  width: 50px;
+  margin-top: 20px;
   border: 0;
   border-radius: 50px;
 }
@@ -195,6 +196,21 @@ a {
   transition: all 0.5s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: rotate(3deg);
+}
+
+.contbutt {
+  display: flex;
+  padding-top: 10px;
+  width: 90px;
+  justify-content: space-between;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.contbutt button {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
 }
 
 @media (min-device-width: 712px) and (max-device-width: 1138px) and (orientation: portrait) {
