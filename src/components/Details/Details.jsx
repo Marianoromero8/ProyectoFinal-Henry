@@ -6,7 +6,6 @@ import style from "./Details.module.css";
 import arrowExit from "../../assets/flecha-17.png";
 import { useCart } from "../../hooks/useCart";
 import carrito from "../../assets/CART-32.png";
-import axios from "axios";
 
 const Details = () => {
   const { id } = useParams();
@@ -14,14 +13,31 @@ const Details = () => {
   const product = useSelector((state) => state.products.productsDetails);
   const productStatus = useSelector((state) => state.products.productsStatus);
   const productError = useSelector((state) => state.products.productsError);
-  const { addToCart } = useCart();
+  const { addToCart, cart } = useCart();
 
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
+  const [remainingStock, setRemainingStock] = useState({});
 
   useEffect(() => {
     dispatch(productsDetails(id));
   }, [id, dispatch]);
+
+  useEffect(() => {
+    if (product && product.stock) {
+      // Inicializar el stock restante basado en el stock inicial del producto
+      const initialRemainingStock = { ...product.stock };
+
+      // Reducir el stock restante basado en los elementos ya en el carrito
+      cart.forEach((item) => {
+        if (item.id === product.id) {
+          initialRemainingStock[item.selectedSize] -= item.quantity;
+        }
+      });
+
+      setRemainingStock(initialRemainingStock);
+    }
+  }, [product, cart]);
 
   if (productStatus === "loading") {
     return <p>Loading...</p>;
@@ -36,43 +52,38 @@ const Details = () => {
     return <p>Error: {errorMessage}</p>;
   }
 
-  const handleAddToCart = async () => {
+  const handleQuantityChange = (newQuantity) => {
+    const stock = remainingStock[selectedSize] || 0;
+    if (newQuantity > 0 && newQuantity <= stock) {
+      setQuantity(newQuantity);
+    }
+  };
+
+  const handleAddToCart = () => {
     if (selectedSize) {
-      try {
-        // Verifica que haya suficiente stock disponible
-        if (product.stock[selectedSize] < quantity) {
-          alert("Not enough stock available.");
-          return;
-        }
-
-        // Actualiza la cantidad de stock para el tamaño seleccionado
-        const updatedStock = {
-          ...product.stock,
-          [selectedSize]: product.stock[selectedSize] - quantity,
-        };
-
-        addToCart({ ...product, selectedSize, quantity });
-
-        // Envía la actualización del stock al backend
-        const response = await axios.put(
-          `https://pf-henry-backend-ts0n.onrender.com/admin/edit/${product.id}`,
-          { stock: updatedStock } // Enviar el stock actualizado
-        );
-
-        alert("Product added to cart and stock updated");
-      } catch (error) {
-        console.error(
-          "Error updating stock:",
-          error.response?.data || error.message
-        );
-        alert(
-          "There was a problem updating the stock. Check the console for details."
-        );
+      const stock = remainingStock[selectedSize] || 0;
+      if (stock < quantity) {
+        alert("Not enough stock available.");
+        return;
       }
+
+      addToCart({ ...product, selectedSize, quantity });
+
+      setRemainingStock((prevStock) => ({
+        ...prevStock,
+        [selectedSize]: prevStock[selectedSize] - quantity,
+      }));
+
+      alert("Product added to cart");
+
+      // Reiniciar cantidad y tamaño después de añadir al carrito
+      setQuantity(1);
+      setSelectedSize("");
     } else {
       alert("Please select a size.");
     }
   };
+
   return (
     <div>
       {product && (
@@ -97,21 +108,26 @@ const Details = () => {
             <div className={style.sizeContainer}>
               <p className={style.pDetail}>Sizes and Stock: </p>
               <div className={style.pDetailContainer}>
-                {Object.entries(product.stock || {}).map(([size, stock]) => (
-                  <div key={size}>
-                    <label>
-                      <input
-                        type="radio"
-                        name="size"
-                        value={size}
-                        checked={selectedSize === size}
-                        onChange={() => setSelectedSize(size)}
-                      />
-                      <strong>{size}: </strong>
-                      {stock}
-                    </label>
-                  </div>
-                ))}
+                {Object.entries(remainingStock || {}).length > 0 ? (
+                  Object.entries(remainingStock).map(([size, stock]) => (
+                    <div key={size}>
+                      <label>
+                        <input
+                          type="radio"
+                          name="size"
+                          value={size}
+                          checked={selectedSize === size}
+                          onChange={() => setSelectedSize(size)}
+                          disabled={stock === 0}
+                        />
+                        <strong>{size}: </strong>
+                        {stock}
+                      </label>
+                    </div>
+                  ))
+                ) : (
+                  <p>No stock available</p>
+                )}
               </div>
             </div>
             <hr className={style.hrDetail}></hr>
@@ -126,10 +142,23 @@ const Details = () => {
             </p>
             <hr className={style.hrDetail}></hr>
             <p className={style.pDetailDescrip}>{product.description}</p>
+            <div className={style.quantityContainer}>
+              <button
+                onClick={() => handleQuantityChange(quantity - 1)}
+                disabled={quantity <= 1}
+              >
+                -
+              </button>
+              <span>{quantity}</span>
+              <button
+                onClick={() => handleQuantityChange(quantity + 1)}
+                disabled={quantity >= (remainingStock[selectedSize] || 0)}
+              >
+                +
+              </button>
+            </div>
             <button
-              onClick={() => {
-                handleAddToCart(product);
-              }}
+              onClick={handleAddToCart}
               className={style.containerCarr}
             >
               <img src={carrito} className={style.carrito} />
