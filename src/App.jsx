@@ -21,6 +21,7 @@ import UsersAdmin from "./components/Dashboard/UsersAdmin";
 import EditProducts from "./components/Dashboard/EditProducts";
 import Reviews from "./components/Reviews/Reviews"; // Importa el componente Reviews
 
+// npm run dev ==> en la terminal para correr el front
 function App() {
   const dispatch = useDispatch();
 
