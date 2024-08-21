@@ -58,7 +58,6 @@ const CheckoutForm = ({ total }) => {
 
     console.log("Body:", dataToSend);
 
-
     try {
       const response = await axios.post(
         "https://pf-henry-backend-ts0n.onrender.com/product/checkout",
@@ -97,7 +96,6 @@ const CheckoutForm = ({ total }) => {
       setLoading(false);
     }
   };
-
 
   return (
     <div className={styles.container}>

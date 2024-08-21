@@ -19,9 +19,6 @@ export const registerUser = createAsyncThunk(
       );
       const user = userCredential.user;
 
-      //Guardo el rol en firestore
-      // await setDoc(doc(db, "user", user.uid), { email, role });
-
       await axios.post(
         "https://pf-henry-backend-ts0n.onrender.com/user/create",
         { uid: user.uid, email, role },
@@ -78,7 +75,6 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-
 export const googleLogin = createAsyncThunk(
   "auth/googleLogin",
   async (_, { rejectWithValue }) => {
@@ -128,7 +124,6 @@ export const googleLogin = createAsyncThunk(
     }
   }
 );
-
 
 export const logoutUser = createAsyncThunk(
   "auth/logoutUser",
