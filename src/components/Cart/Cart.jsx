@@ -3,6 +3,7 @@ import { useCart } from "../../hooks/useCart";
 import { Link, useNavigate } from "react-router-dom";
 import style from "./Cart.module.css";
 import LogoCart from "../../assets/CART-32.png";
+
 const Cart = () => {
   const cartCheckboxId = useId();
   const {
@@ -13,7 +14,7 @@ const Cart = () => {
     increaseQuantity,
     removeFromCart,
   } = useCart();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const calculateTotal = () => {
     return cart.reduce((total, product) => {
@@ -32,7 +33,7 @@ const Cart = () => {
     }
   }, [cart]);
 
-  const CartItem = ({ id, images, price, name, quantity, addToCart }) => {
+  const CartItem = ({ id, images, price, name, quantity, selectedSize, stock }) => {
     return (
       <div className={style.containerCart}>
         <img src={images} alt={name} className={style.cartImg} />
@@ -40,24 +41,26 @@ const Cart = () => {
           <strong>{name}</strong> <strong>$ {price}</strong>
           <footer>
             <p>
-              Quantity: <strong>{quantity}</strong>{" "}
+              Size: <strong>{selectedSize}</strong> Quantity: <strong>{quantity}</strong>{" "}
             </p>
           </footer>
           <div>
             <button
-              onClick={() => decreaseQuantity(id)}
+              onClick={() => decreaseQuantity(id, selectedSize)}
               className={style.buttonContainer}
+              disabled={quantity <= 1}
             >
               -
             </button>
             <button
-              onClick={() => increaseQuantity(id)}
+              onClick={() => increaseQuantity(id, selectedSize)}
               className={style.buttonContainer}
+              disabled={quantity >= stock}
             >
               +
             </button>
             <button
-              onClick={() => removeFromCart(id)}
+              onClick={() => removeFromCart(id, selectedSize)}
               className={style.buttonContainer2}
             >
               Remove All
@@ -68,9 +71,11 @@ const Cart = () => {
     );
   };
 
+
+
   const handleMouseEnter = () => {
     if (calculateTotal() > 0) {
-      setButtonText("Pagar");
+      setButtonText("Buy");
     }
   };
 
@@ -81,30 +86,39 @@ const Cart = () => {
   const handlePayment = () => {
     const totalAmount = calculateTotal();
     if (totalAmount > 0) {
-      navigate('/Payment', { state: { total: totalAmount } })
+      navigate("/Payment", { state: { total: totalAmount, cart: cart } });
     }
-  }
+  };
 
   return (
     <div className={style.containerGeneralCart}>
-      <div className={style.ContainerButtonCart}>
-        <img src={LogoCart} className={style.LogoCart} />
-        <Link to="/home">
-          <button className={style.buttonCart}>HOME</button>
-        </Link>
-        <button onClick={clearCart} className={style.buttonCart}>
-          CLEAR
-        </button>
+      <div className={style.navCon}>
+        <div>
+          <img src={LogoCart} className={style.LogoCart} />
+        </div>
+        <div className={style.ContainerButtonCart}>
+          <Link to="/home">
+            <button className={style.buttonCart}>HOME</button>
+          </Link>
+          <button onClick={clearCart} className={style.buttonCart}>
+            CLEAR
+          </button>
+        </div>
       </div>
-      <input id={cartCheckboxId} type="checkbox" hidden />
+      <input
+        id={cartCheckboxId}
+        type="checkbox"
+        hidden
+        className={style.inputcon}
+      />
       <aside>
         <ul className={style.conteienrCards}>
           {Array.isArray(cart)
             ? cart.map((product) => (
               <CartItem
-                key={product.id}
-                addToCart={() => addToCart(product)}
+                key={`${product.id}-${product.selectedSize}`}
                 {...product}
+                stock={product.stock[product.selectedSize]} // Asegúrate de que esto esté disponible
               />
             ))
             : null}

@@ -1,10 +1,10 @@
 .generalContainer {
   padding: 0;
   margin: -10px;
-  background-image: url("../../assets/Untitled-1-06.png");
+  background-image: url(../../assets/Untitled-1-06.png);
+  background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
+  background-position: center;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -132,4 +132,163 @@ a {
 
 .containerIcono {
   display: flex;
+}
+
+/* diseño de tablet*/
+
+@media (min-device-width: 712px) and (max-device-width: 1138px) and (orientation: portrait) {
+  .generalContainer {
+    height: 100vh;
+
+    background-image: url(../../assets/fondoTablet-33.png);
+    background-size: cover; /* Asegura que toda la imagen se vea sin recortes */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat;
+  }
+  .logoContainer {
+    width: 150px;
+    margin-top: 45px;
+  }
+
+  .iconoContainer:hover {
+    transition: 1s linear;
+    transform: scale(1.3);
+  }
+  @keyframes moveButton {
+    0%,
+    100% {
+      transform: scale(1.2); /* Tamaño normal */
+    }
+    50% {
+      transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    }
+  }
+  .iconoContainer {
+    font-size: 16px;
+    transition: all 1s ease;
+    animation: moveButton 2s infinite ease-in-out; /* Aplica la animación */
+  }
+
+  .textContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .light {
+    font-family: "Montserrat", sans-serif;
+    font-size: 38px;
+    font-weight: 300;
+    font-style: normal;
+    color: aliceblue;
+  }
+  .bold {
+    font-family: "Montserrat", sans-serif;
+    font-size: 50px;
+    font-weight: 500;
+    font-style: normal;
+    color: aliceblue;
+  }
+
+  .text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+    color: aliceblue;
+  }
+
+  .line {
+    background-color: aliceblue;
+    color: aliceblue;
+    width: 100%;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-bottom: 10px;
+  }
+  .menuButton {
+    color: aliceblue;
+    font-size: 18px;
+    border-bottom: 0.5px solid aliceblue;
+  }
+  .iconoContainer {
+    margin-bottom: 10px;
+  }
+  .containerButtons {
+    height: 150px;
+  }
+}
+
+/*diseño de dispositivos*/
+
+@media (max-device-width: 600px) and (orientation: portrait) {
+  .generalContainer {
+    height: 100vh;
+    overflow: hidden;
+    background-image: url(../../assets/fondoCeluar-02.png);
+    background-size: cover; /* Asegura que toda la imagen se vea sin recortes */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat;
+  }
+  .menuButton {
+    color: aliceblue;
+    font-size: 18px;
+    border-bottom: 0.5px solid aliceblue;
+  }
+
+  @keyframes moveButton {
+    0%,
+    100% {
+      transform: scale(1.2); /* Tamaño normal */
+    }
+    50% {
+      transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    }
+  }
+  .iconoContainer {
+    font-size: 16px;
+    transition: all 1s ease;
+    animation: moveButton 2s infinite ease-in-out; /* Aplica la animación */
+  }
+
+  .light {
+    font-family: "Montserrat", sans-serif;
+    font-size: 27px;
+    font-weight: 300;
+    font-style: normal;
+    color: aliceblue;
+  }
+  .bold {
+    font-family: "Montserrat", sans-serif;
+    font-size: 32px;
+    margin-top: 45px;
+    font-weight: 500;
+    font-style: normal;
+    color: aliceblue;
+  }
+
+  .text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    font-style: normal;
+    color: aliceblue;
+    width: 300px;
+    text-align: center;
+  }
+
+  .line {
+    margin-top: -15px;
+    background-color: aliceblue;
+    color: aliceblue;
+    width: 100%;
+  }
+  .menuButton {
+    color: aliceblue;
+    font-size: 15px;
+    border-bottom: 0.5px solid aliceblue;
+  }
 }

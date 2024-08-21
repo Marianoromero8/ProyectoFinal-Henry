@@ -20,13 +20,14 @@
   padding: 0.5rem 1rem;
   background-color: #134eff;
   font-family: "Montserrat", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
   border: 0;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.5s;
+  text-align: center;
 }
 .containerButtons {
   display: flex;
@@ -36,5 +37,6 @@
 }
 .containerGeneral button:hover {
   background-color: #ff6e1f;
-  transition: 0.3s linear;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.368);
 }

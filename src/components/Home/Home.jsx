@@ -34,12 +34,7 @@ const Home = () => {
   const productsPerPage = 12;
   const { clearCart } = useContext(CartContext);
 
-
   useEffect(() => {
-    console.log("Fetching products with filters:", {
-      ...filters,
-      page: currentPage,
-    });
     dispatch(
       callProductsFilters({
         ...filters,
@@ -55,7 +50,6 @@ const Home = () => {
       ...filt,
       size: Array.isArray(filt.size) ? filt.size.join(",") : filt.size,
     };
-    console.log("Setting new filters:", newFilters);
     setCurrentPage(1); // Reinicia la página a 1 al cambiar los filtros
     dispatch(setFilters(newFilters));
     dispatch(
@@ -66,7 +60,6 @@ const Home = () => {
   const handleSearch = (search) => {
     setSearchTerm(search);
     const newFilters = { ...filters, name: search };
-    console.log("Setting new search filters:", newFilters);
     setCurrentPage(1); // Reinicia la página a 1 al cambiar la búsqueda
     dispatch(setFilters(newFilters));
     dispatch(
@@ -86,7 +79,6 @@ const Home = () => {
       maxPrice: 200,
       name: "",
     };
-    console.log("Clearing filters:", initialFilters);
     setCurrentPage(1); // Reinicia la página a 1 al limpiar los filtros
     dispatch(setFilters(initialFilters));
     dispatch(
@@ -114,7 +106,6 @@ const Home = () => {
 
   const handlePageChange = (page) => {
     if (page < 1) return; // Asegurarse de que la página no sea menor que 1
-    console.log("Changing to page:", page);
     setCurrentPage(page);
     dispatch(callProductsFilters({ ...filters, page, limit: productsPerPage }));
   };
@@ -126,7 +117,6 @@ const Home = () => {
   return (
     <div className={styles.container}>
       <img src={logo} className={styles.logo} />
-
       <div className={styles.menuContainer}>
         {user ? (
           <div className={styles.menuContainerR}>
@@ -160,15 +150,25 @@ const Home = () => {
           >
             CART
           </button>
-          {user && user.role === "admin" && (
+          {user && (user.role === "admin" || user.role === "superAdmin") && (
             <Link to="/form" className={styles.links}>
               <button className={styles.menuButton}>CREATE</button>
             </Link>
           )}
-          {user && user.role === "admin" && (
+          {user && (user.role === "admin" || user.role === "superAdmin") && (
             <Link to="/Dashboard" className={styles.links}>
               <button className={styles.menuButton}>DASHBOARD</button>
             </Link>
+          )}
+          {user && user.role === "superAdmin" && (
+            <>
+              <Link to="/Dashboard/Products">
+                <button className={styles.menuButton}>PRODUCT</button>
+              </Link>
+              <Link to="/Dashboard/Users">
+                <button className={styles.menuButton}>USERS</button>
+              </Link>
+            </>
           )}
         </div>
       </div>
@@ -200,6 +200,7 @@ const Home = () => {
           <NotFound />
         )}
       </div>
+
       <Paginate currentPage={currentPage} paginate={handlePageChange} />
     </div>
   );

@@ -6,6 +6,7 @@
   font-style: normal;
   display: flex;
   flex-direction: column;
+  width: 230px;
 }
 
 .h1Titile {
@@ -14,39 +15,48 @@
   font-weight: 400;
 }
 
-.container1 input {
-  background-color: rgba(255, 255, 255, 0.414);
+.inputDatos {
   border: 0;
-  width: 300px;
+  background-color: #fcfcfc00;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.167);
+  width: 200px;
   padding: 15px;
   margin-top: 20px;
   font-family: "Montserrat", sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
+}
+
+.inputDatos:focus {
+  outline: none;
+}
+.inputDatos:not(:placeholder-shown) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.712);
 }
 
 .formbuttons {
   display: flex;
-  font-family: "Montserrat", sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .formbuttons button {
   padding: 0.5rem 1rem;
   background-color: #134eff;
   font-family: "Montserrat", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
   border: 0;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
 }
 .formbuttons button:hover {
   background-color: #ff6e1f;
-  transition: 0.3s linear;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: rotate(3deg);
 }
 
 .formbuttons button:disabled {
@@ -91,27 +101,30 @@
 .containerDown {
   display: flex;
   flex-direction: column;
-  width: 330px;
+  width: 380px;
   margin: 0;
 }
 .containerDownDatosButton {
   padding: 0.5rem 1rem;
   background-color: #134eff;
   font-family: "Montserrat", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
   border: 0;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.5s;
   width: 70px;
-  margin-top: 40px;
+  margin-top: 30px;
   transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
 }
 .containerDownDatosButton:hover {
   background-color: #ff6e1f;
-  transition: 0.3s linear;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: rotate(3deg);
 }
 
 .containerDown p {
@@ -125,7 +138,7 @@
 .containerDownDatos {
   position: relative;
   display: block;
-  width: 200px;
+  width: 100%;
 
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
@@ -142,15 +155,111 @@
 .containerDownDatos:hover {
   transition: all 0.5s;
   color: #134eff;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .errorContainer {
   font-family: "Montserrat", sans-serif;
   font-size: 13px;
   font-weight: 800;
-  font-style: italic;
+  font-style: normal;
   height: 30px;
-  margin-top: 20px;
-  color: #d90303;
+  margin-bottom: 50px;
+  color: #980303;
+}
+
+/*celular*/
+
+@media (max-device-width: 600px) and (orientation: portrait) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .containerGeneral {
+    animation: fadeIn 1s ease-in;
+  }
+  .h1Titile {
+    font-family: "Montserrat", sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+  }
+
+  .inputDatos {
+    border: 0;
+    background-color: #fcfcfc00;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.167);
+    width: 200px;
+    padding: 25px;
+    margin-top: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .inputDatos:focus {
+    outline: none;
+  }
+  .formbuttons button {
+    padding: 0.5rem 1rem;
+    background-color: #134eff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s;
+    transition: 0.3s linear;
+    text-align: center;
+  }
+  .containerDown p {
+    font-size: 12px;
+    font-weight: 700;
+    font-style: italic;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .containerDownDatos {
+    position: relative;
+    display: block;
+    width: 200px;
+
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    font-style: normal;
+
+    transition: all 0.5s;
+    border: 0;
+    color: #ff6e1f;
+    align-items: center;
+    background-color: #e0ddda00;
+  }
+
+  .containerDownDatosButton {
+    padding: 0.5rem 1rem;
+    background-color: #134eff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: #fff;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 70px;
+    margin-top: 30px;
+    transition: all 0.5s;
+    transition: 0.3s linear;
+    text-align: center;
+  }
+  .containerDown {
+    padding-left: 55px;
+  }
 }

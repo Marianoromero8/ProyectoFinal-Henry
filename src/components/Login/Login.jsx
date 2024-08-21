@@ -19,8 +19,8 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    dispatch(googleLogin())
-  }
+    dispatch(googleLogin());
+  };
 
   useEffect(() => {
     if (user && user.uid) {
@@ -34,7 +34,7 @@ const Login = () => {
       <h2 className={styles.h1Titile}>
         Sign in to<strong> ChampionGear </strong>
       </h2>
-      <div className={styles.container1}>
+      <div>
         <form onSubmit={handleSubmit} className={styles.container1}>
           <input
             type="email"
@@ -42,6 +42,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             required
+            className={styles.inputDatos}
           />
           <input
             type="password"
@@ -49,20 +50,22 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             required
+            className={styles.inputDatos}
           />
 
           <div className={styles.formbuttons}>
             <button type="submit" disabled={loading}>
-              LOGIN
+              Login
             </button>
           </div>
 
-          <div className={styles.googleButton}>
+          <div className={styles.formbuttons}>
             <button
               type="button"
               className={styles.buttonGoogle}
               onClick={handleGoogleLogin}
-              disabled={loading}>
+              disabled={loading}
+            >
               Login with Google
             </button>
           </div>
