@@ -7,7 +7,6 @@ import NavBar from "../NavBar/NavBar";
 import Paginate from "../Paginate/Paginate";
 import NotFound from "../Notfound/Notfound";
 import styles from "../Home/Home.module.css";
-
 import Aboutus from "../../assets/abouUs-18.png";
 import arrow from "../../assets/flecha-16.png";
 import arrowExit from "../../assets/flecha-17.png";
@@ -200,7 +199,6 @@ const Home = () => {
           <NotFound />
         )}
       </div>
-
       <Paginate currentPage={currentPage} paginate={handlePageChange} />
     </div>
   );
