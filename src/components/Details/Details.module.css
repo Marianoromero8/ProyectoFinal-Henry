@@ -33,12 +33,12 @@
 }
 
 .h1Detail {
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .imgDetail {
   width: 100%;
-  height: 500px;
+  height: 450px;
   object-fit: cover;
   border-radius: 10px;
 }
@@ -46,8 +46,10 @@
 .pDetail {
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .buttonDetail {
@@ -65,10 +67,11 @@
 
 .containerRDetail {
   padding: 50px;
-  background-color: #edf2f4;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  width: 400px;
+  background-color: #edf2f4;
 }
 
 .containerRDetail h1 {
@@ -82,16 +85,6 @@
   align-items: center;
   margin: 0;
   padding: 0;
-  height: 35px;
-  margin-top: 5px;
-}
-
-.pDetailContainer {
-  background-color: rgba(0, 0, 0, 0.888);
-  padding: 5px;
-  margin-left: 7px;
-  color: #fff;
-  border-radius: 5px;
 }
 
 .hrDetail {
@@ -100,17 +93,16 @@
   margin-bottom: 15px;
 }
 
-.pDetailDescrip {
-  background-color: rgba(0, 0, 0, 0.016);
-  width: 350px;
+.pDetailContainer {
+  display: flex;
+  flex-direction: row;
   padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-top: 20px;
   text-align: center;
   border-radius: 10px;
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.062);
 }
 
 .menuButton {
@@ -129,7 +121,7 @@
   color: #ff6e1f;
   align-items: center;
   background-color: #e0ddda00;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .menuButton:hover {
@@ -162,4 +154,153 @@
 
 a {
   text-decoration: none;
+}
+.carrito {
+  width: 60px;
+  border: 0;
+  border-radius: 50px;
+}
+
+.containerCarr {
+  border-radius: 50px;
+  list-style: none;
+  border: 0;
+}
+
+.pDetailDescrip2 {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.084);
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.buttonDe {
+  padding: 0.5rem 1rem;
+  background-color: #134eff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 15px;
+}
+
+.buttonDe:hover {
+  background-color: #ff6e1f;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: rotate(3deg);
+}
+
+@media (min-device-width: 712px) and (max-device-width: 1138px) and (orientation: portrait) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .container {
+    animation: fadeIn 1s ease-in;
+    display: flex;
+    flex-direction: column;
+  }
+  .imgDetail {
+    width: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .containerRDetail {
+    padding: 20px 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 400px;
+    background-color: #edf2f4;
+  }
+  .pDetailContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.062);
+  }
+
+  .pDetail {
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+/*celularr*/
+@media (max-device-width: 600px) and (orientation: portrait) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .container {
+    animation: fadeIn 1s ease-in;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: 0;
+    background: none;
+    background-size: 20px 20px;
+  }
+
+  .imgDetail {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .containerRDetail {
+    padding: 20px 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    width: 80%;
+    background-color: #edf2f4;
+  }
+  .pDetailContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.062);
+  }
+
+  .pDetail {
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .h1Detail {
+    font-style: none;
+    font-weight: 600;
+    font-size: 15px;
+  }
 }

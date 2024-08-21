@@ -109,7 +109,7 @@ const AboutUs = () => {
             <p>FrontEnd</p>
           </div>
         </div>
-        <p className={style.parrafo}>
+        <p className={style.parrafo3}>
           <strong>
             Thank you for choosing ChampionGear. Let’s move towards a more
             active and healthier life together!

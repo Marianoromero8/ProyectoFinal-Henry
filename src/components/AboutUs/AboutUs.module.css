@@ -1,164 +1,334 @@
 .containerGeneral {
-    margin: -10px;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-
-
-
+  margin: -10px;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
 }
 
 .aboutChaContainer {
-    background-color: #dadee0;
-    color: black;
-    width: 1100px;
+  background-color: #dadee0;
+  color: black;
+  width: 50%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .aboutChaContainerText {
-    display: flex;
-    flex-direction: column;
-    padding-left: 70px;
-    padding-right: 70px;
+  display: flex;
+  flex-direction: column;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .containerWhy {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 10px;
 }
 
 .containerWhyIcons {
-    display: flex;
-    flex-direction: row;
-    display: flex;
-
-    height: 40px;
+  display: flex;
+  flex-direction: row;
+  display: flex;
+  height: 40px;
 }
 
 .logoContainer {
-    width: 150px;
-    margin-bottom: 40px;
+  width: 150px;
+  margin-top: 10%;
 }
 
 .iconoContainer {
-    width: 80px;
-    margin-top: 30px;
-    transition: all 0.5s;
-
+  width: 80px;
+  margin-top: 30px;
+  transition: all 0.5s;
 }
 
 .iconoContainer:hover {
-    transition: 1s linear;
-    transform: scale(1.3);
+  transition: 1s linear;
+  transform: scale(1.3);
 }
 
 .icons {
-    width: 30px;
-    height: 30px;
-    padding-left: 50px;
-    padding-right: 10px;
+  width: 30px;
+  height: 30px;
+  padding-right: 10px;
 }
 
 .h1We {
-    font-family: "Montserrat", sans-serif;
-    font-size: 20px;
-    font-weight: 300;
-    font-style: normal;
-    margin: 0;
-    margin-bottom: 10px;
-
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: normal;
+  margin: 0;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 .parrafo {
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    font-style: normal;
-    line-height: 1.8;
-    margin: 0;
-    margin-bottom: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.8;
+  margin: 0;
+  margin-bottom: 20px;
+  text-align: justify;
 }
 
 .containerAbouTeam {
-    background-color: #edf2f4;
+  background-color: #edf2f4;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.perfilesImg {
+  width: 90px;
+  border-radius: 50px;
+  margin-left: 10px;
+}
+
+.perfilesImg2 {
+  width: 100px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+
+.parrafoTeam {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.8;
+  margin: 0;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.perfilesBack {
+  background-color: #ff6e1f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 50px;
+  margin-bottom: 90px;
+  padding-left: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.perfilesFront {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 50px;
+  margin-bottom: 90px;
+  padding-right: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  color: black;
+  background-color: #dadee0;
+}
+
+.containerPerfiles {
+  display: flex;
+  background-color: aqua;
+}
+
+.parrafo3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.8;
+  margin: 0;
+  margin-bottom: 20px;
+  text-align: justify;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+/*tablet*/
+
+@media (min-device-width: 712px) and (max-device-width: 1138px) and (orientation: portrait) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .containerGeneral {
+    animation: fadeIn 1s ease-in;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .aboutChaContainer {
+    background-color: #dadee0;
     color: black;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 40px;
+  }
+  .containerWhy {
+    padding-left: 50px;
+    margin: 0;
+  }
+  .logoContainer {
+    width: 150px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+  .h1We {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: normal;
+    margin: 0;
+    margin-bottom: 30px;
+    margin-top: 50px;
+  }
 
-}
-
-.perfilesImg {
-    width: 100px;
-    border-radius: 50px;
-    margin-left: 10px;
-
-}
-
-.perfilesImg2 {
-    width: 100px;
-    border-radius: 50px;
-    margin-right: 10px;
-}
-
-.parrafoTeam {
+  .parrafoTeam {
     font-family: "Montserrat", sans-serif;
     font-size: 14px;
     font-weight: 400;
     font-style: normal;
     line-height: 1.8;
     margin: 0;
-    padding-left: 110px;
-    padding-right: 110px;
+    padding-left: 18%;
+    padding-right: 18%;
     padding-top: 10px;
     padding-bottom: 20px;
-}
+    text-align: justify;
+  }
 
-.perfilesBack {
-    background-color: #ff6e1f;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 40px;
-    width: 550px;
-    border-radius: 20px;
-    margin-top: 50px;
-    margin-bottom: 90px;
-    padding-left: 30px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    font-style: normal;
+  .iconoContainer {
+    width: 80px;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    transition: all 0.5s;
+  }
+  .parrafo {
+    margin-bottom: 0px;
+    text-align: justify;
+  }
 }
-
-.perfilesFront {
+/*celular*/
+@media (max-device-width: 600px) and (orientation: portrait) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .containerGeneral {
+    animation: fadeIn 1s ease-in;
+    height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 40px;
-    width: 550px;
-    border-radius: 20px;
-    margin-top: 50px;
-    margin-bottom: 90px;
-    padding-right: 30px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    font-style: normal;
-    color: black;
+    flex-direction: column;
+  }
+  .aboutChaContainer {
     background-color: #dadee0;
-
-}
-
-.containerPerfiles {
+    color: black;
+    width: 100%;
     display: flex;
-    background-color: aqua;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 40px;
+  }
+  .containerWhy {
+    padding-left: 50px;
+    margin: 0;
+  }
+  .logoContainer {
+    width: 150px;
+    margin-top: 60px;
+    margin-bottom: 30px;
+  }
+  .h1We {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: normal;
+    margin: 0;
+    margin-bottom: 30px;
+    margin-top: 50px;
+  }
+
+  .parrafoTeam {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.8;
+    margin: 0;
+    padding-left: 18%;
+    padding-right: 18%;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    text-align: justify;
+  }
+
+  .iconoContainer {
+    width: 80px;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    transition: all 0.5s;
+  }
+  .parrafo {
+    margin-bottom: 0px;
+    text-align: justify;
+  }
+  .perfilesBack {
+    width: 90%;
+    height: 30px;
+    color: #dadee0;
+    margin: 20px;
+  }
+  .perfilesFront {
+    width: 90%;
+    height: 30px;
+    margin: 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  .perfilesImg {
+    width: 55px;
+    margin-left: 10px;
+  }
+  .perfilesImg2 {
+    width: 55px;
+    margin-right: 10px;
+    background-color: red;
+  }
 }

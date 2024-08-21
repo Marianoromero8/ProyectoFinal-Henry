@@ -6,54 +6,61 @@ const initialState = {
     cart: JSON.parse(localStorage.getItem("cart") || "[]"),
 };
 
+
 const reducer = (state, action) => {
     console.log("Current cart:", state.cart);
-    const { type, payload } = action
+    const { type, payload } = action;
+
+    const generateUniqueId = (id, size) => `${id}-${size}`;
 
     switch (type) {
         case 'ADD_TO_CART': {
-            const { id } = payload;
-            const productInCartIndex = state.cart.findIndex(item => item.id === id);
+            const uniqueId = generateUniqueId(payload.id, payload.selectedSize);
+
+            // Buscar el índice del producto en el carrito
+            const productInCartIndex = state.cart.findIndex(item => generateUniqueId(item.id, item.selectedSize) === uniqueId);
 
             if (productInCartIndex >= 0) {
-                // Una forma usando structuredClone
-                const newState = structuredClone(state);
-                newState.cart[productInCartIndex].quantity += 1;
-                return { cart: newState.cart };
+                // Producto ya está en el carrito, actualiza la cantidad
+                const newCart = structuredClone(state.cart); // Clona el estado del carrito
+                newCart[productInCartIndex].quantity += payload.quantity; // Aumenta la cantidad según la payload
+                return { ...state, cart: newCart }; // Retorna el nuevo estado con el carrito actualizado
+            } else {
+                // Producto no está en el carrito, agrégalo
+                return {
+                    ...state,
+                    cart: [
+                        ...state.cart,
+                        {
+                            ...payload,
+                            quantity: payload.quantity // Usa la cantidad desde la payload
+                        }
+                    ]
+                };
             }
-            return {
-                ...state,
-                cart: [
-                    ...state.cart,
-                    {
-                        ...payload,
-                        quantity: 1
-                    }
-                ]
-            };
         }
         case 'REMOVE_FROM_CART': {
-            const { id } = payload;
-            return { cart: state.cart.filter(item => item.id !== id) };
+            const uniqueId = generateUniqueId(payload.id, payload.selectedSize);
+            return { cart: state.cart.filter(item => generateUniqueId(item.id, item.selectedSize) !== uniqueId) };
         }
         case 'CLEAR_CART': {
             return { cart: [] };
         }
         case 'INCREASE_QUANTITY': {
-            const { id } = payload;
+            const uniqueId = generateUniqueId(payload.id, payload.selectedSize);
             return {
                 cart: state.cart.map(item =>
-                    item.id === id
+                    generateUniqueId(item.id, item.selectedSize) === uniqueId
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
                 )
             };
         }
         case 'DECREASE_QUANTITY': {
-            const { id } = payload;
+            const uniqueId = generateUniqueId(payload.id, payload.selectedSize);
             return {
                 cart: state.cart.map(item =>
-                    item.id === id
+                    generateUniqueId(item.id, item.selectedSize) === uniqueId
                         ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : item.quantity }
                         : item
                 )
@@ -64,11 +71,6 @@ const reducer = (state, action) => {
         }
     }
 };
-
-// Sirve para testear
-// expect(
-//     reducer([], { type: 'ADD_TO_CART', payload: { id:1 } })
-// ).toEqual([{ id:1, quantity: 1 }]);
 
 export function CartProvider({ children }) {
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -82,23 +84,23 @@ export function CartProvider({ children }) {
         payload: product
     });
 
-    const removeFromCart = product => dispatch({
+    const removeFromCart = (id, size) => dispatch({
         type: 'REMOVE_FROM_CART',
-        payload: { id: product }
+        payload: { id, selectedSize: size }
     });
 
     const clearCart = () => dispatch({
         type: 'CLEAR_CART'
     });
 
-    const increaseQuantity = (id) => dispatch({
+    const increaseQuantity = (id, size) => dispatch({
         type: 'INCREASE_QUANTITY',
-        payload: { id }
+        payload: { id, selectedSize: size }
     });
 
-    const decreaseQuantity = (id) => dispatch({
+    const decreaseQuantity = (id, size) => dispatch({
         type: 'DECREASE_QUANTITY',
-        payload: { id }
+        payload: { id, selectedSize: size }
     });
 
     return (

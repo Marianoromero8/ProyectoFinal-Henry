@@ -18,6 +18,7 @@ import Error404 from "./components/Error404/Error404";
 import Payment from "./components/Payment/Payment";
 import ProductsAdmin from "./components/Dashboard/ProductsAdmin";
 import UsersAdmin from "./components/Dashboard/UsersAdmin";
+import EditProducts from "./components/Dashboard/EditProducts";
 
 // npm run dev ==> en la terminal dentro de la carpeta 'vite-project' para correr el front
 // Lo comentado es para el login y register para autorizacion de terceros
@@ -87,16 +88,23 @@ function App() {
         />
 
         <Route path="/Dashboard/Products" element={
-          <RouteProtect role='superAdmin'>
+          <RouteProtect roles={['admin', 'superAdmin']}>
             <ProductsAdmin />
           </RouteProtect>
         } />
 
         <Route path="/Dashboard/Users" element={
-          <RouteProtect role='superAdmin'>
+          <RouteProtect roles={['admin', 'superAdmin']}>
             <UsersAdmin />
           </RouteProtect>
         } />
+
+        <Route path="/Dashboard/Products/edit/:id" element={
+          <RouteProtect roles={['admin', 'superAdmin']}>
+            <EditProducts />
+          </RouteProtect>
+        }>
+        </Route>
 
       </Routes>
     </div >

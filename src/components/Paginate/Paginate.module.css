@@ -2,6 +2,11 @@
   border: 0;
   padding: 10px;
   margin: 10px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  background-color: rgba(240, 248, 255, 0);
+  margin-bottom: 25px;
 }
 
 .active {

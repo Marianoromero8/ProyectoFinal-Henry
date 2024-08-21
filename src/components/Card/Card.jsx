@@ -2,18 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../Card/Card.module.css";
 
-const Card = ({
-  id,
-  name,
-  images,
-  price,
-  stock,
-  brand,
-  category,
-  color,
-  size,
-  onAddToCart,
-}) => {
+const Card = ({ id, name, images, price, stock, brand, category, color }) => {
   return (
     <div className={styles.containerCard}>
       <Link to={`/details/${id}`}>
@@ -23,9 +12,9 @@ const Card = ({
         <div className={styles.details}>
           <div className={styles.containerTop}>
             <div>
-              <h2>{brand}</h2>
+              <h2>{name}</h2> {/* Mostrar el nombre del producto */}
               <p>
-                Color:<strong> {color}</strong>
+                Brand:<strong> {brand}</strong> {/* Mostrar la marca */}
               </p>
             </div>
             <div className={styles.containerPriceSize}>
@@ -33,21 +22,12 @@ const Card = ({
                 $ <strong> {price}</strong>
               </p>
               <p className={styles.detailPriceSize}>
-                {" "}
-                Size: <strong> {size} </strong>
+                Color: <strong> {color} </strong> {/* Mostrar el color */}
               </p>
             </div>
           </div>
         </div>
       </Link>
-      <button
-        onClick={() =>
-          onAddToCart({ id, name, images, price, brand, color, size, category })
-        }
-        className={styles.buttonAdd}
-      >
-        ADD+
-      </button>
     </div>
   );
 };
