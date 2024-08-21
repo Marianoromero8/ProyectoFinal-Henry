@@ -45,18 +45,22 @@ const Details = () => {
           return;
         }
 
-        // Actualiza la cantidad de stock para el tamaño seleccionado
-        const updatedStock = {
-          ...product.stock,
-          [selectedSize]: product.stock[selectedSize] - quantity,
-        };
-
         addToCart({ ...product, selectedSize, quantity });
 
-        // Envía la actualización del stock al backend
+        // // Envía la actualización del stock al backend
+        // const response = await axios.put(
+        //   `https://pf-henry-backend-ts0n.onrender.com/admin/edit/${product.id}`,
+        //   { stock: updatedStock } // Enviar el stock actualizado
+        // );
+
+        const updatedStock = {
+          ...product.stock,
+          [selectedSize]: product.stock[selectedSize] - quantity
+        };
+
         const response = await axios.put(
           `https://pf-henry-backend-ts0n.onrender.com/admin/edit/${product.id}`,
-          { stock: updatedStock } // Enviar el stock actualizado
+          { stock: updatedStock }
         );
 
         alert("Product added to cart and stock updated");
@@ -97,21 +101,25 @@ const Details = () => {
             <div className={style.sizeContainer}>
               <p className={style.pDetail}>Sizes and Stock: </p>
               <div className={style.pDetailContainer}>
-                {Object.entries(product.stock || {}).map(([size, stock]) => (
-                  <div key={size}>
-                    <label>
-                      <input
-                        type="radio"
-                        name="size"
-                        value={size}
-                        checked={selectedSize === size}
-                        onChange={() => setSelectedSize(size)}
-                      />
-                      <strong>{size}: </strong>
-                      {stock}
-                    </label>
-                  </div>
-                ))}
+                {Object.entries(product.stock || {}).length > 0 ? (
+                  Object.entries(product.stock).map(([size, stock]) => (
+                    <div key={size}>
+                      <label>
+                        <input
+                          type="radio"
+                          name="size"
+                          value={size}
+                          checked={selectedSize === size}
+                          onChange={() => setSelectedSize(size)}
+                        />
+                        <strong>{size}: </strong>
+                        {stock}
+                      </label>
+                    </div>
+                  ))
+                ) : (
+                  <p>No stock available</p>
+                )}
               </div>
             </div>
             <hr className={style.hrDetail}></hr>
