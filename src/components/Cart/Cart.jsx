@@ -33,11 +33,7 @@ const Cart = () => {
     }
   }, [cart]);
 
-  const CartItem = ({ id, images, price, name, quantity, selectedSize, addToCart, increaseQuantity, decreaseQuantity, removeFromCart }) => {
-    const handleIncrease = () => increaseQuantity(id, selectedSize);
-    const handleDecrease = () => decreaseQuantity(id, selectedSize);
-    const handleRemove = () => removeFromCart(id, selectedSize);
-
+  const CartItem = ({ id, images, price, name, quantity, selectedSize, stock }) => {
     return (
       <div className={style.containerCart}>
         <img src={images} alt={name} className={style.cartImg} />
@@ -49,9 +45,26 @@ const Cart = () => {
             </p>
           </footer>
           <div>
-            <button onClick={handleDecrease} className={style.buttonContainer}>-</button>
-            <button onClick={handleIncrease} className={style.buttonContainer}>+</button>
-            <button onClick={handleRemove} className={style.buttonContainer2}>Remove All</button>
+            <button
+              onClick={() => decreaseQuantity(id, selectedSize)}
+              className={style.buttonContainer}
+              disabled={quantity <= 1}
+            >
+              -
+            </button>
+            <button
+              onClick={() => increaseQuantity(id, selectedSize)}
+              className={style.buttonContainer}
+              disabled={quantity >= stock}
+            >
+              +
+            </button>
+            <button
+              onClick={() => removeFromCart(id, selectedSize)}
+              className={style.buttonContainer2}
+            >
+              Remove All
+            </button>
           </div>
         </div>
       </div>
@@ -104,8 +117,8 @@ const Cart = () => {
             ? cart.map((product) => (
               <CartItem
                 key={`${product.id}-${product.selectedSize}`}
-                addToCart={() => addToCart(product)}
                 {...product}
+                stock={product.stock[product.selectedSize]} // Asegúrate de que esto esté disponible
               />
             ))
             : null}

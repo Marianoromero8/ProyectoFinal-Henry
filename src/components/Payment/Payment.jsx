@@ -26,92 +26,6 @@ const CheckoutForm = ({ total }) => {
   const email = useSelector((state) => state.auth.user?.email); // Getting email from Redux
   const dispatch = useDispatch();
 
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-
-  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
-  //     type: "card",
-  //     card: elements.getElement(CardElement),
-  //   });
-
-  //   if (error) {
-  //     console.error("Stripe error:", error);
-  //     setLoading(false);
-  //     return;
-  //   }
-
-  //   const { id } = paymentMethod;
-
-  //   const formattedCartItems = cart.map(item => ({
-  //     productId: item.id, // Asegúrate de que 'id' en cartItem sea 'productId' en el backend
-  //     size: item.selectedSize,
-  //     quantity: item.quantity
-  //   }));
-
-  //   const dataToSend = {
-  //     id,
-  //     amount: total * 100, // Convertir en centavos el total
-  //     email,
-  //     cartItems: formattedCartItems
-  //   }
-
-  //   console.log(dataToSend)
-
-  //   try {
-  //     const response = await axios.post(
-  //       "https://pf-henry-backend-ts0n.onrender.com/product/checkout",
-  //       dataToSend
-  //     );
-
-  //     console.log("Data to send to backend:", response.data); // Verifica la estructura de los datos
-
-
-  //     if (response.status === 200) {
-  //       if (Array.isArray(cart)) {
-  //         for (const item of cart) {
-  //           const updatedStock = {
-  //             ...item.stock,
-  //             [item.selectedSize]: item.stock[item.selectedSize] - item.quantity
-  //           };
-
-  //           await dispatch(updateProduct({
-  //             id: item.id,
-  //             product: {
-  //               stock: updatedStock
-  //             }
-  //           }));
-
-  //           // console.log('Update product result:', result); // Depuración para verificar el resultado del dispatch
-  //         }
-  //       }
-
-  //       alert("Buy successfully");
-  //       elements.getElement(CardElement).clear();
-  //       clearCart();
-  //       navigate("/home"); //Mas adelante a un recibo o algo
-  //     } else {
-  //       alert("Payment failed");
-  //       console.error("Payment failed:", response.data);
-  //     }
-  //   } catch (error) {
-  //     if (error.response) {
-  //       // El servidor respondió con un código de estado fuera del rango 2xx
-  //       console.error("Error response:", error.response.data);
-  //     } else if (error.request) {
-  //       // La solicitud fue hecha pero no hubo respuesta
-  //       console.error("Error request:", error.request);
-  //     } else {
-  //       // Algo sucedió al configurar la solicitud
-  //       console.error("Error message:", error.message);
-  //     }
-  //     alert("An error occurred");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -141,6 +55,9 @@ const CheckoutForm = ({ total }) => {
       email,
       cartItems: formattedCartItems
     };
+
+    console.log("Body:", dataToSend);
+
 
     try {
       const response = await axios.post(
