@@ -136,7 +136,10 @@
   }
 
   .containerDashboard {
-    animation: fadeIn 1s ease-in;
+    margin: -10px;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
   }
   .menuButton {
     margin-top: 1px;
