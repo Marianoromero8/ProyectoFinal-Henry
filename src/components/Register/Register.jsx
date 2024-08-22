@@ -17,6 +17,12 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      alert("please fill out all fields.")
+      return
+    }
+
     const resultAction = await dispatch(
       registerUser({ email, password, role })
     );
