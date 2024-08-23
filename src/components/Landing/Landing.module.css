@@ -228,7 +228,7 @@ a {
   .generalContainer {
     height: 100vh;
     overflow: hidden;
-    background-image: url(../../assets/fondoCeluar-02.png);
+    background-image: url(../../assets/fondoTablet-33.png);
     background-size: cover; /* Asegura que toda la imagen se vea sin recortes */
     background-position: center; /* Centra la imagen */
     background-repeat: no-repeat;

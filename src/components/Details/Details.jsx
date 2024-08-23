@@ -7,6 +7,9 @@ import arrowExit from "../../assets/flecha-17.png";
 import { useCart } from "../../hooks/useCart";
 import carrito from "../../assets/CART-32.png";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 const Details = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -14,6 +17,7 @@ const Details = () => {
   const productStatus = useSelector((state) => state.products.productsStatus);
   const productError = useSelector((state) => state.products.productsError);
   const { addToCart, cart } = useCart();
+  const MySwal = withReactContent(Swal);
 
   const [selectedSize, setSelectedSize] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -36,6 +40,51 @@ const Details = () => {
       setRemainingStock(initialRemainingStock);
     }
   }, [product, cart]);
+
+  const handleAlertError = () => {
+    MySwal.fire({
+      text: "Please select a size.",
+      icon: "error",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#134eff",
+      background: "#ece8e8",
+      color: "black",
+      iconColor: "#ff6e1f",
+      customClass: {
+        popup: "custom-pop  up",
+      },
+    });
+  };
+
+  const handleAlertComplete = () => {
+    MySwal.fire({
+      text: "Product added to cart",
+      icon: "success",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#134eff",
+      background: "#ece8e8",
+      color: "black",
+      iconColor: "#026e55",
+      customClass: {
+        popup: "custom-pop  up",
+      },
+    });
+  };
+
+  const handleAlertStock = () => {
+    MySwal.fire({
+      text: "Not enough stock available.",
+      icon: "info",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#134eff",
+      background: "#ece8e8",
+      color: "black",
+      iconColor: "#026e55",
+      customClass: {
+        popup: "custom-pop  up",
+      },
+    });
+  };
 
   if (productStatus === "loading") {
     return <p>Loading...</p>;
@@ -61,7 +110,7 @@ const Details = () => {
     if (selectedSize) {
       const stock = remainingStock[selectedSize] || 0;
       if (stock < quantity) {
-        alert("Not enough stock available.");
+        handleAlertStock();
         return;
       }
 
@@ -72,12 +121,12 @@ const Details = () => {
         [selectedSize]: prevStock[selectedSize] - quantity,
       }));
 
-      alert("Product added to cart");
+      handleAlertComplete();
 
       setQuantity(1);
       setSelectedSize("");
     } else {
-      alert("Please select a size.");
+      handleAlertError();
     }
   };
 
@@ -101,7 +150,7 @@ const Details = () => {
             <p className={style.pDetail}>
               Color: <strong>{product.color}</strong>
             </p>
-            <div className={style.sizeContainer}>
+            <div className={style.pDetailContainer2}>
               <p className={style.pDetail}>Sizes and Stock:</p>
               <div className={style.pDetailContainer}>
                 {Object.entries(remainingStock || {}).length > 0 ? (
@@ -117,7 +166,7 @@ const Details = () => {
                           disabled={stock === 0}
                         />
                         <strong>{size}: </strong>
-                        {stock}
+                        <p>{stock} </p>
                       </label>
                     </div>
                   ))
@@ -156,15 +205,14 @@ const Details = () => {
             <button onClick={handleAddToCart} className={style.containerCarr}>
               <img src={carrito} className={style.carrito} alt="Add to cart" />
             </button>
-            <Link to={`/reviews/${id}`} className={style.links}>
-              <button className={style.menuButton}>GO TO REVIEWS</button>
-            </Link>
-            <Link to="/home" className={style.links}>
-              <button className={style.menuButton}>
-                GO TO HOME{" "}
-                <img src={arrowExit} alt="" className={style.arrow} />
-              </button>
-            </Link>
+            <div className={style.contbutt}>
+              <Link to={`/reviews/${id}`} className={style.links}>
+                <button className={style.menuButton}>GO TO REVIEWS</button>
+              </Link>
+              <Link to="/home" className={style.links}>
+                <button className={style.menuButton}>GO TO HOME </button>
+              </Link>
+            </div>
           </div>
         </div>
       )}
