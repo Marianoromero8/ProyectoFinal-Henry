@@ -56,7 +56,7 @@ function App() {
         <Route
           path="/form"
           element={
-            <RouteProtect role="admin">
+            <RouteProtect roles={["admin", "superAdmin"]}>
               <Form />
             </RouteProtect>
           }
