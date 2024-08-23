@@ -68,7 +68,12 @@ const UsersAdmin = () => {
         <ul>
           {filteredUsers.map((user) => (
             <li key={user.uid} className={style.ulProduct}>
-              {user.email} - {user.role} - {user.active ? "Active" : "Inactive"}
+              <div className={style.containerNAMe}>
+                <p>
+                  {user.email} - {user.role} -{" "}
+                </p>
+                {user.active ? "Active" : "Inactive"}
+              </div>
               <button onClick={() => handleToggleUserStatus(user.uid)}>
                 {user.active ? "Locked " : "Unlock"}
               </button>

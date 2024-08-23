@@ -93,8 +93,10 @@ const ProductsAdmin = () => {
         <ul>
           {products.map((product) => (
             <li key={product.id} className={style.ulProduct}>
-              {product.name} -{" "}
-              <strong>{product.active ? "Active" : "Inactive"}</strong>
+              <div>
+                {product.name} -{" "}
+                <strong>{product.active ? "Active" : "Inactive"}</strong>
+              </div>
               <div>
                 <button onClick={() => handleToggleProductStatus(product.id)}>
                   {product.active ? "Desactivate" : "Activate"}
