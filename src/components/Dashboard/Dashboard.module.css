@@ -55,6 +55,8 @@
   transform: rotate(0deg);
   transition: transform 0.3s ease;
   padding: 5px 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.116);
+  border-radius: 10px;
 }
 
 .menuButton:hover {
@@ -162,7 +164,7 @@
   }
 
   .containerDashboard h2 {
-    font-size: 22px;
+    font-size: 20px;
     font-style: normal;
     margin: 0;
     margin-bottom: 5px;
@@ -184,6 +186,7 @@
     transform: rotate(0deg);
     transition: transform 0.3s ease;
     padding: 5px 10px;
+    margin-top: 10px;
   }
 
   .menuButton:hover {
@@ -218,7 +221,7 @@
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
     @media (max-width: 800px) {
-      height: 220px;
+      height: 280px;
       width: 50%;
       align-items: center;
     }
@@ -315,6 +318,7 @@
     transform: rotate(0deg);
     transition: transform 0.3s ease;
     padding: 5px 10px;
+    margin-top: 10px;
   }
 
   .menuButton:hover {
@@ -349,7 +353,7 @@
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
     @media (max-width: 800px) {
-      height: 220px;
+      height: 290px;
       width: 50%;
       align-items: center;
     }

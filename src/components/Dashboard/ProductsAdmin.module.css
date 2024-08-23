@@ -76,7 +76,7 @@
 .containerDatos ul {
   padding: 15px;
   font-family: "Montserrat", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
 }
 .containerDatos button {
@@ -125,6 +125,13 @@
 .ulProduct {
   display: flex;
   align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  margin-top: 10px;
+  padding: 0px 15px;
+  border-radius: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-device-width: 600px) and (orientation: portrait) {
@@ -137,13 +144,14 @@
     margin-top: 150px;
     margin: -10px;
     display: flex;
-    width: 100vw;
+    width: 80vw;
     height: 100%;
     background: none;
   }
   .containerDatos {
     animation: fadeIn 1s ease-in;
-    width: 80vw;
+    width: 100%;
+    padding: 50px;
     box-shadow: none;
     margin-top: 15px;
   }
@@ -177,5 +185,6 @@
     font-family: "Montserrat", sans-serif;
     font-size: 13px;
     font-weight: 600;
+    width: 70%;
   }
 }

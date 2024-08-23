@@ -79,7 +79,7 @@
 .containerDatos ul {
   padding: 15px;
   font-family: "Montserrat", sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
 }
 .containerDatos button {
@@ -129,6 +129,15 @@
   display: flex;
   align-items: center;
   margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.178);
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-device-width: 600px) and (orientation: portrait) {
@@ -156,7 +165,7 @@
     display: flex;
     flex-direction: column;
     animation: fadeIn 1s ease-in;
-    width: 70vw;
+    width: 80vw;
     box-shadow: none;
   }
   .containerDatos button {
@@ -179,16 +188,17 @@
   .ulProduct {
     display: flex;
     flex-direction: column;
-    text-align: left;
-    margin: 20px;
+    padding: 15px 8px;
+    margin-left: -12px;
   }
   .containerDatos ul {
     display: flex;
     flex-direction: column;
-    justify-content: left;
-    padding: 15px;
     font-family: "Montserrat", sans-serif;
     font-size: 13px;
     font-weight: 600;
+  }
+  .containerNAMe {
+    font-size: 10px;
   }
 }
