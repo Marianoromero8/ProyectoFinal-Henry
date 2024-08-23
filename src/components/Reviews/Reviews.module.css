@@ -1,0 +1,110 @@
+.reviewsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  background: linear-gradient(
+      45deg,
+      rgba(236, 233, 233, 0.069) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(192, 191, 191, 0.1) 50%,
+      rgba(171, 169, 169, 0.1) 75%,
+      transparent 75%,
+      transparent
+    ),
+    linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.035) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(215, 208, 230, 0.051) 50%,
+      rgba(255, 255, 255, 0.1) 75%,
+      transparent 75%,
+      transparent
+    );
+  background-size: 20px 20px;
+  width: 100vw;
+  height: 100vh;
+  margin: -10px;
+}
+.error {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  height: 30px;
+  margin-bottom: 30px;
+  color: #980303;
+}
+.container {
+  width: 60vw;
+  background-color: #edf2f4;
+  padding: 25px 50px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.084);
+  border-radius: 15px2;
+}
+
+.backButton {
+  padding: 0.5rem 1rem;
+  background-color: #134eff;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  transition: all 0.5s;
+  transition: 0.3s linear;
+  text-align: center;
+}
+.backButton:hover {
+  background-color: #ff6e1f;
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: rotate(3deg);
+}
+
+.reviewForm textarea {
+  border: 0;
+  background-color: #fcfcfc00;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.167);
+  padding: 15px;
+  margin-top: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+.reviewForm textarea:focus {
+  outline: none;
+}
+.reviewForm textarea:not(:placeholder-shown) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.712);
+}
+
+@media (max-device-width: 600px) and (orientation: portrait) {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .reviewsContainer {
+    animation: fadeIn 1s ease-in;
+  }
+  .container {
+    width: 80vw;
+    background-color: #edf2f4;
+    padding: 25px 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.084);
+    border-radius: 15px2;
+  }
+}

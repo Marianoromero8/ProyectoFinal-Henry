@@ -18,6 +18,10 @@ const SearchBar = ({ searchTerm, onSearch }) => {
     }
   };
 
+  const handleSearchClick = () => {
+    onSearch(localSearchTerm);
+  };
+
   return (
     <div className={styles.searchBarContainer}>
       <input
@@ -28,6 +32,12 @@ const SearchBar = ({ searchTerm, onSearch }) => {
         onChange={handleChange}
         onKeyPress={handleKeyPress}
       />
+      <button
+        className={styles.searchButton}
+        onClick={handleSearchClick}
+      >
+        Search
+      </button>
     </div>
   );
 };

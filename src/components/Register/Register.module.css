@@ -32,6 +32,7 @@
 .container1 input:focus {
   outline: none;
 }
+
 .container1 input:not(:placeholder-shown) {
   border-bottom: 1px solid rgba(0, 0, 0, 0.712);
 }
