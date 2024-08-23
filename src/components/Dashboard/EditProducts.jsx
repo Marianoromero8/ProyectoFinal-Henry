@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { productsDetails, updateProduct } from '../../store/slice/productSlice';
-import style from './EditProducts.module.css'
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productsDetails, updateProduct } from "../../store/slice/productSlice";
+import style from "./EditProducts.module.css";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const EditProducts = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const MySwal = withReactContent(Swal);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [localProduct, setLocalProduct] = useState({
@@ -45,10 +48,25 @@ const EditProducts = () => {
     }));
   };
 
+  const handleAlertError = () => {
+    MySwal.fire({
+      title: "Incomplete Fields",
+      text: `El stock no puede exceder de ${MAX_STOCK} unidades para el talle ${size}.`,
+      icon: "error",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#134eff",
+      background: "#ece8e8",
+      color: "black",
+      iconColor: "#ff6e1f",
+      customClass: {
+        popup: "custom-pop  up",
+      },
+    });
+  };
   const handleStockChange = (size, value) => {
-    const quantityStock = Number(value)
+    const quantityStock = Number(value);
     if (quantityStock > 80) {
-      alert(`El stock no puede exceder de ${MAX_STOCK} unidades para el talle ${size}.`);
+      handleAlertError();
       return;
     }
     setLocalProduct((prevState) => ({
