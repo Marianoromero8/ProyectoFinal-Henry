@@ -319,30 +319,28 @@
     text-align: justify;
   }
   .perfilesBack {
-    width: 90%;
+    width: 95%;
     height: 30px;
     color: #dadee0;
     margin: 5px;
   }
   .perfilesFront {
-    width: 90%;
+    width: 95%;
     height: 30px;
     margin: 0;
     margin-top: 50px;
     margin-bottom: 50px;
   }
   .perfilesImg {
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     border-radius: 45px;
 
     margin-left: 10px;
   }
   .perfilesImg2 {
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     margin-right: 10px;
-  }
-  .parrafo3 {
   }
 }

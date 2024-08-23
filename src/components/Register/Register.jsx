@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { registerUser } from "../../store/slice/authThunks";
 import styles from "./Register.module.css";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const MySwal = withReactContent(Swal);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,9 +17,28 @@ const Register = () => {
   const role = "user";
 
   const { loading, error, user } = useSelector((state) => state.auth);
-
+  const handleAlertError = () => {
+    MySwal.fire({
+      title: "Incomplete Fields",
+      text: "Missing required fields.",
+      icon: "error",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#134eff",
+      background: "#ece8e8",
+      color: "black",
+      iconColor: "#ff6e1f",
+      customClass: {
+        popup: "custom-pop  up",
+      },
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      return handleAlertError();
+    }
+
     const resultAction = await dispatch(
       registerUser({ email, password, role })
     );

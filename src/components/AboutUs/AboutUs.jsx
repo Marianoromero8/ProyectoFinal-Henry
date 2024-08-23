@@ -14,6 +14,7 @@ import shirley from "../../assets/fotos/shirley.jpeg";
 import marian from "../../assets/fotos/marian.jpg";
 import gonza from "../../assets/fotos/gonza.jpg";
 import blue from "../../assets/fotos/blue.jpg";
+import denis from "../../assets/fotos/denis.jpg";
 
 const AboutUs = () => {
   return (
@@ -84,10 +85,7 @@ const AboutUs = () => {
               <img src={nahuel} className={style.perfilesImg} />
 
               <img src={shirley} className={style.perfilesImg} />
-              <img
-                src="https://e1.pngegg.com/pngimages/976/873/png-clipart-orb-os-x-icon-man-s-profile-icon-inside-white-circle.png"
-                className={style.perfilesImg}
-              />
+              <img src={denis} className={style.perfilesImg} />
             </div>
           </div>
           <div className={style.perfilesFront}>

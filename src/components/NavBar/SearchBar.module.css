@@ -22,6 +22,32 @@
   transform: scale(1.3);
 }
 
+.searchButton {
+  position: relative;
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  font-style: normal;
+  transition: all 0.5s;
+  color: black;
+  align-items: center;
+  border: none;
+  padding: 7px 15px;
+  margin: 5px;
+  border-radius: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+
+.searchButton:hover {
+  transition: all 0.5s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transform: rotate(3deg);
+}
+
 .imgButton {
   width: 35px;
 }
@@ -41,12 +67,30 @@
     padding-left: 25px;
     border: 0;
     border-radius: 10px;
-    width: 150px;
+    width: 110px;
     background-color: rgba(0, 0, 0, 0.032);
     font-family: "Montserrat", sans-serif;
     font-size: 12px;
     font-weight: 400;
     font-style: normal;
-    margin-left: 10px;
+    margin-left: 5px;
+  }
+  .searchButton {
+    position: relative;
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    font-style: normal;
+    transition: all 0.5s;
+    color: black;
+    align-items: center;
+    border: none;
+    padding: 7px 15px;
+    margin: 0px;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
   }
 }

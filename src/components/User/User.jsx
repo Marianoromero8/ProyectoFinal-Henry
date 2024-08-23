@@ -9,12 +9,11 @@ const User = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { loading } = useSelector((state) => state.auth);
-  const { clearCart } = useContext(CartContext)
+  const { clearCart } = useContext(CartContext);
 
   const handleLogout = () => {
-    clearCart()
-    dispatch(logoutUser())
-      .then(() => navigate("/login"));
+    clearCart();
+    dispatch(logoutUser()).then(() => navigate("/login"));
   };
 
   return (

@@ -1,17 +1,14 @@
 .containerDashboard {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   font-family: "Montserrat", sans-serif;
-  margin-top: 150px;
-  margin: -10px;
-  display: flex;
-  width: 100vw;
-  height: 100vh;
+  font-size: 13px;
+  font-weight: 500;
   background: linear-gradient(
       45deg,
-      rgba(236, 233, 233, 0.1) 25%,
+      rgba(236, 233, 233, 0.069) 25%,
       transparent 25%,
       transparent 50%,
       rgba(192, 191, 191, 0.1) 50%,
@@ -21,15 +18,18 @@
     ),
     linear-gradient(
       45deg,
-      rgba(255, 255, 255, 0.1) 25%,
+      rgba(255, 255, 255, 0.035) 25%,
       transparent 25%,
       transparent 50%,
-      rgba(215, 208, 230, 0.11) 50%,
+      rgba(215, 208, 230, 0.051) 50%,
       rgba(255, 255, 255, 0.1) 75%,
       transparent 75%,
       transparent
     );
   background-size: 20px 20px;
+  width: 100vw;
+  height: 100vh;
+  margin: -10px;
 }
 
 .containerDashboard h2 {
@@ -126,71 +126,17 @@
 }
 
 @media (max-device-width: 600px) and (orientation: portrait) {
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .containerDashboard {
-    margin: -10px;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-  }
-  .menuButton {
-    margin-top: 1px;
-  }
-
-  .containerDASh {
-    background-color: #edf2f4;
-    height: 350px;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
-  }
-  .containerDashboard h2 {
-    font-size: 25px;
-    font-style: normal;
-    margin: 0;
-  }
-  .containertop {
-    margin: 0;
-    padding: 0;
-  }
-
-  .menuContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 220px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    border-radius: 15px;
-  }
-}
-
-@media (min-device-width: 712px) and (max-device-width: 1138px) and (orientation: portrait) {
   .containerDashboard {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     font-family: "Montserrat", sans-serif;
-    margin-top: 150px;
-    margin: -10px;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
+    font-size: 13px;
+    font-weight: 500;
     background: linear-gradient(
         45deg,
-        rgba(236, 233, 233, 0.1) 25%,
+        rgba(236, 233, 233, 0.069) 25%,
         transparent 25%,
         transparent 50%,
         rgba(192, 191, 191, 0.1) 50%,
@@ -200,15 +146,150 @@
       ),
       linear-gradient(
         45deg,
-        rgba(255, 255, 255, 0.1) 25%,
+        rgba(255, 255, 255, 0.035) 25%,
         transparent 25%,
         transparent 50%,
-        rgba(215, 208, 230, 0.11) 50%,
+        rgba(215, 208, 230, 0.051) 50%,
         rgba(255, 255, 255, 0.1) 75%,
         transparent 75%,
         transparent
       );
     background-size: 20px 20px;
+    width: 80vw;
+    height: 100vh;
+    margin: -10px;
+    overflow: hidden;
+  }
+
+  .containerDashboard h2 {
+    font-size: 22px;
+    font-style: normal;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  .menuButton {
+    position: relative;
+    display: block;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    font-style: normal;
+    transition: all 0.5s;
+    color: black;
+    align-items: center;
+    border: none;
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+    padding: 5px 10px;
+  }
+
+  .menuButton:hover {
+    transition: all 0.5s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    transform: rotate(3deg);
+  }
+
+  .errors {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: black;
+    font-style: italic;
+    font-weight: 800;
+  }
+
+  .Type {
+    border-radius: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 15px;
+    margin-top: -5px;
+    width: 100vw;
+  }
+
+  .containerDASh {
+    background-color: #edf2f4;
+    width: 510px;
+    padding: 50px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
+    @media (max-width: 800px) {
+      height: 220px;
+      width: 50%;
+      align-items: center;
+    }
+  }
+  .hrStyle {
+    margin: 0;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
+  }
+
+  .menuContainer {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    height: 50px;
+    margin-bottom: 0;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 15px;
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
+  }
+
+  .containertop {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    @media (max-width: 800px) {
+      width: 200px;
+    }
+  }
+}
+
+/*tablet*/
+@media (min-device-width: 712px) and (max-device-width: 1138px) and (orientation: portrait) {
+  .containerDashboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    background: linear-gradient(
+        45deg,
+        rgba(236, 233, 233, 0.069) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(192, 191, 191, 0.1) 50%,
+        rgba(171, 169, 169, 0.1) 75%,
+        transparent 75%,
+        transparent
+      ),
+      linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.035) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(215, 208, 230, 0.051) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 75%,
+        transparent
+      );
+    background-size: 20px 20px;
+    width: 80vw;
+    height: 100vh;
+    margin: -10px;
+    overflow: hidden;
   }
 
   .containerDashboard h2 {
@@ -216,7 +297,6 @@
     font-style: normal;
     margin: 0;
     margin-bottom: 5px;
-    margin-top: 10px;
   }
 
   .menuButton {
@@ -262,31 +342,46 @@
 
   .containerDASh {
     background-color: #edf2f4;
-    width: 550px;
+    width: 510px;
     padding: 50px;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
+    @media (max-width: 800px) {
+      height: 220px;
+      width: 50%;
+      align-items: center;
+    }
   }
   .hrStyle {
     margin: 0;
+    @media (max-width: 800px) {
+      width: 100%;
+    }
   }
 
   .menuContainer {
     display: flex;
     flex-direction: row;
     width: 500px;
+    height: 50px;
     margin-bottom: 0;
-    margin-top: 60px;
+    margin-top: 20px;
     justify-content: space-between;
     align-items: center;
     border-radius: 15px;
+    @media (max-width: 800px) {
+      flex-direction: column;
+    }
   }
 
   .containertop {
     display: flex;
     flex-direction: column;
     width: 500px;
+    @media (max-width: 800px) {
+      width: 200px;
+    }
   }
 }

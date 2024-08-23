@@ -10,9 +10,30 @@ import {
 } from "../../store/slice/formSlice";
 import axios from "axios";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
+
+const handleAlertSuccess = () => {
+  MySwal.fire({
+    text: "Product Created Successfully",
+    icon: "success",
+    confirmButtonText: "Aceptar",
+    confirmButtonColor: "#134eff",
+    background: "#ece8e8",
+    color: "black",
+    iconColor: "#026e55",
+    customClass: {
+      popup: "custom-pop  up",
+    },
+  });
+};
+
 const API_URL = "https://pf-henry-backend-ts0n.onrender.com/product/create";
-const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
-  }/image/upload`;
+const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${
+  import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+}/image/upload`;
 const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
 const structureData = (formData) => {
@@ -103,7 +124,7 @@ const Form = () => {
         },
       });
 
-      alert("Product Created Successfully");
+      handleAlertSuccess();
       navigate("/home");
       dispatch(clearForm());
     } catch (error) {

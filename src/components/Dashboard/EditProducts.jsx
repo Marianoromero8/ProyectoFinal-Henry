@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { productsDetails, updateProduct } from '../../store/slice/productSlice';
-import style from './EditProducts.module.css'
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productsDetails, updateProduct } from "../../store/slice/productSlice";
+import style from "./EditProducts.module.css";
 
 const EditProducts = () => {
   const { id } = useParams();
@@ -46,9 +46,11 @@ const EditProducts = () => {
   };
 
   const handleStockChange = (size, value) => {
-    const quantityStock = Number(value)
+    const quantityStock = Number(value);
     if (quantityStock > 80) {
-      alert(`El stock no puede exceder de ${MAX_STOCK} unidades para el talle ${size}.`);
+      alert(
+        `El stock no puede exceder de ${MAX_STOCK} unidades para el talle ${size}.`
+      );
       return;
     }
     setLocalProduct((prevState) => ({
